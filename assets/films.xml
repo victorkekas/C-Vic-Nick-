@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<collection>
+
+<film title="Fight Club" directors="David Fincher" actors="Brad Pitt, Edward Norton, Helena Bonham Carter" genre="drama" year="1999" image="FightClub.png" 
+description="An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."> 
+	<shot image="shot-FightClubV1.png"/> 
+	<shot image="shot-FightClubV2.png"/> 
+</film>
+
+
+<film title="The Godfather" directors="Francis Ford Coppola" actors="Marlon Brando, Al Pacino, James Caan" genre="drama, history" year="1972" image="Godfather.png" 
+description="The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son."> 
+	<shot image="shot-GodfatherV1.png"/> 
+</film>
+
+
+<film title="Schindler's List" directors="Steven Spielberg" actors="Liam Neeson, Ralph Fiennes, Ben Kingsley" genre="drama, history" year="1993" image="SchindlersList.png" 
+description="In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."> 
+	<shot image="shot-SchindlersListV1.png"/> 
+	<shot image="shot-SchindlersListV2.png"/> 
+	<shot image="shot-SchindlersListV3.png"/> 
+</film>
+
+<film title="Pulp Fiction" directors="Quentin Tarantino" actors="John Travolta, Uma Thurman, Samuel L. Jackson" genre="crime, drama" year="1994" image="PulpFiction.png" 
+description="The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption."> 
+	<shot image="shot-PulpFictionV3.png"/> 
+	<shot image="shot-PulpFictionV2.png"/> 
+	<shot image="shot-PulpFictionV1.png"/> 
+</film>
+
+
+<film title="Indiana Jones and the Raiders of the Lost Ark" directors="Steven Spielberg" actors="Harrison Ford, Karen Allen, Paul Freeman" genre="action, adventure" year="1981" image="RaidersOfTheLostArk.png" 
+description="Archaeology professor Indiana Jones ventures to seize a biblical artefact known as the Ark of the Covenant. While doing so, he puts up a fight against Renee and a troop of Nazis.">
+	<shot image="shot-RaidersOfTheLostArkV1.png"/> 
+	<shot image="shot-RaidersOfTheLostArkV2.png"/> 
+	<shot image="shot-RaidersOfTheLostArkV3.png"/> 
+	<shot image="shot-RaidersOfTheLostArkV4.png"/> 
+</film>
+
+<film title="Indiana Jones and the Temple of Doom" directors="Steven Spielberg" actors="Harrison Ford, Kate Capshaw, Ke Huy Quan" genre="action, adventure" year="1984" image="TempleOfDoom.png" 
+description="A skirmish in Shanghai puts archaeologist Indiana Jones, his partner Short Round and singer Willie Scott crossing paths with an Indian village desperate to reclaim a rock stolen by a secret cult beneath the catacombs of an ancient palace.">
+	<shot image="shot-TempleOfDoomV1.png"/> 
+	<shot image="shot-TempleOfDoomV2.png"/> 
+	<shot image="shot-TempleOfDoomV3.png"/> 
+	<shot image="shot-TempleOfDoomV4.png"/> 
+	<shot image="shot-TempleOfDoomV5.png"/> 
+</film>
+
+<film title="Star Wars: Episode IV - A New Hope" directors="George Lucas" actors="Mark Hamill, Harrison Ford, Carrie Fisher" genre="action, adventure, fantasy" year="1977" image="ANewHope.png" 
+description="Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.">
+	<shot image="shot-ANewHopeV1.png"/> 
+	<shot image="shot-ANewHopeV2.png"/> 
+	<shot image="shot-ANewHopeV3.png"/> 
+</film>
+
+<film title="Star Wars: Episode V - The Empire Strikes Back" directors="Irvin Kershner" actors="Mark Hamill, Harrison Ford, Carrie Fisher" genre="action, adventure, fantasy" year="1980" image="EmpireStrikesBack.png" 
+description="After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett." >
+	<shot image="shot-StarWarsV1.png"/> 
+	<shot image="shot-StarWarsV2.png"/> 
+	<shot image="shot-StarWarsV3.png"/> 
+	<shot image="shot-StarWarsV4.png"/> 
+	<shot image="shot-StarWarsV5.png"/> 
+	<shot image="shot-StarWarsV6.png"/> 
+</film>
+
+<film title="The Terminator" directors="James Cameron" actors="Arnold Schwarzenegger, Linda Hamilton, Michael Biehn" genre="action, scifi" year="1984" image="Terminator.png" 
+description="A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.">
+	<shot image="shot-Terminator.png"/> 
+</film>
+
+
+</collection>
