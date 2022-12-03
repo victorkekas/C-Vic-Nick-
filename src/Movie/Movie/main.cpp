@@ -1,10 +1,11 @@
-#include "Movie.h"
+#include "movie.h"
 
 
-void main() {
-	Movie a();
-	a.setTitile("Fight Clud");
-	// "David Fincher", {"Drama ", "Action",""}, {"Brat pitt ", "Edward Norton ", "IMAN "}, 1999);
+int main() {
 
-	
+	Movie a ("Fight Club", "David Fincher ", { "Drama", "Action" }, { "Brad Pitt ", "Edward Norton " }, 2001);
+	string ok= a.toString();
+	cout << ok;
+	return 0;
+
 }

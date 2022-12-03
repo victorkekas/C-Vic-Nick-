@@ -1,104 +1,71 @@
-#include "Movie.h";
+#include "movie.h";
 
 Movie::Movie() {}
 
-Movie::Movie(string title, string director, string genre[3], string prot[3], int year) {
+Movie::Movie(string title, string director, vector <string> genre, vector <string> prot, int year) {
 	this->title = title;
 	this->director = director;
-	this->genre[0] = genre[0];
-	this->genre[1] = genre[1];
-	this->genre[2] = genre[2];
-	this->prot[0] = prot[0];
-	this->prot[1] = prot[1];
-	this->prot[2] = prot[2];
 	this->year = year;
+	for (int i = 0; i < genre.size(); i++) {
+		this->genre.push_back(genre[i]);
+	}
+	for (int i = 0; i < prot.size(); i++) {
+		this->prot.push_back(prot[i]);
+	}
 }
-
 Movie::Movie(const Movie& obj_Movie) {
 	this->title = obj_Movie.title;
 	this->director = obj_Movie.director;
-	this->genre[0] = obj_Movie.genre[0];
-	this->genre[1] = obj_Movie.genre[1];
-	this->genre[2] = obj_Movie.genre[2];
-	this->prot[0] = obj_Movie.prot[0];
-	this->prot[1] = obj_Movie.prot[1];
-	this->prot[2] = obj_Movie.prot[2];
 	this->year = obj_Movie.year;
+	for (int i = 0; i < obj_Movie.genre.size(); i++) {
+		this->genre.push_back(obj_Movie.genre[i]);
+	}
+	for (int i = 0; i < obj_Movie.prot.size(); i++) {
+		this->prot.push_back(obj_Movie.prot[i]);
+	}
 }
-
-
 Movie::~Movie() {
 	cout << "Deleting Movie..." << endl;
-	delete this;
-	cout << "Deleted :) " << endl;
 }
-
 int Movie::getYear() {
 	return year ;
 }
 void Movie::setYear(int newY) {
 	this->year = newY;
 }
-
 string Movie::getTitle() {
 	return title;
 }
 void Movie::setTitle(string title) {
 	this->title = title;
 }
-
 string Movie::getDirector() {
 	return director;
 }
 void Movie::setDirector(string dir) {
 	this->director = dir;
 }
-
-string Movie::getMainChar() {
-	return prot[0];
+vector <string> Movie::getProtagonists() {
+	return prot;
 }
-void Movie::setMainChar(string chara) {
-	this->prot[0] = chara;
+void Movie::addProtagonist(string chara) {
+	this->prot.push_back(chara);
 }
-
-string Movie::getSecChar() {
-	return prot[1];
+vector <string> Movie::getGenre() {
+	return genre;
 }
-void Movie::setSecChar(string chara) {
-	this->prot[1] = chara;
-}
-
-string Movie::getThirdChar() {
-	return prot[2];
-}
-void Movie::setThirdChar(string chara) {
-	this->prot[2] = chara;
-}
-
-string Movie::getGenre1() {
-	return genre[0];
-}
-string Movie::getGenre2() {
-	return genre[1];
-}
-string Movie::getGenre3() {
-	return genre[2];
-}
-void Movie::setGenre1(string gen) {
-	this->genre[0] = gen;
-}
-void Movie::setGenre2(string gen) {
-	this->genre[1] = gen;
-}
-void Movie::setGenre3(string gen) {
-	this->genre[2] = gen;
+void Movie::addGenre(string gen) {
+	this->genre.push_back(gen);
 }
 string Movie::toString() {
-
-	return ("Title " + this->getTitle() + "\n"
-		+ "Director " + this->getDirector() + "\n"
-		+ "Genre " + this->getGenre1() + " " + this->getGenre2() + " " + this->getGenre3() + "\n"
-		+ "Protagonists " + this->getMainChar() + " " + this->getSecChar() + " " + this->getThirdChar() + "\n"
-		+ "Year published " + to_string(this->getYear()));
-	
+	string str = "Title : " + this->getTitle() + " \n"
+		+ "Director : " + this->getDirector() + "\n"
+		+ "Year of publish : " + to_string(this->getYear()) + "\n";
+	for (int i = 0; i < prot.size(); i++) {
+		str += "Actor  " + to_string(i+1) + " : " + prot[i] + "\n";
+	}
+	for (int i = 0; i < genre.size(); i++) {
+		str += "Gerne  " + to_string(i+1) + " : " + genre[i] + "\n";
+	}
+	return str;
 }
