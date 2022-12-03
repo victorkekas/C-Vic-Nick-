@@ -1,0 +1,5 @@
+﻿  main.cpp
+  Movie.cpp
+C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\Movie\Movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+MSVCRT.lib(exe_main.obj) : error LNK2001: unresolved external symbol main
+C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\x64\Release\Movie.exe : fatal error LNK1120: 1 unresolved externals

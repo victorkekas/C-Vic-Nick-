@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\Movie\main.cpp(4,13): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\Movie\main.cpp(6,8): warning C4930: 'Movie b(void)': prototyped function not called (was a variable definition intended?)
+  Movie.vcxproj -> C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\x64\Debug\Movie.exe
