@@ -130,10 +130,12 @@
     <ClInclude Include="graphics.h" />
     <ClInclude Include="movie.h" />
     <ClInclude Include="scancodes.h" />
+    <ClInclude Include="widgets.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movie.cpp" />
+    <ClCompile Include="widgets.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
