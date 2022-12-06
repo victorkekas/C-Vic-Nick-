@@ -146,9 +146,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="config.h" />
+    <ClInclude Include="filmBrowser.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="movie.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="filmBrowser.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movie.cpp" />
   </ItemGroup>
