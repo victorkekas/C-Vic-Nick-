@@ -1,5 +1,4 @@
 ﻿  main.cpp
-  movie.cpp
-C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\Movie\movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
-  Movie.vcxproj -> C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\x64\Debug\Movie.exe
+C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\Movie\main.cpp(11,29): warning C4129: 'd': unrecognized character escape sequence
+C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\Movie\main.cpp(51,23): warning C4129: 'o': unrecognized character escape sequence
+  Movie.vcxproj -> C:\Users\victo\OneDrive\Desktop\Victor\OPA\3o examino\C++\Ergasia\src\Movie\bin\Movied.exe
