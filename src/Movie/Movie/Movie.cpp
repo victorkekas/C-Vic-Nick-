@@ -69,3 +69,26 @@ string Movie::toString() {
 	}
 	return str;
 }
+
+void Movie::init()
+{
+}
+
+void Movie::draw(std::vector<string> images)
+{
+	graphics::Brush br;
+	br.texture = std::string(ASSET_PATH) + images[0];
+	br.outline_color[0] = 0.0f;
+	br.outline_color[1] = 0.0f;
+	br.outline_color[2] = 0.0f;
+	br.outline_width = 2.0f;
+	graphics::drawRect(CANVAS_WIDTH/2.0f,CANVAS_HEIGTH/4.0f,CANVAS_WIDTH/5.0f,CANVAS_HEIGTH/2.3f,br); // main image
+
+	graphics::Brush br2;
+	br2.texture = std::string(ASSET_PATH) + images[1];
+	br2.outline_color[0] = 0.0f;
+	br2.outline_color[1] = 0.0f;
+	br2.outline_color[2] = 0.0f;
+	br2.outline_width = 2.0f;
+	graphics::drawRect(3.2*CANVAS_WIDTH/4.0f, 3*CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 3.0f, CANVAS_HEIGTH / 3.0f, br2); // secondary images
+}

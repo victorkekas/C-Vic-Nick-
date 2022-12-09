@@ -1,6 +1,7 @@
 #include "graphics.h"
 #include "filmBrowser.h"
 #include "config.h"
+#include <iostream>
 
 void update(float ms)
 {

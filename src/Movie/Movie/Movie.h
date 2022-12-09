@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include<vector>
+#include "graphics.h"
+#include "config.h"
 
 using namespace std;
 
@@ -32,4 +34,7 @@ public:
 	vector <string> getGenre();
 	void addGenre(string gen);
 	string toString();
+	//methods
+	void init();
+	void draw(std::vector<string> images);
 };
