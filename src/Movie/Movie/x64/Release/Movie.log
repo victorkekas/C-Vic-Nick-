@@ -1,9 +1,7 @@
 ﻿  filmBrowser.cpp
-  movie.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάμηνο\C++\C-Vic-Nick-\src\Movie\Movie\movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating code
-  4 of 246 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
+  0 of 315 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάμηνο\C++\C-Vic-Nick-\src\Movie\bin\Movie.exe

@@ -74,6 +74,12 @@ void Movie::init()
 {
 }
 
+/*
+void Movie::draw(vector())
+{
+}
+*/
+
 void Movie::draw(std::vector<string> images)
 {
 	graphics::Brush br;

@@ -18,6 +18,7 @@ void draw()
 int main()
 {
     FilmBrowser myfilms;
+    myfilms.init();
     graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGTH, "Netflix");
 
     graphics::setUserData(&myfilms);
@@ -30,7 +31,7 @@ int main()
 
     graphics::setFont("assets\orange juice 2.0.ttf");
 
-    myfilms.init();
+    //myfilms.init();
     graphics::startMessageLoop();
 
     return 0;
