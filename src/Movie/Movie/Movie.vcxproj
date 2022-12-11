@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="button.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="container_box.h" />
     <ClInclude Include="filmBrowser.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="movie.h" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="button.cpp" />
+    <ClCompile Include="container_box.cpp" />
     <ClCompile Include="filmBrowser.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
