@@ -1,5 +1,6 @@
 #include "button.h"
 
+
 Button::~Button()
 {
 }
@@ -20,14 +21,14 @@ void Button::draw()
 	br.fill_color[1] = 0.0f;
 	br.fill_color[2] = 0.0f;
 	// left button for changing movie
-	graphics::drawRect(CANVAS_WIDTH/4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
+	graphics::drawRect(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
 	// right button for changing movie
 	graphics::setOrientation(180);
-	graphics::drawRect(3*CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
+	graphics::drawRect(3 * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
 	graphics::setOrientation(0);
 
 	//graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 3.0f, CANVAS_HEIGTH / 3.0f, br2); // secondary images
-	graphics::setScale(0.66f,0.66f);
+	graphics::setScale(0.66f, 0.66f);
 	br.outline_color[0] = 255.0f;
 	br.outline_color[1] = 0.0f;
 	br.outline_color[2] = 0.0f;
@@ -37,12 +38,14 @@ void Button::draw()
 	br.fill_color[1] = 0.0f;
 	br.fill_color[2] = 0.0f;
 	// left button for changing movie's images
-	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f- CANVAS_WIDTH / 7.0f , 3*CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
+	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f - CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
 	// right button for changing movie's images
 	graphics::setOrientation(180);
-	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f + CANVAS_WIDTH / 7.0f, 3*CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
+	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f + CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
 	graphics::setOrientation(0);
 	graphics::setScale(1.0f, 1.0f);
+
+	// container on bottom left of the screen
 }
 
 void Button::update()

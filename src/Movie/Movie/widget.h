@@ -1,6 +1,7 @@
 #pragma once
 #include "graphics.h"
 #include "config.h"
+#include "movie.h"
 
 class Widget {
 protected:

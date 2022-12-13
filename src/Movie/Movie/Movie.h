@@ -36,5 +36,5 @@ public:
 	string toString();
 	//methods
 	void init();
-	void draw(std::vector<string> images);
+	void draw(std::vector<string> images , std::vector<string> text);
 };

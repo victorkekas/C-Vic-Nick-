@@ -150,17 +150,17 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="container_box.h" />
     <ClInclude Include="filmBrowser.h" />
-    <ClInclude Include="game.h" />
     <ClInclude Include="movie.h" />
+    <ClInclude Include="text_container.h" />
     <ClInclude Include="widget.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="button.cpp" />
     <ClCompile Include="container_box.cpp" />
     <ClCompile Include="filmBrowser.cpp" />
-    <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movie.cpp" />
+    <ClCompile Include="text_container.cpp" />
     <ClCompile Include="widget.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
