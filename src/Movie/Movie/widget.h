@@ -2,14 +2,21 @@
 #include "graphics.h"
 #include "config.h"
 #include "movie.h"
+#include "container_box.h"
 
 class Widget {
-protected:
+public:
 	bool active;
-	int mouse_posx, mouse_posy, width, height;
+	float central_x, central_y, width, height;
+	graphics::Brush br;
 	bool requestFocus();
 	bool releasedFocus();
+
+	std::function<void(int, void*)> action_callback;
+
 public:
+	Widget();
+	~Widget();
 	virtual void draw();
 	virtual void update();
 	virtual void init();

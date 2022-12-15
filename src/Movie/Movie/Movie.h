@@ -8,13 +8,13 @@
 using namespace std;
 
 class Movie {
-private :
+public :
 	string title;
 	string director;
 	vector <string> genre;
 	vector <string> prot;
 	string year ;
-public:
+	int i=1;
 	// Construstors 
 	Movie();																											
 	Movie(string title, string director, vector <string> genre, vector <string> prot, string year);						

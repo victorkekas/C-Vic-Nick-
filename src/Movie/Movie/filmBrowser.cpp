@@ -181,9 +181,72 @@ void FilmBrowser::draw()
 	Movie schindlerslist("Schindler's list", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
 	Movie terminator("Terminator", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
 	Movie templeOfDoom("Temple Of Doom", "David Fincher", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford" }, "1984");
-	fightClub.draw(images[0]);
-	Button b1;
-	b1.draw();
+
+	std::vector<Movie> movies;
+	movies.push_back(fightClub);
+	movies.push_back(aNewHope);
+	movies.push_back(empireStrikesBack);
+	movies.push_back(godFather);
+	movies.push_back(pulpFiction);
+	movies.push_back(raidersOfTheLostArk);
+	movies.push_back(schindlerslist);
+	movies.push_back(terminator);
+	movies.push_back(templeOfDoom);
+
+
+	movies[j].draw(images[j]);
+
+	std::vector<std::vector<std::string>>* vec_ptr_images = &images;
+	std::vector<Movie>* vec_ptr_movies = &movies;
+	int* int_ptr_j = &j;
+	int* int_ptr_i = Movie::&i;
+
+
+	//button for movies (main image)
+	graphics::Brush br_button_type_1;
+	br_button_type_1.texture = std::string(ASSET_PATH) + "arrow.png";
+	br_button_type_1.outline_color[0] = 1.0f;
+	br_button_type_1.outline_color[1] = 0.0f;
+	br_button_type_1.outline_color[2] = 0.0f;
+	br_button_type_1.outline_width = 0.0f;
+	br_button_type_1.outline_opacity = 0.0f;
+	br_button_type_1.fill_color[0] = 0.0f;
+	br_button_type_1.fill_color[1] = 0.0f;
+	br_button_type_1.fill_color[2] = 0.0f;
+
+	// left button for changing movie
+	Button b1_left(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies, int_ptr_j,'b1');
+	b1_left.draw(); 
+
+	// right button for changing movie
+	graphics::setOrientation(180);
+	Button b1_right(3 * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies, int_ptr_j, 'f1');
+	b1_right.draw();
+	graphics::setOrientation(0);
+
+	//button for movies (secondary images)
+	graphics::setScale(0.66f, 0.66f);
+	br_button_type_1.outline_color[0] = 1.0f;
+	br_button_type_1.outline_color[1] = 0.0f;
+	br_button_type_1.outline_color[2] = 0.0f;
+	br_button_type_1.outline_width = 0.0f;
+	br_button_type_1.outline_opacity = 0.0f;
+	br_button_type_1.fill_color[0] = 1.0f;
+	br_button_type_1.fill_color[1] = 0.0f;
+	br_button_type_1.fill_color[2] = 0.0f;
+	 
+	// left button for changing movie's images
+	Button b2_left(3.2 * CANVAS_WIDTH / 4.0f - CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies, , 'b2');
+	b2_left.draw();
+
+	// right button for changing movie's images
+	graphics::setOrientation(180);
+	Button b2_right(3.2 * CANVAS_WIDTH / 4.0f + CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies,, 'f2');
+	b2_right.draw();
+	
+	//reset br 
+	graphics::setOrientation(0);
+	graphics::setScale(1.0f, 1.0f);
 }
 
 void FilmBrowser::init()

@@ -2,11 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-<<<<<<< HEAD
       <FullPath>C:\Users\NikolasVaitsis\C-Vic-Nick-\src\Movie\bin\Movie.exe</FullPath>
-=======
-      <FullPath>C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\Movie.exe</FullPath>
->>>>>>> 9c97bfd100b93359ff8e670a1fbbf9b1e34f045f
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

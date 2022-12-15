@@ -4,48 +4,66 @@
 Button::~Button()
 {
 }
+
 Button::Button()
 {
 }
 
-void Button::draw()
+Button::Button(float central_x, float central_y, float width, float height, graphics::Brush br, std::vector<std::vector<std::string>>* vec_ptr_images, std::vector<Movie>* vec_ptr_movies, int* index, char movement)
 {
-	graphics::Brush br;
-	br.texture = std::string(ASSET_PATH) + "arrow.png";
-	br.outline_color[0] = 255.0f;
-	br.outline_color[1] = 0.0f;
-	br.outline_color[2] = 0.0f;
-	br.outline_width = 0.0f;
-	br.outline_opacity = 0.0f;
-	br.fill_color[0] = 0.0f;
-	br.fill_color[1] = 0.0f;
-	br.fill_color[2] = 0.0f;
-	// left button for changing movie
-	graphics::drawRect(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
-	// right button for changing movie
-	graphics::setOrientation(180);
-	graphics::drawRect(3 * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
-	graphics::setOrientation(0);
+	this->central_x = central_x;
+	this->central_y = central_y;
+	this->width = width;
+	this->height = height;
+	this->br = br;
+	this->vec_ptr_images = vec_ptr_images;
+	this->vec_ptr_movies = vec_ptr_movies;
+	this->index = index;
+	this->movement = movement;
+}
 
-	//graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 3.0f, CANVAS_HEIGTH / 3.0f, br2); // secondary images
-	graphics::setScale(0.66f, 0.66f);
-	br.outline_color[0] = 255.0f;
-	br.outline_color[1] = 0.0f;
-	br.outline_color[2] = 0.0f;
-	br.outline_width = 0.0f;
-	br.outline_opacity = 0.0f;
-	br.fill_color[0] = 255.0f;
-	br.fill_color[1] = 0.0f;
-	br.fill_color[2] = 0.0f;
-	// left button for changing movie's images
-	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f - CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
-	// right button for changing movie's images
-	graphics::setOrientation(180);
-	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f + CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br); // main image
-	graphics::setOrientation(0);
-	graphics::setScale(1.0f, 1.0f);
+void Button::addActionCallback(std::function<void(int, void*)> cb)
+{
+	action_callback = cb;
+}
 
-	// container on bottom left of the screen
+void Button::ButtonAction_Index(int evt, void* data)
+{
+	switch (this->movement) {
+	case 'f1':
+		if (index == (*vec_ptr_images).size()-1) {
+			index = 0;
+			break;
+		}
+		index++;
+		break;
+	case 'b1':
+		if (index == 0) {
+			index = (*vec_ptr_images).size() - 1;
+			break;
+		}
+		index--;
+		break;
+	case 'f2':
+		if (index == (*vec_ptr_movies).size() - 1) {
+			index = 0;
+			break;
+		}
+		break;
+	case 'b2':
+		if (index == 0) {
+			index = (*vec_ptr_movies).size() - 1;
+			break;
+		}
+		index--;
+		break;
+}
+}
+
+
+void Button::draw ()
+{
+	graphics::drawRect(this->central_x, this->central_y, this->width, this->height, this->br);
 }
 
 void Button::update()
@@ -53,10 +71,16 @@ void Button::update()
 	/*if (!m_visible)
 		return;
 	*/
+	ContainerBox boundries(this->central_x, this->central_y, this->width, this->height);
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
 	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
+	bool in_bounds = boundries.contained(mx, my);
+	if (!in_bounds) {
+		return;
+	}
+
 	//glm::vec2 coord(mx,my);
 	//bool in_bounds = m_bounds.contains(coords);
 	

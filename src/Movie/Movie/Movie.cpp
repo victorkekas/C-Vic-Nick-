@@ -91,7 +91,10 @@ void Movie::draw(std::vector<string> images)
 	graphics::drawRect(CANVAS_WIDTH / 2.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
 
 	graphics::Brush br2;
-	br2.texture = std::string(ASSET_PATH) + images[1];
+	if (i == 0) {
+		i = 1;
+	}
+	br2.texture = std::string(ASSET_PATH) + images[i];
 	br2.outline_color[0] = 0.0f;
 	br2.outline_color[1] = 0.0f;
 	br2.outline_color[2] = 0.0f;
@@ -105,27 +108,6 @@ void Movie::draw(std::vector<string> images)
 	br.outline_color[1] = 0.0f;
 	br.outline_color[2] = 0.0f;
 
-<<<<<<< HEAD
-	graphics::setFont(std::string(ASSET_PATH) + "HardtownRustDEMO.ttf");
-	
-	string str; 
-	
-	int i = 0;
-	/*while (i < 62) {
-		if (i % 6 == 0) {
-			str = " ";
-		}
-		str += text[i];
-		i++;
-	}*/
-	for (i; i < text.size(); i++) {
-		str += " ";
-		str += text[i];
-		str += "\n";
-	}
-		graphics::drawText(CANVAS_WIDTH / 15, CANVAS_HEIGTH / 4, 20.0f, str, br);		// Text 
-}
-=======
 	graphics::setFont(std::string(ASSET_PATH) + "OpenSans-ExtraBoldItalic.ttf");
 
 	std::string str;
@@ -168,4 +150,3 @@ void Movie::draw(std::vector<string> images)
 	str = "";
 	j += 1.5f;
 }
->>>>>>> 9c97bfd100b93359ff8e670a1fbbf9b1e34f045f
