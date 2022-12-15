@@ -13,18 +13,18 @@ private :
 	string director;
 	vector <string> genre;
 	vector <string> prot;
-	int year ;
+	string year ;
 public:
 	// Construstors 
 	Movie();																											
-	Movie(string title, string director, vector <string> genre, vector <string> prot, int year);						
+	Movie(string title, string director, vector <string> genre, vector <string> prot, string year);						
 	//Copy Const 
 	Movie(const Movie& obj_Movie);
 	// Deconstructor 
 	~Movie();
 	// Basic Get and Set methods  
-	int getYear();
-	void setYear(int newY);
+	string getYear();
+	void setYear(string newY);
 	string getTitle();
 	void setTitle(string title);
 	string getDirector();
@@ -36,5 +36,5 @@ public:
 	string toString();
 	//methods
 	void init();
-	void draw(std::vector<string> images , std::vector<string> text);
+	void draw(std::vector<string> images );
 };

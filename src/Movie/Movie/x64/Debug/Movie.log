@@ -1,13 +1,17 @@
-﻿  main.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάμηνο\C++\C-Vic-Nick-\src\Movie\Movie\main.cpp(30,23): warning C4129: 'o': unrecognized character escape sequence
+﻿  button.cpp
+C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\button.cpp(41,143): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\button.cpp(44,143): warning C4305: 'argument': truncation from 'double' to 'float'
+  filmBrowser.cpp
   movie.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάμηνο\C++\C-Vic-Nick-\src\Movie\Movie\movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  text_container.cpp
+  widget.cpp
   Generating Code...
-sggd.lib(graphics.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(graphics.obj)' or at ''; linking object as if no debug info
-sggd.lib(GLbackend.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(GLbackend.obj)' or at ''; linking object as if no debug info
-sggd.lib(shader.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(shader.obj)' or at ''; linking object as if no debug info
-sggd.lib(fonts.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(fonts.obj)' or at ''; linking object as if no debug info
-sggd.lib(texture.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(texture.obj)' or at ''; linking object as if no debug info
-sggd.lib(AudioManager.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(AudioManager.obj)' or at ''; linking object as if no debug info
-sggd.lib(lodepng.obj) : warning LNK4099: PDB '' was not found with 'sggd.lib(lodepng.obj)' or at ''; linking object as if no debug info
-  Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάμηνο\C++\C-Vic-Nick-\src\Movie\bin\Movied.exe
+sggd.lib(graphics.obj) : warning LNK4099: PDB 'sggd.pdb' was not found with 'sggd.lib(graphics.obj)' or at 'C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\sggd.pdb'; linking object as if no debug info
+sggd.lib(GLbackend.obj) : warning LNK4099: PDB 'sggd.pdb' was not found with 'sggd.lib(GLbackend.obj)' or at 'C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\sggd.pdb'; linking object as if no debug info
+sggd.lib(shader.obj) : warning LNK4099: PDB 'sggd.pdb' was not found with 'sggd.lib(shader.obj)' or at 'C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\sggd.pdb'; linking object as if no debug info
+sggd.lib(fonts.obj) : warning LNK4099: PDB 'sggd.pdb' was not found with 'sggd.lib(fonts.obj)' or at 'C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\sggd.pdb'; linking object as if no debug info
+sggd.lib(texture.obj) : warning LNK4099: PDB 'sggd.pdb' was not found with 'sggd.lib(texture.obj)' or at 'C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\sggd.pdb'; linking object as if no debug info
+sggd.lib(AudioManager.obj) : warning LNK4099: PDB 'sggd.pdb' was not found with 'sggd.lib(AudioManager.obj)' or at 'C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\sggd.pdb'; linking object as if no debug info
+sggd.lib(lodepng.obj) : warning LNK4099: PDB 'sggd.pdb' was not found with 'sggd.lib(lodepng.obj)' or at 'C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\sggd.pdb'; linking object as if no debug info
+  Movie.vcxproj -> C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\Movied.exe
