@@ -108,14 +108,19 @@ void Movie::draw(std::vector<string> images, std::vector<string> text)
 	graphics::setFont(std::string(ASSET_PATH) + "HardtownRustDEMO.ttf");
 	
 	string str; 
+	
 	int i = 0;
-	while (i < 62) {
+	/*while (i < 62) {
 		if (i % 6 == 0) {
 			str = " ";
 		}
 		str += text[i];
 		i++;
+	}*/
+	for (i; i < text.size(); i++) {
+		str += " ";
+		str += text[i];
+		str += "\n";
 	}
-	
 		graphics::drawText(CANVAS_WIDTH / 15, CANVAS_HEIGTH / 4, 20.0f, str, br);		// Text 
 }
