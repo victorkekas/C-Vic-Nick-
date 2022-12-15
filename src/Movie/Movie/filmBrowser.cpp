@@ -71,7 +71,7 @@ void FilmBrowser::draw()
 	images.push_back(Terminator);
 	images.push_back(TempleOfDoom);
 
-	std::vector<std::vector<std::string>> text; 
+	std::vector<std::vector<std::string>> text;
 
 	std::vector<std::string> TextFightClub;
 	std::vector<std::string> TextANewHope;
@@ -85,7 +85,7 @@ void FilmBrowser::draw()
 
 	TextFightClub.push_back("Title : Fight Club");
 	TextFightClub.push_back("Director : David Fincher ");
-	TextFightClub.push_back("Year of Publish : 1999 ");
+	TextFightClub.push_back("Year of Publish : MCMXCI1X 1999%f" + to_string(1999));
 	TextFightClub.push_back("Actor : Brad Pitt");
 	TextFightClub.push_back("Actor : Edward Norton ");
 	TextFightClub.push_back("Genre : Thriller ");
@@ -158,22 +158,30 @@ void FilmBrowser::draw()
 	text.push_back(TextTempleOfDoom);
 
 	graphics::Brush br;
-	br.fill_color[0] = 145.0f;
-	br.fill_color[1] = 41.0f;
-	br.fill_color[2] = 160.0f;
-	br.fill_opacity = 0.8f;
-	br.fill_secondary_color[0] = 145.0f;
-	br.fill_secondary_color[1] = 64.0f;
-	br.fill_secondary_color[2] = 160.0f;
-	br.fill_secondary_opacity = 0.5f;
+	br.fill_color[0] = 1.0f;
+	br.fill_color[1] = 0.5f;
+	br.fill_color[2] = 0.0f;
+	br.fill_opacity = 1.0f;
+	br.fill_secondary_color[0] = 0.0f;
+	br.fill_secondary_color[1] = 0.6f;
+	br.fill_secondary_color[2] = 0.8f;
+	br.fill_secondary_opacity = 1.0f;
 	br.gradient = true;
-	
+
 	br.outline_opacity = 0.0f;
 
-	graphics::drawRect(CANVAS_WIDTH/2, CANVAS_HEIGTH/2, CANVAS_WIDTH, CANVAS_WIDTH, br);
+	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGTH / 2, CANVAS_WIDTH, CANVAS_WIDTH, br);
 
-	Movie movie1;
-	movie1.draw(images[0], text[0]);
+	Movie fightClub("Fight Club", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie aNewHope("A New Hope", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie empireStrikesBack("Empire Strikes Back", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie godFather("God Father", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie pulpFiction("Pulp Fiction", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie raidersOfTheLostArk("Raiders Of The Lost Ark", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie schindlerslist("Schindler's list", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie terminator("Terminator", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
+	Movie templeOfDoom("Temple Of Doom", "David Fincher", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford" }, "1984");
+	fightClub.draw(images[0]);
 	Button b1;
 	b1.draw();
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  filmBrowser.cpp
   Generating code
   2 of 308 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
@@ -5,3 +6,19 @@
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Movie.vcxproj -> C:\Users\NikolasVaitsis\C-Vic-Nick-\src\Movie\bin\Movie.exe
+=======
+﻿  button.cpp
+C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\button.cpp(41,143): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\button.cpp(44,143): warning C4305: 'argument': truncation from 'double' to 'float'
+  filmBrowser.cpp
+  movie.cpp
+C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  text_container.cpp
+  widget.cpp
+  Generating code
+  170 of 338 functions (50.3%) were compiled, the rest were copied from previous compilation.
+    16 functions were new in current compilation
+    24 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Movie.vcxproj -> C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\Movie.exe
+>>>>>>> 9c97bfd100b93359ff8e670a1fbbf9b1e34f045f
