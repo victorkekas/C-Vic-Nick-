@@ -90,6 +90,7 @@ void FilmBrowser::draw()
 	TextFightClub.push_back("Actor : Edward Norton ");
 	TextFightClub.push_back("Genre : Thriller ");
 	TextFightClub.push_back("Genre : Drama ");
+
 	TextANewHope.push_back("Title : A New Hope");
 	TextANewHope.push_back("Director : George Lucas");
 	TextANewHope.push_back("Year of Publish : 1977  ");
@@ -173,14 +174,14 @@ void FilmBrowser::draw()
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGTH / 2, CANVAS_WIDTH, CANVAS_WIDTH, br);
 
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie aNewHope("A New Hope", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie empireStrikesBack("Empire Strikes Back", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie godFather("God Father", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie pulpFiction("Pulp Fiction", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie raidersOfTheLostArk("Raiders Of The Lost Ark", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie schindlerslist("Schindler's list", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie terminator("Terminator", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie templeOfDoom("Temple Of Doom", "David Fincher", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford" }, "1984");
+	Movie aNewHope("A New Hope", "George Lucas", { "Action" ,"Adventure","Fantasy", "Sci-Fi"}, {"Mark Hamill" ,"Harrison Ford"}, "1977");
+	Movie empireStrikesBack("Empire Strikes Back", "Irvin Kenshner", { "Action" ,"Adventure","Fantasy","Sci-fi"}, {"Mark Hamill" ,"Harrison Ford"}, "1980");
+	Movie godFather("God Father", "Francis Ford Coppola ", { "Crime " ,"Drama" }, { "Marlon Brando" ,"Al Pacino" }, "1972");
+	Movie pulpFiction("Pulp Fiction", "Quentin Tarantino ", { "Drama" ,"Crime" }, { "John Travolta" ,"Uma Thurman", "Samuel L.Jackson", "Bruce Willis"}, "1994");
+	Movie raidersOfTheLostArk("Raiders Of The Lost Ark", "Steven Spielberg", { "Action" ,"Adventure" }, { "Harrison Ford" ,"Karen Allen", "Paul Freeman"}, "1981");
+	Movie schindlerslist("Schindler's list", "Steven Spielberg", { "Drama" ,"Biography","History"}, {"Liam Neeson " ,"Ralph Fiennes", "Ben Kingsley"}, "1993");
+	Movie terminator("Terminator", "James Cameron", { "Action" ,"Sci-Fi" }, { "Arnold Schwarzenegger" ,"Linda Hamilton", "Michael Biehn"}, "1984");
+	Movie templeOfDoom("Temple Of Doom", "Steven Spielberg", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford" }, "1984");
 
 	std::vector<Movie> movies;
 	movies.push_back(fightClub);
