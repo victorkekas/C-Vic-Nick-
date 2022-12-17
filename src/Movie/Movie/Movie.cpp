@@ -1,5 +1,7 @@
 #include "movie.h";
 
+int Movie::images_index = 0;
+
 Movie::Movie() {}
 
 Movie::Movie(string title, string director, vector <string> genre, vector <string> prot, string year) {
@@ -91,10 +93,10 @@ void Movie::draw(std::vector<string> images)
 	graphics::drawRect(CANVAS_WIDTH / 2.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
 
 	graphics::Brush br2;
-	if (i == 0) {
-		i = 1;
-	}
-	br2.texture = std::string(ASSET_PATH) + images[i];
+	/*if (images_index == 0) {
+		images_index = 1;
+	}*/
+	br2.texture = std::string(ASSET_PATH) + images[images_index];
 	br2.outline_color[0] = 0.0f;
 	br2.outline_color[1] = 0.0f;
 	br2.outline_color[2] = 0.0f;

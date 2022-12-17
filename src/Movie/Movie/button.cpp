@@ -9,15 +9,16 @@ Button::Button()
 {
 }
 
-Button::Button(float central_x, float central_y, float width, float height, graphics::Brush br, std::vector<std::vector<std::string>>* vec_ptr_images, std::vector<Movie>* vec_ptr_movies, int* index, char movement)
+Button::Button(float central_x, float central_y, float width, float height, graphics::Brush br, int limit,/*std::vector<std::vector<std::string>>* vec_ptr_images, std::vector<Movie>* vec_ptr_movies,*/  int* index, char movement)
 {
 	this->central_x = central_x;
 	this->central_y = central_y;
 	this->width = width;
 	this->height = height;
 	this->br = br;
-	this->vec_ptr_images = vec_ptr_images;
-	this->vec_ptr_movies = vec_ptr_movies;
+	//this->vec_ptr_images = vec_ptr_images;
+	//this->vec_ptr_movies = vec_ptr_movies;
+	this->limit = limit;
 	this->index = index;
 	this->movement = movement;
 }
@@ -30,34 +31,41 @@ void Button::addActionCallback(std::function<void(int, void*)> cb)
 void Button::ButtonAction_Index(int evt, void* data)
 {
 	switch (this->movement) {
-	case 'f1':
-		if (index == (*vec_ptr_images).size()-1) {
-			index = 0;
+	case 'f':
+		if (*index == (limit - 1)) {
+			*index = 0;
 			break;
 		}
-		index++;
+		*index += 1;
 		break;
-	case 'b1':
-		if (index == 0) {
-			index = (*vec_ptr_images).size() - 1;
+	case 'b':
+		if (*index == 0) {
+			*index = (limit - 1);
 			break;
 		}
-		index--;
+		*index --;
 		break;
-	case 'f2':
-		if (index == (*vec_ptr_movies).size() - 1) {
-			index = 0;
-			break;
-		}
-		break;
-	case 'b2':
-		if (index == 0) {
-			index = (*vec_ptr_movies).size() - 1;
-			break;
-		}
-		index--;
-		break;
+	}
 }
+
+void Button::ButtonAction_Index_except0(int evt, void* data)
+{
+	switch (this->movement) {
+	case 'f':
+		if (*index == (limit - 1)) {
+			*index = 1;
+			break;
+		}
+		*index += 1;
+		break;
+	case 'b':
+		if (*index == 1) {
+			*index = (limit - 1);
+			break;
+		}
+		*index--;
+		break;
+	}
 }
 
 
@@ -71,6 +79,7 @@ void Button::update()
 	/*if (!m_visible)
 		return;
 	*/
+	action_callback(0,this);
 	ContainerBox boundries(this->central_x, this->central_y, this->width, this->height);
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
@@ -78,6 +87,11 @@ void Button::update()
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
 	if (!in_bounds) {
+		return;
+	}
+	if (ms.button_left_pressed) { 
+		graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
+		std::cout<< "mixalis" << endl;
 		return;
 	}
 
@@ -107,4 +121,9 @@ void Button::update()
 
 void Button::init()
 {
+}
+
+char Button::getMovement()
+{
+	return this->movement;
 }

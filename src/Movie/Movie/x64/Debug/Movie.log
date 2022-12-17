@@ -1,2 +1,26 @@
 ﻿  button.cpp
-  Movie.vcxproj -> C:\Users\NikolasVaitsis\C-Vic-Nick-\src\Movie\bin\Movied.exe
+  container_box.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\container_box.cpp(17,14): warning C4804: '<=': unsafe use of type 'bool' in operation
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\container_box.cpp(17,48): warning C4804: '<=': unsafe use of type 'bool' in operation
+  filmBrowser.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(234,174): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(241,179): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(259,210): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(259,210): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(266,211): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(266,211): warning C4305: 'argument': truncation from 'double' to 'float'
+  main.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\main.cpp(32,23): warning C4129: 'o': unrecognized character escape sequence
+  movie.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  text_container.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(5,30): error C2504: 'Widget': base class undefined
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(29,7): error C3668: 'Button::draw': method with override specifier 'override' did not override any base class methods
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(30,7): error C3668: 'Button::update': method with override specifier 'override' did not override any base class methods
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(31,7): error C3668: 'Button::init': method with override specifier 'override' did not override any base class methods
+  widget.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(5,30): error C2504: 'Widget': base class undefined
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(29,7): error C3668: 'Button::draw': method with override specifier 'override' did not override any base class methods
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(30,7): error C3668: 'Button::update': method with override specifier 'override' did not override any base class methods
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(31,7): error C3668: 'Button::init': method with override specifier 'override' did not override any base class methods
+  Generating Code...

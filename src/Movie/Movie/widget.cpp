@@ -1,5 +1,15 @@
 #include "widget.h"
 
+bool Widget::requestFocus()
+{
+	return false;
+}
+
+bool Widget::releasedFocus()
+{
+	return false;
+}
+
 Widget::Widget()
 {
 }

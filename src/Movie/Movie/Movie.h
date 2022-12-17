@@ -4,6 +4,7 @@
 #include<vector>
 #include "graphics.h"
 #include "config.h"
+#include "button.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ public :
 	vector <string> genre;
 	vector <string> prot;
 	string year ;
-	int i=1;
+	static int images_index;
 	// Construstors 
 	Movie();																											
 	Movie(string title, string director, vector <string> genre, vector <string> prot, string year);						

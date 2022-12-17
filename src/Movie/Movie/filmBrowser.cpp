@@ -7,6 +7,23 @@
 
 void FilmBrowser::update()
 {
+	//sleep(4);
+	/*
+	Button* button_update = reinterpret_cast<Button*>(graphics::getUserData());
+	if (button_update == nullptr) {
+		graphics::setUserData(&button_update);
+	}
+	button_update->update();
+	//
+	
+	if (!(graphics::getUserData() == nullptr)) {
+		Button* button_update = reinterpret_cast<Button*>(graphics::getUserData());
+		button_update->update();
+	}
+	else {
+		std::cout << "test" << endl;
+	}*/
+	//std::cout<< "test" << endl;
 }
 
 void FilmBrowser::draw()
@@ -173,14 +190,14 @@ void FilmBrowser::draw()
 	graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGTH / 2, CANVAS_WIDTH, CANVAS_WIDTH, br);
 
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie aNewHope("A New Hope", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie empireStrikesBack("Empire Strikes Back", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie godFather("God Father", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie pulpFiction("Pulp Fiction", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie raidersOfTheLostArk("Raiders Of The Lost Ark", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie schindlerslist("Schindler's list", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie terminator("Terminator", "David Fincher", { "Drama" ,"Thriller" }, { "Edward Norton" ,"Brad Pitt" }, "1999");
-	Movie templeOfDoom("Temple Of Doom", "David Fincher", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford" }, "1984");
+	Movie aNewHope("A New Hope", "George Lucas", { "Action" ,"Adventure","Fantasy", "Sci-Fi" }, { "Mark Hamill" ,"Harrison Ford" }, "1977");
+	Movie empireStrikesBack("Empire Strikes Back", "Irvin Kenshner", { "Action" ,"Adventure","Fantasy","Sci-fi" }, { "Mark Hamill" ,"Harrison Ford" }, "1980");
+	Movie godFather("God Father", "Francis Ford Coppola ", { "Crime " ,"Drama" }, { "Marlon Brando" ,"Al Pacino" }, "1972");
+	Movie pulpFiction("Pulp Fiction", "Quentin Tarantino ", { "Drama" ,"Crime" }, { "John Travolta" ,"Uma Thurman", "Samuel L.Jackson", "Bruce Willis" }, "1994");
+	Movie raidersOfTheLostArk("Raiders Of The Lost Ark", "Steven Spielberg", { "Action" ,"Adventure" }, { "Harrison Ford" ,"Karen Allen", "Paul Freeman" }, "1981");
+	Movie schindlerslist("Schindler's list", "Steven Spielberg", { "Drama" ,"Biography","History" }, { "Liam Neeson " ,"Ralph Fiennes", "Ben Kingsley" }, "1993");
+	Movie terminator("Terminator", "James Cameron", { "Action" ,"Sci-Fi" }, { "Arnold Schwarzenegger" ,"Linda Hamilton", "Michael Biehn" }, "1984");
+	Movie templeOfDoom("Temple Of Doom", "Steven Spielberg", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford" }, "1984");
 
 	std::vector<Movie> movies;
 	movies.push_back(fightClub);
@@ -195,11 +212,10 @@ void FilmBrowser::draw()
 
 
 	movies[j].draw(images[j]);
-
 	std::vector<std::vector<std::string>>* vec_ptr_images = &images;
 	std::vector<Movie>* vec_ptr_movies = &movies;
 	int* int_ptr_j = &j;
-	int* int_ptr_i = Movie::&i;
+	static int* int_ptr_i = &(Movie::images_index); //des to static
 
 
 	//button for movies (main image)
@@ -215,13 +231,17 @@ void FilmBrowser::draw()
 	br_button_type_1.fill_color[2] = 0.0f;
 
 	// left button for changing movie
-	Button b1_left(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies, int_ptr_j,'b1');
+	Button b1_left(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, movies.size(), /*&images, &movies,*/ int_ptr_j, 'b');
 	b1_left.draw(); 
+	b1_left.addActionCallback(std::bind(&Button::ButtonAction_Index,&b1_left, std::placeholders::_1, std::placeholders::_2));
+	//(b1_left).update(); 
 
 	// right button for changing movie
 	graphics::setOrientation(180);
-	Button b1_right(3 * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies, int_ptr_j, 'f1');
+	Button b1_right(3 * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, movies.size(), /*&images, &movies,*/ int_ptr_j, 'f');
 	b1_right.draw();
+	b1_right.addActionCallback(std::bind(&Button::ButtonAction_Index, &b1_right, std::placeholders::_1, std::placeholders::_2));
+	//(b1_right).update(); 
 	graphics::setOrientation(0);
 
 	//button for movies (secondary images)
@@ -236,13 +256,17 @@ void FilmBrowser::draw()
 	br_button_type_1.fill_color[2] = 0.0f;
 	 
 	// left button for changing movie's images
-	Button b2_left(3.2 * CANVAS_WIDTH / 4.0f - CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies, , 'b2');
+	Button b2_left(3.2 * CANVAS_WIDTH / 4.0f - CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, images[j].size(), /*&images, &movies, */ int_ptr_i, 'b');
 	b2_left.draw();
+	b2_left.addActionCallback(std::bind(&Button::ButtonAction_Index_except0, &b2_left, std::placeholders::_1, std::placeholders::_2));
+	//(b2_left).update();
 
 	// right button for changing movie's images
 	graphics::setOrientation(180);
-	Button b2_right(3.2 * CANVAS_WIDTH / 4.0f + CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, &images, &movies,, 'f2');
+	Button b2_right(3.2 * CANVAS_WIDTH / 4.0f + CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1, images[j].size(), /*&images, &movies, */ int_ptr_i, 'f');
 	b2_right.draw();
+	b2_right.addActionCallback(std::bind(&Button::ButtonAction_Index_except0, &b2_right, std::placeholders::_1, std::placeholders::_2));
+	//(b2_right).update();
 	
 	//reset br 
 	graphics::setOrientation(0);

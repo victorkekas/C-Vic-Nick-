@@ -11,10 +11,8 @@ public:
 	graphics::Brush br;
 	bool requestFocus();
 	bool releasedFocus();
-
 	std::function<void(int, void*)> action_callback;
 
-public:
 	Widget();
 	~Widget();
 	virtual void draw();
