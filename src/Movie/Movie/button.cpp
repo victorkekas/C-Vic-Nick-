@@ -43,7 +43,7 @@ void Button::ButtonAction_Index(int evt, void* data)
 			*index = (limit - 1);
 			break;
 		}
-		*index --;
+		*index -= 1;
 		break;
 	}
 }
@@ -63,7 +63,7 @@ void Button::ButtonAction_Index_except0(int evt, void* data)
 			*index = (limit - 1);
 			break;
 		}
-		*index--;
+		*index -= 1;
 		break;
 	}
 }

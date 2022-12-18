@@ -1,6 +1,6 @@
 #include "movie.h";
 
-int Movie::images_index = 0;
+int Movie::images_index = 1;
 
 Movie::Movie() {}
 

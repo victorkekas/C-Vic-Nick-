@@ -2,8 +2,16 @@
 #include "widget.h"
 
 
-class Button : public Widget {
+class Button /*: public Widget*/ {
 public:
+	//ayta einai thw widget
+	bool active;
+	float central_x, central_y, width, height;
+	graphics::Brush br;
+	bool requestFocus();
+	bool releasedFocus();
+	std::function<void(int, void*)> action_callback;
+	//eos edw
 	enum button_state_t {BUTTON_PRESSED, BUTTON_IDLE, BUTTON_HIGHLIGHTED};
 	button_state_t m_button_state = BUTTON_IDLE;
 	std::string m_text;
@@ -26,8 +34,8 @@ public:
 	void addActionCallback(std::function<void(int, void*)> cb);
 	void ButtonAction_Index(int evt, void* data);
 	void ButtonAction_Index_except0(int evt, void* data);
-	void draw() override;
-	void update()override;
-	void init()override;
+	void draw() /*override*/;
+	void update()/*override*/;
+	void init()/*override*/;
 	char getMovement();
 };
