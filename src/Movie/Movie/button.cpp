@@ -86,10 +86,13 @@ void Button::update()
 	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
+	std::cout<< mx << " " << my << endl;
 	if (!in_bounds) {
 		return;
 	}
-	if (ms.button_left_pressed) { 
+
+	//auto edw thelei ftiajimo to apo panw doyleuei--mhn jexnas to widget <3
+	if (ms.button_left_pressed) {
 		graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		std::cout<< "mixalis" << endl;
 		return;

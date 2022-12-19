@@ -1,15 +1,19 @@
-﻿  filmBrowser.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(234,174): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(241,179): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(259,210): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(259,210): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(266,211): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(266,211): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  button.cpp
+  container_box.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\container_box.cpp(17,14): warning C4804: '<=': unsafe use of type 'bool' in operation
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\container_box.cpp(17,48): warning C4804: '<=': unsafe use of type 'bool' in operation
+  filmBrowser.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(238,174): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(245,179): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(263,210): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(263,210): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(270,211): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(270,211): warning C4305: 'argument': truncation from 'double' to 'float'
   main.cpp
 C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\main.cpp(32,23): warning C4129: 'o': unrecognized character escape sequence
-  Generating code
-  0 of 489 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\bin\Movie.exe
+  movie.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movie.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  text_container.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(5,30): error C2504: 'Widget': base class undefined
+  widget.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(5,30): error C2504: 'Widget': base class undefined

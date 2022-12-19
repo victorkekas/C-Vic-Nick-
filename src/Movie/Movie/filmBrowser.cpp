@@ -5,6 +5,10 @@
 #include "button.h"
 #include "text_container.h"
 
+std::vector<std::vector<std::string>> images;
+std::vector<std::vector<std::string>> text;
+Button* b2_test;
+
 void FilmBrowser::update()
 {
 	//sleep(4);
@@ -24,12 +28,13 @@ void FilmBrowser::update()
 		std::cout << "test" << endl;
 	}*/
 	//std::cout<< "test" << endl;
+	if (b2_test) {
+		b2_test->update();
+	}
 }
 
 void FilmBrowser::draw()
 {
-	std::vector<std::vector<std::string>> images;
-
 	std::vector<std::string> FightClub;
 	std::vector<std::string> ANewHope;
 	std::vector<std::string> EmpireStrikesBack;
@@ -88,7 +93,6 @@ void FilmBrowser::draw()
 	images.push_back(Terminator);
 	images.push_back(TempleOfDoom);
 
-	std::vector<std::vector<std::string>> text;
 
 	std::vector<std::string> TextFightClub;
 	std::vector<std::string> TextANewHope;
@@ -267,7 +271,7 @@ void FilmBrowser::draw()
 	b2_right.draw();
 	b2_right.addActionCallback(std::bind(&Button::ButtonAction_Index_except0, &b2_right, std::placeholders::_1, std::placeholders::_2));
 	//(b2_right).update();
-	
+	b2_test->draw();
 	//reset br 
 	graphics::setOrientation(0);
 	graphics::setScale(1.0f, 1.0f);
@@ -275,6 +279,21 @@ void FilmBrowser::draw()
 
 void FilmBrowser::init()
 {
+	graphics::Brush br_button_type_2;
+	br_button_type_2.texture = std::string(ASSET_PATH) + "arrow.png";
+	br_button_type_2.outline_color[0] = 1.0f;
+	br_button_type_2.outline_color[1] = 0.0f;
+	br_button_type_2.outline_color[2] = 0.0f;
+	br_button_type_2.outline_width = 0.0f;
+	br_button_type_2.outline_opacity = 0.0f;
+	br_button_type_2.fill_color[0] = 0.0f;
+	br_button_type_2.fill_color[1] = 0.0f;
+	br_button_type_2.fill_color[2] = 0.0f;
+	
+	int aa = 5;
+	int* a = &aa;
+	b2_test = new Button(CANVAS_WIDTH / 2.0f, CANVAS_HEIGTH / 2.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_2, 10, /*&images, &movies,*/ a, 'b');
+	b2_test->addActionCallback(std::bind(&Button::ButtonAction_Index, b2_test, std::placeholders::_1, std::placeholders::_2));
 }
 
 FilmBrowser::FilmBrowser()
