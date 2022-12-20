@@ -2,7 +2,7 @@
 #include "widget.h"
 
 
-class Button /*: public Widget*/ {
+class Button : public Widget {
 public:
 	//ayta einai thw widget
 	bool active;

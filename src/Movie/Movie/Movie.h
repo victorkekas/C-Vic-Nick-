@@ -4,7 +4,6 @@
 #include<vector>
 #include "graphics.h"
 #include "config.h"
-#include "button.h"
 
 using namespace std;
 
