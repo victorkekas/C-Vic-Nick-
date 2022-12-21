@@ -14,7 +14,7 @@ ContainerBox::~ContainerBox()
 
 bool ContainerBox::contained(float mouse_pos_x, float mouse_pos_y)
 {
-	if (side_00 <= mouse_pos_x<=side_x0 && side_0y<=mouse_pos_y <= side_xy) {
+	if (side_00 <= mouse_pos_x && mouse_pos_x<=side_x0 && side_0y<=mouse_pos_y && mouse_pos_y <= side_xy) {
 		return true;
 	}
 	return false;

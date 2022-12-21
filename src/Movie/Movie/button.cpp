@@ -86,7 +86,9 @@ void Button::update()
 	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
-	std::cout<< mx << " " << my << endl;
+	//std::cout<< boundries.side_00<< "___"<< boundries.side_x0 << "___" << boundries.side_0y << "___" << boundries.side_xy << "___" << in_bounds<<endl;
+	//std::cout<< mx << " " << my << endl;
+	/*
 	if (!in_bounds) {
 		return;
 	}
@@ -97,7 +99,15 @@ void Button::update()
 		std::cout<< "mixalis" << endl;
 		return;
 	}
-
+	*/
+	if (in_bounds) {
+		if (ms.button_left_pressed) {
+			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
+			std::cout << "mixalis" << endl;
+			return;
+		}
+		return;
+	}
 	//glm::vec2 coord(mx,my);
 	//bool in_bounds = m_bounds.contains(coords);
 	
