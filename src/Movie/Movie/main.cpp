@@ -18,7 +18,7 @@ void draw()
 int main()
 {
     FilmBrowser myfilms;
-    graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGTH, "Netflix");
+    graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGTH, "JUICY");
 
     graphics::setUserData(&myfilms);
 

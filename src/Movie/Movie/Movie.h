@@ -13,11 +13,14 @@ public :
 	string director;
 	vector <string> genre;
 	vector <string> prot;
+	vector <string> shots;
+	string poster;
 	string year ;
-	static int images_index;
+	int images_index;
+	//static int images_index;
 	// Construstors 
 	Movie();																											
-	Movie(string title, string director, vector <string> genre, vector <string> prot, string year);						
+	Movie(string title, string director, vector <string> genre, vector <string> prot, string year, vector <string> shots, string poster);
 	//Copy Const 
 	Movie(const Movie& obj_Movie);
 	// Deconstructor 
@@ -36,5 +39,8 @@ public :
 	string toString();
 	//methods
 	void init();
-	void draw(std::vector<string> images );
+	void draw();
+	void draw1(float cx);// only the poster
+	void nextShot();
+	void previousShot();
 };

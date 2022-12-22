@@ -1,29 +1,39 @@
 #include "movie.h";
 
-int Movie::images_index = 1;
+//int Movie::images_index = 1;
 
 Movie::Movie() {}
 
-Movie::Movie(string title, string director, vector <string> genre, vector <string> prot, string year) {
+Movie::Movie(string title, string director, vector <string> genre, vector <string> prot, string year, vector <string> shots, string poster) {
+	this->images_index = 0;
 	this->title = title;
 	this->director = director;
 	this->year = year;
+	this->poster = poster;
 	for (int i = 0; i < genre.size(); i++) {
 		this->genre.push_back(genre[i]);
 	}
 	for (int i = 0; i < prot.size(); i++) {
 		this->prot.push_back(prot[i]);
 	}
+	for (int i = 0; i < shots.size(); i++) {
+		this->shots.push_back(shots[i]);
+	}
 }
 Movie::Movie(const Movie& obj_Movie) {
+	this->images_index = obj_Movie.images_index;
 	this->title = obj_Movie.title;
 	this->director = obj_Movie.director;
 	this->year = obj_Movie.year;
+	this->poster = obj_Movie.poster;
 	for (int i = 0; i < obj_Movie.genre.size(); i++) {
 		this->genre.push_back(obj_Movie.genre[i]);
 	}
 	for (int i = 0; i < obj_Movie.prot.size(); i++) {
 		this->prot.push_back(obj_Movie.prot[i]);
+	}
+	for (int i = 0; i < obj_Movie.shots.size(); i++) {
+		this->shots.push_back(obj_Movie.shots[i]);
 	}
 }
 Movie::~Movie() {
@@ -76,16 +86,10 @@ void Movie::init()
 {
 }
 
-/*
-void Movie::draw(vector())
-{
-}
-*/
-
-void Movie::draw(std::vector<string> images)
+void Movie::draw()
 {
 	graphics::Brush br;
-	br.texture = std::string(ASSET_PATH) + images[0];
+	br.texture = std::string(ASSET_PATH) + poster;
 	br.outline_color[0] = 0.0f;
 	br.outline_color[1] = 0.0f;
 	br.outline_color[2] = 0.0f;
@@ -93,10 +97,7 @@ void Movie::draw(std::vector<string> images)
 	graphics::drawRect(CANVAS_WIDTH / 2.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
 
 	graphics::Brush br2;
-	/*if (images_index == 0) {
-		images_index = 1;
-	}*/
-	br2.texture = std::string(ASSET_PATH) + images[images_index];
+	br2.texture = std::string(ASSET_PATH) + shots[images_index];
 	br2.outline_color[0] = 0.0f;
 	br2.outline_color[1] = 0.0f;
 	br2.outline_color[2] = 0.0f;
@@ -151,4 +152,35 @@ void Movie::draw(std::vector<string> images)
 	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 20.0f, str, br);
 	str = "";
 	j += 1.5f;
+}
+
+void Movie::draw1(float cx)
+{
+	graphics::Brush br;
+	br.texture = std::string(ASSET_PATH) + poster;
+	br.outline_color[0] = 0.0f;
+	br.outline_color[1] = 0.0f;
+	br.outline_color[2] = 0.0f;
+	br.outline_width = 2.0f;
+	graphics::drawRect(cx*CANVAS_WIDTH / 2.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
+}
+
+void Movie::nextShot()
+{
+	if (images_index == (shots.size() - 1)) {
+		images_index = 0;
+		return;
+	}
+	images_index += 1;
+	return;
+}
+
+void Movie::previousShot()
+{
+	if (images_index == 0) {
+		images_index = (shots.size() - 1);
+		return;
+	}
+	images_index -= 1;
+	return;
 }

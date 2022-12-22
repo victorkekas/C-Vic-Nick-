@@ -1,5 +1,6 @@
 #pragma once
 #include "widget.h"
+#include "movies_list.h"
 
 
 class Button : public Widget {
@@ -14,14 +15,13 @@ public:
 	void* m_pressed_data = nullptr;
 	void* m_released_data = nullptr;
 
-	//std::vector<std::vector<std::string>>* vec_ptr_images;
-	//std::vector<Movie>* vec_ptr_movies;
 	int* index;
 	int limit;
 	char movement;
 
 	//Button(float cx, float cy, float w, float h, std::string text, int ID);
 	Button();
+	Button(float central_x, float central_y, float width, float height, graphics::Brush br);
 	Button(float central_x, float central_y, float width, float height, graphics::Brush br, int limit,/*std::vector<std::vector<std::string>>* vec_ptr_images, std::vector<Movie>* vec_ptr_movies,*/  int* index, char movement);
 	~Button();
 	void addActionCallback(std::function<void()> cb);

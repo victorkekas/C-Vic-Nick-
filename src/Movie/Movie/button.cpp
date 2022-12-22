@@ -10,6 +10,15 @@ Button::Button()
 {
 }
 
+Button::Button(float central_x, float central_y, float width, float height, graphics::Brush br)
+{
+	this->central_x = central_x;
+	this->central_y = central_y;
+	this->width = width;
+	this->height = height;
+	this->br = br;
+}
+
 Button::Button(float central_x, float central_y, float width, float height, graphics::Brush br, int limit,/*std::vector<std::vector<std::string>>* vec_ptr_images, std::vector<Movie>* vec_ptr_movies,*/  int* index, char movement)
 {
 	this->central_x = central_x;
@@ -86,31 +95,16 @@ void Button::update()
 	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
-	//std::cout<< boundries.side_00<< "___"<< boundries.side_x0 << "___" << boundries.side_0y << "___" << boundries.side_xy << "___" << in_bounds<<endl;
-	//std::cout<< mx << " " << my << endl;
-	/*
-	if (!in_bounds) {
-		return;
-	}
-
-	//auto edw thelei ftiajimo to apo panw doyleuei--mhn jexnas to widget <3
-	if (ms.button_left_pressed) {
-		graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
-		std::cout<< "mixalis" << endl;
-		return;
-	}
-	*/
 	if (in_bounds) {
 		if (ms.button_left_pressed) {
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
+			std::cout << "mixalis" << endl;
 			action_callback();
 			return;
 		}
 		return;
 	}
-	//glm::vec2 coord(mx,my);
-	//bool in_bounds = m_bounds.contains(coords);
-	
+
 	/*if (in_bounds) {
 		if (ms.button_left_pressed) {
 			if (!requestFocus()) {
