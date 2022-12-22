@@ -98,7 +98,6 @@ void Button::update()
 	if (in_bounds) {
 		if (ms.button_left_pressed) {
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
-			std::cout << "mixalis" << endl;
 			action_callback();
 			return;
 		}

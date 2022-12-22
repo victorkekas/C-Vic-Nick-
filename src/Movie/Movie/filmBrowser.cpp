@@ -15,6 +15,8 @@ std::vector<Button*> buttons;
 
 void FilmBrowser::update()
 {
+	b2_left->addActionCallback(std::bind(&Movie::previousShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
+	b2_right->addActionCallback(std::bind(&Movie::nextShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
 	for (auto button : buttons) {
 		button->update();
 	}
@@ -28,7 +30,7 @@ void FilmBrowser::init()
 	//button for movies (main image)
 	graphics::Brush br_button_type_1;
 	br_button_type_1.texture = std::string(ASSET_PATH) + "arrow.png";
-	br_button_type_1.outline_color[0] = 1.0f;
+	br_button_type_1.outline_color[0] = 0.0f;
 	br_button_type_1.outline_color[1] = 0.0f;
 	br_button_type_1.outline_color[2] = 0.0f;
 	br_button_type_1.outline_width = 0.0f;
@@ -38,34 +40,25 @@ void FilmBrowser::init()
 	br_button_type_1.fill_color[2] = 0.0f;
 
 	// left button for changing movie !!!!!DELETE THE BUTTONS LATER PLEASE 
-	b1_left = new Button(0.5*CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1);
-	//b1_left->addActionCallback(std::bind(&MoviesList::previousMovie, displayableMovies)); //
-	b1_left->addActionCallback(std::bind(&MoviesList::previousMovie, displayableMovies)); //
-	displayableMovies.nextMovie(); displayableMovies.nextMovie();
+	b1_left = new Button(1.2f*CANVAS_WIDTH / 16, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1);
+	b1_left->addActionCallback(std::bind(&MoviesList::previousMovie, &displayableMovies) ); 
+
+
 	// right button for changing movie !!!!!DELETE THE BUTTONS LATER PLEASE
-	b1_right = new Button(3.5 * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1);
-	b1_right->addActionCallback(std::bind(&MoviesList::nextMovie, displayableMovies));
+	b1_right = new Button(10.55f * CANVAS_WIDTH / 16.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1);
+	b1_right->addActionCallback(std::bind(&MoviesList::nextMovie, &displayableMovies) );
 
 
 	//button for movies (secondary images)
-	
-	br_button_type_1.outline_color[0] = 1.0f;
-	br_button_type_1.outline_color[1] = 0.0f;
-	br_button_type_1.outline_color[2] = 0.0f;
-	br_button_type_1.outline_width = 0.0f;
-	br_button_type_1.outline_opacity = 0.0f;
-	br_button_type_1.fill_color[0] = 1.0f;
-	br_button_type_1.fill_color[1] = 0.0f;
-	br_button_type_1.fill_color[2] = 0.0f;
 
 	// left button for changing movie's images
 	b2_left = new Button(3.2 * CANVAS_WIDTH / 4.0f - CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1);
-	b2_left->addActionCallback(std::bind(&Movie::nextShot, displayableMovies.movies[displayableMovies.movieIndex]));
+	//b2_left->addActionCallback(std::bind(&Movie::previousShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
 
 	// right button for changing movie's images
 	graphics::setOrientation(180);
 	b2_right = new Button(3.2 * CANVAS_WIDTH / 4.0f + CANVAS_WIDTH / 7.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 15.0f, CANVAS_HEIGTH / 10.3f, br_button_type_1);
-	b2_right->addActionCallback(std::bind(&Movie::previousShot, displayableMovies.movies[displayableMovies.movieIndex]));
+	//b2_right->addActionCallback(std::bind(&Movie::nextShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]) );
 
 	//reset br 
 	graphics::setOrientation(0);
@@ -98,25 +91,26 @@ void FilmBrowser::draw()
 	displayableMovies.draw();
 
 	// left button for changing movie
+	graphics::setScale(0.8f, 0.8f);
 	b1_left->draw();
 
 	// left button for changing movie's images
 	graphics::setScale(0.66f, 0.66f);
 	b2_left->draw();
-	graphics::setScale(1.0f, 1.0f);
 
 	//
 	graphics::setOrientation(180);
 	// right button for changing movie
+	graphics::setScale(0.8f, 0.8f);
 	b1_right->draw();
 
 	// right button for changing movie's images
 	graphics::setScale(0.66f, 0.66f);
 	b2_right->draw();
-	graphics::setScale(1.0f, 1.0f);
-
+	
 	//reset br 
 	graphics::setOrientation(0);
+	graphics::setScale(1.0f, 1.0f);
 }
 
 

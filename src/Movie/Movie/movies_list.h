@@ -10,6 +10,7 @@ public:
 	std::vector<Movie> movies;
 	int movieIndex;
 
+	int getMovieIndex();
 	MoviesList();
 	~MoviesList();
 	void nextMovie();

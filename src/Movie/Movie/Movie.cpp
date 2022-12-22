@@ -94,7 +94,7 @@ void Movie::draw()
 	br.outline_color[1] = 0.0f;
 	br.outline_color[2] = 0.0f;
 	br.outline_width = 2.0f;
-	graphics::drawRect(CANVAS_WIDTH / 2.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
+	graphics::drawRect(2.2f*CANVAS_WIDTH / 6.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
 
 	graphics::Brush br2;
 	br2.texture = std::string(ASSET_PATH) + shots[images_index];
@@ -102,7 +102,7 @@ void Movie::draw()
 	br2.outline_color[1] = 0.0f;
 	br2.outline_color[2] = 0.0f;
 	br2.outline_width = 2.0f;
-	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 3.0f, CANVAS_HEIGTH / 3.0f, br2); // secondary images
+	graphics::drawRect(3.2 * CANVAS_WIDTH / 4.0f, 3 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 4.0f, 1.1*CANVAS_HEIGTH / 4.0f, br2); // secondary images
 
 	br.fill_color[0] = 0.0f;
 	br.fill_color[1] = 0.0f;
@@ -118,40 +118,40 @@ void Movie::draw()
 	int i = 0;
 	//print title 
 	str = "Title : " + getTitle();
-	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 20.0f, str, br);
+	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 22.0f, str, br);
 	str = "";
-	j += 1.5f;
+	j += 1.2f;
 	//print director 
 	str = "Director : " + getDirector();
-	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 20.0f, str, br);
+	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
 	str = "";
-	j += 1.5f;
+	j += 1.2f;
 	//print year of publishation 
 	str = "Year of Publish : " + getYear();
-	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 20.0f, str, br);
+	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
 	str = "";
-	j += 1.5f;
+	j += 1.2f;
 	//print actors 
 	str += "Actors : ";
 	for (i; i < prot.size(); i++) {
 		str += prot[i];
-		if (i + 1 == prot.size()) { break; }
+		if (i + 1 == prot.size())  break; 
 		str += ", ";
 	}
-	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 20.0f, str, br);
+	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
 	str = "";
-	j += 1.5f;
+	j += 1.2f;
 	//print Genres   
 	str += "Genres : ";
 	i = 0;
 	for (i; i < genre.size(); i++) {
 		str += genre[i];
-		if (i + 1 == prot.size()) { break; }
+		if (i + 1 == genre.size())  break;
 		str += ", ";
 	}
-	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 20.0f, str, br);
+	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
 	str = "";
-	j += 1.5f;
+	j += 1.2f;
 }
 
 void Movie::draw1(float cx)
@@ -162,7 +162,7 @@ void Movie::draw1(float cx)
 	br.outline_color[1] = 0.0f;
 	br.outline_color[2] = 0.0f;
 	br.outline_width = 2.0f;
-	graphics::drawRect(cx*CANVAS_WIDTH / 2.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
+	graphics::drawRect(cx*CANVAS_WIDTH / 16.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 7.0f, CANVAS_HEIGTH / 3.3f, br); // main image
 }
 
 void Movie::nextShot()

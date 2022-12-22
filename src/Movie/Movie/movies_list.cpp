@@ -4,6 +4,11 @@ MoviesList::MoviesList()
 {
 }
 
+int MoviesList::getMovieIndex()
+{
+	return this->movieIndex;
+}
+
 MoviesList::~MoviesList()
 {
 	std::cout << "MoviesList" << endl;
@@ -58,16 +63,15 @@ void MoviesList::draw()
 {
 	movies[movieIndex].draw();
 	if (movieIndex == (movies.size() - 1)) {
-		movies[movieIndex - 1].draw1(0.5f);
-		movies[0].draw1(1.5f);
+		movies[movieIndex - 1].draw1(2.7f);
+		movies[0].draw1(9.001f);
 	}
 	else if (movieIndex == 0) {
-		movies[movies.size() - 1].draw1(0.5f);
-		movies[1].draw1(1.5f);
+		movies[movies.size() - 1].draw1(2.7f);
+		movies[1].draw1(9.001f);
 	}
 	else {
-		movies[movieIndex - 1].draw1(0.5f);
-		movies[movieIndex + 1].draw1(1.5f);
+		movies[movieIndex - 1].draw1(2.7f);
+		movies[movieIndex + 1].draw1(9.001f);
 	}
-	//movies[movieIndex].draw();
 }
