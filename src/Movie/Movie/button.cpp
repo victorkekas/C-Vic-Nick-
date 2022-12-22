@@ -3,6 +3,7 @@
 
 Button::~Button()
 {
+	std::cout << "Button" << endl;
 }
 
 Button::Button()
@@ -23,12 +24,12 @@ Button::Button(float central_x, float central_y, float width, float height, grap
 	this->movement = movement;
 }
 
-void Button::addActionCallback(std::function<void(int, void*)> cb)
+void Button::addActionCallback(std::function<void()> cb)
 {
 	action_callback = cb;
 }
 
-void Button::ButtonAction_Index(int evt, void* data)
+void Button::ButtonAction_Index()
 {
 	switch (this->movement) {
 	case 'f':
@@ -48,7 +49,7 @@ void Button::ButtonAction_Index(int evt, void* data)
 	}
 }
 
-void Button::ButtonAction_Index_except0(int evt, void* data)
+void Button::ButtonAction_Index_except0()
 {
 	switch (this->movement) {
 	case 'f':
@@ -79,7 +80,6 @@ void Button::update()
 	/*if (!m_visible)
 		return;
 	*/
-	action_callback(0,this);
 	ContainerBox boundries(this->central_x, this->central_y, this->width, this->height);
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
@@ -103,7 +103,7 @@ void Button::update()
 	if (in_bounds) {
 		if (ms.button_left_pressed) {
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
-			std::cout << "mixalis" << endl;
+			action_callback();
 			return;
 		}
 		return;

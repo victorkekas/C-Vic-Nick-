@@ -16,6 +16,7 @@ Widget::Widget()
 
 Widget::~Widget()
 {
+	std::cout<< "Widget" << endl;
 }
 
 void Widget::draw()

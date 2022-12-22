@@ -1,5 +1,5 @@
 #include "container_box.h"
-
+#include <iostream>
 ContainerBox::ContainerBox(float center_x, float center_y, float width, float height)
 {
 	this->side_00 = center_x - (width / 2);
@@ -10,6 +10,7 @@ ContainerBox::ContainerBox(float center_x, float center_y, float width, float he
 
 ContainerBox::~ContainerBox()
 {
+	std::cout << "ContainerBox" << std::endl;
 }
 
 bool ContainerBox::contained(float mouse_pos_x, float mouse_pos_y)

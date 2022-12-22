@@ -27,7 +27,7 @@ Movie::Movie(const Movie& obj_Movie) {
 	}
 }
 Movie::~Movie() {
-
+	std::cout << "Movie" << endl;
 }
 string Movie::getYear() {
 	return year;
