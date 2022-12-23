@@ -9,6 +9,8 @@ using namespace std;
 
 class Movie {
 public :
+	string temp;
+	string temp2;
 	string title;
 	string director;
 	vector <string> genre;
@@ -28,17 +30,13 @@ public :
 	~Movie();
 	// Basic Get and Set methods  
 	string getYear();
-	void setYear(string newY);
 	string getTitle();
-	void setTitle(string title);
 	string getDirector();
-	void setDirector(string dir);
 	vector <string> getProtagonists();
-	void addProtagonist(string chara);
 	vector <string> getGenre();
-	void addGenre(string gen);
 	string getSummary();
 	string toString();
+	
 	//methods
 	void init();
 	void draw();

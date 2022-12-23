@@ -1,6 +1,6 @@
 #pragma once
 #include "widget.h"
-#include "movies_list.h"
+#include "movies_list.h";
 
 
 class Button : public Widget {
