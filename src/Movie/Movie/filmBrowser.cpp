@@ -11,6 +11,8 @@ Button* b1_left;
 Button* b1_right;
 Button* b2_left;
 Button* b2_right;
+Button* b_reset;
+Button* b_action;
 std::vector<Button*> buttons;
 
 void FilmBrowser::update()
@@ -66,6 +68,16 @@ void FilmBrowser::init()
 	buttons.push_back(b1_right);
 	buttons.push_back(b2_left);
 	buttons.push_back(b2_right);
+
+	br_button_type_1.texture = std::string(ASSET_PATH) + "square.png";
+	b_reset = new Button(13.5f * CANVAS_WIDTH / 16, 2*CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_reset->addActionCallback(std::bind(&MoviesList::resetFilters, &displayableMovies));
+
+	b_action = new Button(13.5f * CANVAS_WIDTH / 16, 1.5 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_action->addActionCallback(std::bind(&MoviesList::setFilterAction, &displayableMovies));
+
+	buttons.push_back(b_reset);
+	buttons.push_back(b_action);
 }
 
 void FilmBrowser::draw()
@@ -88,7 +100,12 @@ void FilmBrowser::draw()
 	//end background 
 
 	// draw the movies
-	displayableMovies.draw();
+	if (displayableMovies.filtersOn) {
+		displayableMovies.drawFiltered();
+	}
+	else {
+		displayableMovies.draw();
+	}
 
 	// left button for changing movie
 	graphics::setScale(0.8f, 0.8f);
@@ -111,6 +128,10 @@ void FilmBrowser::draw()
 	//reset br 
 	graphics::setOrientation(0);
 	graphics::setScale(1.0f, 1.0f);
+
+	b_reset->draw();
+	b_action->draw();
+
 }
 
 

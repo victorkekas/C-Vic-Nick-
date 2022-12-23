@@ -4,12 +4,13 @@
 
 Movie::Movie() {}
 
-Movie::Movie(string title, string director, vector <string> genre, vector <string> prot, string year, vector <string> shots, string poster) {
+Movie::Movie(string title, string director, vector <string> genre, vector <string> prot, string year, vector <string> shots, string poster, string summary) {
 	this->images_index = 0;
 	this->title = title;
 	this->director = director;
 	this->year = year;
 	this->poster = poster;
+	this->summary = summary;
 	for (int i = 0; i < genre.size(); i++) {
 		this->genre.push_back(genre[i]);
 	}
@@ -26,6 +27,7 @@ Movie::Movie(const Movie& obj_Movie) {
 	this->director = obj_Movie.director;
 	this->year = obj_Movie.year;
 	this->poster = obj_Movie.poster;
+	this->summary = obj_Movie.summary;
 	for (int i = 0; i < obj_Movie.genre.size(); i++) {
 		this->genre.push_back(obj_Movie.genre[i]);
 	}
@@ -68,6 +70,10 @@ vector <string> Movie::getGenre() {
 }
 void Movie::addGenre(string gen) {
 	this->genre.push_back(gen);
+}
+string Movie::getSummary()
+{
+	return summary;
 }
 string Movie::toString() {
 	string str = "Title : " + this->getTitle() + " \n"
@@ -151,7 +157,41 @@ void Movie::draw()
 	}
 	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
 	str = "";
-	j += 1.2f;
+	j += 1.6f;
+
+	str = "Summary:";
+	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
+	str = "";
+	
+	//str = getSummary();
+	//graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
+
+	j +=1.2f;
+	//tol = 30
+	string temp1 = getSummary();
+	string temp2;
+	int n = 0;
+	while (n < temp1.length()) {
+		if (temp1[n]!=' ') {
+			temp2 += temp1[n];
+		}
+		else {
+			temp2 += temp1[n];
+			//elegxos an to temp2 xwraeo sto str to bazei alliws ektipwnei to str, to kauarizei kai meta pernaei to temp2
+			if ((str.length() + temp2.length() )> 60) {
+				graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
+				str = "";
+				j += 1.2f;
+			}
+			str += temp2;
+			temp2 = "";
+			if (n == (temp1.length()-1)) {
+				j += 1.2f;
+				graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
+			}
+		}
+		n++;
+	}
 }
 
 void Movie::draw1(float cx)

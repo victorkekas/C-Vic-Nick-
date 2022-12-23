@@ -1,9 +1,9 @@
-﻿  filmBrowser.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(55,160): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(60,161): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  movies_list.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(30,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(34,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  1 of 486 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  0 of 536 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\bin\Movie.exe
