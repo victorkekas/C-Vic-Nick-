@@ -9,6 +9,7 @@ class MoviesList {
 public:
 	std::vector<Movie> movies;
 	std::vector<Movie> filteredMovies;
+	std::vector <std::string> filters;
 	int movieIndex;
 	bool filtersOn = false;
 
@@ -19,8 +20,9 @@ public:
 	void previousMovie();
 	void init();
 	void draw();
+	void draw(vector<Movie> Movies);
+	void fillFilteredMovies();
+	void tidyUpFilteredMovies();
 	void setFilterAction();
 	void resetFilters();
-	void Filtered(vector <string> filteres);
-	void drawFiltered();
 };

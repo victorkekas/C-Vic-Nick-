@@ -43,4 +43,7 @@ public :
 	void draw1(float cx);// only the poster
 	void nextShot();
 	void previousShot();
+
+	//Operators overload
+	bool operator==(Movie movie);
 };

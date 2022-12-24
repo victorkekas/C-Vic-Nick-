@@ -228,3 +228,13 @@ void Movie::previousShot()
 	images_index -= 1;
 	return;
 }
+
+bool Movie::operator==(Movie movie)
+{
+	if (this->title._Equal(movie.getTitle())) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}

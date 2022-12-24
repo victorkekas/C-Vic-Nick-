@@ -100,12 +100,7 @@ void FilmBrowser::draw()
 	//end background 
 
 	// draw the movies
-	if (displayableMovies.filtersOn) {
-		displayableMovies.drawFiltered();
-	}
-	else {
-		displayableMovies.draw();
-	}
+	displayableMovies.draw();
 
 	// left button for changing movie
 	graphics::setScale(0.8f, 0.8f);
