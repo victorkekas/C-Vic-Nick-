@@ -13,12 +13,20 @@ Button* b2_left;
 Button* b2_right;
 Button* b_reset;
 Button* b_action;
+Button* b_drama;
 std::vector<Button*> buttons;
 
 void FilmBrowser::update()
 {
-	b2_left->addActionCallback(std::bind(&Movie::previousShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
-	b2_right->addActionCallback(std::bind(&Movie::nextShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
+	if (!(displayableMovies.filtersOn)) {
+		b2_left->addActionCallback(std::bind(&Movie::previousShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
+		b2_right->addActionCallback(std::bind(&Movie::nextShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
+	}
+	else if (displayableMovies.filtersOn) {
+		b2_left->addActionCallback(std::bind(&Movie::previousShot, &displayableMovies.filteredMovies[displayableMovies.getMovieIndex()]));
+		b2_right->addActionCallback(std::bind(&Movie::nextShot, &displayableMovies.filteredMovies[displayableMovies.getMovieIndex()]));
+	}
+	
 	for (auto button : buttons) {
 		button->update();
 	}
@@ -76,8 +84,12 @@ void FilmBrowser::init()
 	b_action = new Button(13.5f * CANVAS_WIDTH / 16, 1.5 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_action->addActionCallback(std::bind(&MoviesList::setFilterAction, &displayableMovies));
 
+	b_drama = new Button(13.5f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_drama->addActionCallback(std::bind(&MoviesList::setFilterDrama, &displayableMovies));
+
 	buttons.push_back(b_reset);
 	buttons.push_back(b_action);
+	buttons.push_back(b_drama);
 }
 
 void FilmBrowser::draw()
@@ -126,6 +138,7 @@ void FilmBrowser::draw()
 
 	b_reset->draw();
 	b_action->draw();
+	b_drama->draw();
 
 }
 

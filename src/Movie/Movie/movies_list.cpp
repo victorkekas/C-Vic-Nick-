@@ -41,7 +41,7 @@ void MoviesList::previousMovie()
 void MoviesList::init()
 {
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" }, { "Brad Pitt", "Edward Norton", "Helena Bonham Carter" }, "1999", { "shot-FightClubV1.png", "shot-FightClubV2.png" }, "FightClub.png", "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.");
-	Movie aNewHope("A New Hope", "George Lucas", { "Action" /*,"Adventure","Fantasy"*/ }, {"Mark Hamill" ,"Harrison Ford", "Carrie Fisher"}, "1977", {"shot-ANewHopeV1.png","shot-ANewHopeV2.png" ,"shot-ANewHopeV3.png"}, "ANewHope.png", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.");
+	Movie aNewHope("A New Hope", "George Lucas", { "Action" ,"Adventure","Fantasy" }, {"Mark Hamill" ,"Harrison Ford", "Carrie Fisher"}, "1977", {"shot-ANewHopeV1.png","shot-ANewHopeV2.png" ,"shot-ANewHopeV3.png"}, "ANewHope.png", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.");
 	Movie empireStrikesBack("Empire Strikes Back", "Irvin Kenshner", { "Action" ,"Adventure","Fantasy" }, { "Mark Hamill" ,"Harrison Ford", "Carrie Fisher " }, "1980", { "shot-StarWarsV1.png","shot-StarWarsV2.png" ,"shot-StarWarsV3.png" ,"shot-StarWarsV4.png" ,"shot-StarWarsV5.png" ,"shot-StarWarsV6.png" }, "EmpireStrikesBack.png", "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.");
 	Movie godFather("God Father", "Francis Ford Coppola ", { "History " ,"Drama" }, { "Marlon Brando" ,"Al Pacino", "James Caan" }, "1972", { "shot-GodfatherV1.png" }, "Godfather.png", "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.");
 	Movie pulpFiction("Pulp Fiction", "Quentin Tarantino ", { "Drama" ,"Crime" }, { "John Travolta" ,"Uma Thurman", "Samuel L.Jackson" }, "1994", { "shot-PulpFictionV1.png" ,"shot-PulpFictionV2.png" ,"shot-PulpFictionV3.png" }, "PulpFiction.png", "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.");
@@ -59,31 +59,31 @@ void MoviesList::init()
 	movies.push_back(schindlerslist);
 	movies.push_back(terminator);
 	movies.push_back(templeOfDoom);
-
 	movieIndex = 0;
-}
-
-void MoviesList::draw()
-{
-
-	if (filtersOn) {
-		draw(filteredMovies);
-	}
-	else if (!filtersOn) {
-		draw(movies);
-	}
 }
 
 void MoviesList::fillFilteredMovies()
 {
-	for (auto& gen : filters) {
-		for (auto& mov : movies) {
- 			if (std::find((mov.getGenre()).begin(), (mov.getGenre()).end(), gen) != (mov.getGenre()).end()) {
-				if (std::find(filteredMovies.begin(), filteredMovies.end(), mov) != filteredMovies.end()) { return; }
-				else {
-					filteredMovies.push_back(mov);
+	for (auto& gen: filters) { //for every filter in filters 
+		for (int i = 0; i < movies.size();i++) { //for every movie in the "main" vector 
+			for (int j = 0; j < movies[i].genre.size(); j++) { //for every genre in each movie 
+				if (movies[i].genre[j]._Equal(gen)) { // if one of the genre of the movie is the same as the one we are looking for 
+					if (filteredMovies.size()==0) {
+						filteredMovies.push_back(movies[i]);
+					}
+					else {
+						for (int h = 0; h < filteredMovies.size(); h++) { //for every movie in "secondary" vector
+							if (filteredMovies[h]==movies[i]) { //if the movie is already in the "secondary" vector dont add it
+								std::cout<< movies[i].getTitle() <<endl;
+								//return;
+							}
+							else { //otherwise add it to the "secondary" vector
+								std::cout << movies[i].getTitle() << endl;
+								filteredMovies.push_back(movies[i]);
+							}
+						}
+					}
 				}
-
 			}
 		}
 	}
@@ -128,6 +128,120 @@ void MoviesList::setFilterAction()
 	fillFilteredMovies();
 }
 
+void MoviesList::setFilterDrama()
+{
+	if (!filtersOn) {
+		filters.push_back("Drama");
+		filtersOn = true;
+		movieIndex = 0;
+	}
+	else if (filtersOn) {
+		if (std::find(filters.begin(), filters.end(), "Drama") != filters.end()) {
+			filters.erase(std::remove(filters.begin(), filters.end(), "Drama"), filters.end());
+			if (filters.size() == 0) { filtersOn = false; }
+		}
+		else {
+			filters.push_back("Drama");
+		}
+	}
+	fillFilteredMovies();
+}
+
+void MoviesList::setFilterAdventure()
+{
+	if (!filtersOn) {
+		filters.push_back("Adventure");
+		filtersOn = true;
+		movieIndex = 0;
+	}
+	else if (filtersOn) {
+		if (std::find(filters.begin(), filters.end(), "Adventure") != filters.end()) {
+			filters.erase(std::remove(filters.begin(), filters.end(), "Adventure"), filters.end());
+			if (filters.size() == 0) { filtersOn = false; }
+		}
+		else {
+			filters.push_back("Adventure");
+		}
+	}
+	fillFilteredMovies();
+}
+
+void MoviesList::setFilterFantasy()
+{
+	if (!filtersOn) {
+		filters.push_back("Fantasy");
+		filtersOn = true;
+		movieIndex = 0;
+	}
+	else if (filtersOn) {
+		if (std::find(filters.begin(), filters.end(), "Fantasy") != filters.end()) {
+			filters.erase(std::remove(filters.begin(), filters.end(), "Fantasy"), filters.end());
+			if (filters.size() == 0) { filtersOn = false; }
+		}
+		else {
+			filters.push_back("Fantasy");
+		}
+	}
+	fillFilteredMovies();
+}
+
+void MoviesList::setFilterHistory()
+{
+	if (!filtersOn) {
+		filters.push_back("History");
+		filtersOn = true;
+		movieIndex = 0;
+	}
+	else if (filtersOn) {
+		if (std::find(filters.begin(), filters.end(), "History") != filters.end()) {
+			filters.erase(std::remove(filters.begin(), filters.end(), "History"), filters.end());
+			if (filters.size() == 0) { filtersOn = false; }
+		}
+		else {
+			filters.push_back("History");
+		}
+	}
+	fillFilteredMovies();
+}
+
+void MoviesList::setFilterCrime()
+{
+	if (!filtersOn) {
+		filters.push_back("Crime");
+		filtersOn = true;
+		movieIndex = 0;
+	}
+	else if (filtersOn) {
+		if (std::find(filters.begin(), filters.end(), "Crime") != filters.end()) {
+			filters.erase(std::remove(filters.begin(), filters.end(), "Crime"), filters.end());
+			if (filters.size() == 0) { filtersOn = false; }
+		}
+		else {
+			filters.push_back("Crime");
+		}
+	}
+	fillFilteredMovies();
+}
+
+void MoviesList::setFilterSciFi()
+{
+	if (!filtersOn) {
+		filters.push_back("Sci-Fi");
+		filtersOn = true;
+		movieIndex = 0;
+	}
+	else if (filtersOn) {
+		if (std::find(filters.begin(), filters.end(), "Sci-Fi") != filters.end()) {
+			filters.erase(std::remove(filters.begin(), filters.end(), "Sci-Fi"), filters.end());
+			if (filters.size() == 0) { filtersOn = false; }
+		}
+		else {
+			filters.push_back("Sci-Fi");
+		}
+	}
+	fillFilteredMovies();
+}
+
 void MoviesList::resetFilters()
 {
 	filters.clear();
@@ -163,5 +277,16 @@ void MoviesList::draw(vector<Movie> Movies)
 			Movies[movieIndex - 1].draw1(2.7f);
 			Movies[movieIndex + 1].draw1(9.001f);
 		}
+	}
+}
+
+void MoviesList::draw()
+{
+
+	if (filtersOn) {
+		draw(filteredMovies);
+	}
+	else if (!filtersOn) {
+		draw(movies);
 	}
 }

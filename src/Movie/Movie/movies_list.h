@@ -24,5 +24,11 @@ public:
 	void fillFilteredMovies();
 	void tidyUpFilteredMovies();
 	void setFilterAction();
+	void setFilterDrama();
+	void setFilterAdventure();
+	void setFilterFantasy();
+	void setFilterHistory();
+	void setFilterCrime();
+	void setFilterSciFi();
 	void resetFilters();
 };

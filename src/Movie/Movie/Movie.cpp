@@ -39,7 +39,6 @@ Movie::Movie(const Movie& obj_Movie) {
 	}
 }
 Movie::~Movie() {
-	std::cout << "Movie" << endl;
 }
 string Movie::getYear() {
 	return year;
@@ -55,7 +54,7 @@ vector <string> Movie::getProtagonists() {
 	return prot;
 }
 vector <string> Movie::getGenre() {
-	return genre;
+	return this->genre;
 }
 string Movie::getSummary()
 {
@@ -150,7 +149,8 @@ void Movie::draw()
 	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 16.0f, str, br);
 	j += 1.2f;
 	str = " ";
-	str = getSummary();
+	
+	/*str = getSummary();
 	int len = str.length();
 	string temp;
 	for (i = 0; i < len; i++) {
@@ -165,6 +165,35 @@ void Movie::draw()
 			temp = " ";
 		}
 
+	}*/
+	str = getSummary();
+	std::string tempstring;
+	std::string temp2string="";
+	bool notSecondelseIf=false;
+	for (int i = 0; i <= str.length(); i++) {
+		if (str[i]!= ' ') {
+			tempstring += str[i];
+		}
+		else if (temp2string.length() + tempstring.length() + 1 <= 70) {
+			temp2string += tempstring + " ";
+			tempstring = "";
+			notSecondelseIf = true;
+		}
+		else if (temp2string.length() + tempstring.length() <= 70 && !notSecondelseIf) {
+			temp2string += tempstring;
+			tempstring = "";
+		}
+		else {
+			graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 16.0f, temp2string, br);
+			temp2string = "";
+			temp2string += tempstring +" ";
+			tempstring = "";
+			j += 1.2f;
+		}
+		if (i == str.length()) {
+			temp2string += tempstring + " ";
+			graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 16.0f, temp2string, br);
+		}
 	}
 }
 
