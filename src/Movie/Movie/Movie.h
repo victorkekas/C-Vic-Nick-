@@ -30,7 +30,7 @@ public :
 	~Movie();
 	// Basic Get and Set methods  
 	string getYear();
-	string getTitle();
+	const string getTitle();
 	string getDirector();
 	vector <string> getProtagonists();
 	vector <string> getGenre();
@@ -45,5 +45,5 @@ public :
 	void previousShot();
 
 	//Operators overload
-	bool operator==(Movie movie);
+	bool operator==( const Movie movie);
 };

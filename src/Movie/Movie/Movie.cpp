@@ -44,7 +44,7 @@ string Movie::getYear() {
 	return year;
 }
 
-string Movie::getTitle() {
+const string Movie::getTitle() {
 	return title;
 }
 string Movie::getDirector() {
@@ -149,23 +149,7 @@ void Movie::draw()
 	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 16.0f, str, br);
 	j += 1.2f;
 	str = " ";
-	
-	/*str = getSummary();
-	int len = str.length();
-	string temp;
-	for (i = 0; i < len; i++) {
-		temp += str[i];
-		if (len > 200 && i == len / 3) {
-			graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 16.0f, temp, br);
-			j += 1.2f;
-			temp = " ";
-		}if (len < 200 && i == len / 2) {
-			graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 16.0f, temp, br);
-			j += 1.2f;
-			temp = " ";
-		}
 
-	}*/
 	str = getSummary();
 	std::string tempstring;
 	std::string temp2string="";
@@ -196,35 +180,6 @@ void Movie::draw()
 		}
 	}
 }
-
-
-	//str = getSummary();
-	//graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
-
-	//string temp1 = getSummary();
-	//string temp2;
-	//int n = 0;
-	//while (n < temp1.length()) {
-		//if (temp1[n]!=' ') {
-			//temp2 += temp1[n];
-		//}
-		//else {
-			//temp2 += temp1[n]+ " ";
-			//elegxos an to temp2 xwraeo sto str to bazei alliws ektipwnei to str, to kauarizei kai meta pernaei to temp2
-			//if ((str.length() + temp2.length() )> 60) {
-				//graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
-				//str = "";
-				//j += 1.2f;
-			//}
-			//str += temp2;
-			//temp2 = "";
-			//if (n == (temp1.length()-1)) {
-				//j += 1.2f;
-				//graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 32, 16.0f, str, br);
-			//}
-		//}
-		//n++;
-	//}
 
 
 void Movie::draw1(float cx)

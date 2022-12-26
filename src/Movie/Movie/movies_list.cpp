@@ -65,21 +65,22 @@ void MoviesList::init()
 void MoviesList::fillFilteredMovies()
 {
 	for (auto& gen: filters) { //for every filter in filters 
-		for (int i = 0; i < movies.size();i++) { //for every movie in the "main" vector 
-			for (int j = 0; j < movies[i].genre.size(); j++) { //for every genre in each movie 
-				if (movies[i].genre[j]._Equal(gen)) { // if one of the genre of the movie is the same as the one we are looking for 
+		for (auto& mov : movies) { //for every movie in the "main" vector 
+			for (auto& movgen: mov.getGenre()) { //for every genre in each movie 
+				if (movgen==gen) { // if one of the genre of the movie is the same as the one we are looking for 
 					if (filteredMovies.size()==0) {
-						filteredMovies.push_back(movies[i]);
+						filteredMovies.push_back(mov);
 					}
 					else {
-						for (int h = 0; h < filteredMovies.size(); h++) { //for every movie in "secondary" vector
-							if (filteredMovies[h]==movies[i]) { //if the movie is already in the "secondary" vector dont add it
-								std::cout<< movies[i].getTitle() <<endl;
-								//return;
+						for (auto& secm : filteredMovies) { //for every movie in "secondary" vector
+							if (secm==mov) { //if the movie is already in the "secondary" vector dont add it
+								std::cout << "if " << endl;
+								std::cout<< mov.getTitle() <<endl;
 							}
 							else { //otherwise add it to the "secondary" vector
-								std::cout << movies[i].getTitle() << endl;
-								filteredMovies.push_back(movies[i]);
+								std::cout << "else " << endl;
+								std::cout << mov.getTitle() << endl;
+								filteredMovies.push_back(mov);
 							}
 						}
 					}
@@ -87,7 +88,7 @@ void MoviesList::fillFilteredMovies()
 			}
 		}
 	}
-	tidyUpFilteredMovies();
+	//tidyUpFilteredMovies();
 }
 
 void MoviesList::tidyUpFilteredMovies()
