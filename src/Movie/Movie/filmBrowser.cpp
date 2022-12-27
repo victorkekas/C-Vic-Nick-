@@ -3,18 +3,14 @@
 #include "config.h"
 #include "movie.h"
 #include "button.h"
+#include "slider.h"
 #include "movies_list.h"
 //#include "text_container.h"
 
 MoviesList displayableMovies;
-Button* b1_left;
-Button* b1_right;
-Button* b2_left;
-Button* b2_right;
-Button* b_reset;
-Button* b_action;
-Button* b_drama;
+Button* b1_left,* b1_right,* b2_left,* b2_right,* b_reset,* b_action,* b_drama, * b_adventure, * b_fantasy, * b_history, * b_crime, * b_scifi;
 std::vector<Button*> buttons;
+Slider* testslider;
 
 void FilmBrowser::update()
 {
@@ -81,15 +77,48 @@ void FilmBrowser::init()
 	b_reset = new Button(13.5f * CANVAS_WIDTH / 16, 2*CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_reset->addActionCallback(std::bind(&MoviesList::resetFilters, &displayableMovies));
 
-	b_action = new Button(13.5f * CANVAS_WIDTH / 16, 1.5 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_action = new Button(12.0f * CANVAS_WIDTH / 16, 1.5 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_action->addActionCallback(std::bind(&MoviesList::setFilterAction, &displayableMovies));
 
-	b_drama = new Button(13.5f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_drama = new Button(13.5f * CANVAS_WIDTH / 16, 1.5 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_drama->addActionCallback(std::bind(&MoviesList::setFilterDrama, &displayableMovies));
+
+	b_adventure = new Button(15.0f * CANVAS_WIDTH / 16, 1.5 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_adventure->addActionCallback(std::bind(&MoviesList::setFilterAdventure, &displayableMovies));
+
+	b_fantasy = new Button(12.0f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_fantasy->addActionCallback(std::bind(&MoviesList::setFilterFantasy, &displayableMovies));
+
+	b_history = new Button(13.5f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_history->addActionCallback(std::bind(&MoviesList::setFilterHistory, &displayableMovies));
+
+	b_crime = new Button(15.0f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_crime->addActionCallback(std::bind(&MoviesList::setFilterCrime, &displayableMovies));
+
+	b_scifi = new Button(13.5f * CANVAS_WIDTH / 16, 0.5 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_scifi->addActionCallback(std::bind(&MoviesList::setFilterSciFi, &displayableMovies));
 
 	buttons.push_back(b_reset);
 	buttons.push_back(b_action);
 	buttons.push_back(b_drama);
+	buttons.push_back(b_adventure);
+	buttons.push_back(b_fantasy);
+	buttons.push_back(b_history);
+	buttons.push_back(b_crime);
+	buttons.push_back(b_scifi);
+
+	br_button_type_1.fill_color[0] = 0.0f;
+	br_button_type_1.fill_color[1] = 0.0f;
+	br_button_type_1.fill_color[2] = 0.0f;
+	br_button_type_1.fill_opacity = 1.0f;
+	br_button_type_1.fill_secondary_color[0] = 0.0f;
+	br_button_type_1.fill_secondary_color[1] = 0.0f;
+	br_button_type_1.fill_secondary_color[2] = 0.0f;
+	br_button_type_1.fill_secondary_opacity = 1.0f;
+	br_button_type_1.gradient = true;
+	br_button_type_1.outline_opacity = 1.0f;
+	br_button_type_1.outline_width = 1.0f;
+	testslider = new Slider(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, 3.0f * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, br_button_type_1);
 }
 
 void FilmBrowser::draw()
@@ -139,7 +168,18 @@ void FilmBrowser::draw()
 	b_reset->draw();
 	b_action->draw();
 	b_drama->draw();
-
+	b_adventure->draw();
+	b_fantasy->draw();
+	b_history->draw();
+	b_crime->draw();
+	b_scifi->draw();
+	br.fill_color[0] = 0.0f;
+	br.fill_color[1] = 0.0f;
+	br.fill_color[2] = 0.0f;
+	testslider->draw();
+	br.outline_opacity = 1.0f;
+	br.outline_width = 1.0f;
+	//graphics::drawLine(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, 3.0f * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, br);
 }
 
 

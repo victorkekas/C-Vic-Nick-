@@ -64,6 +64,7 @@ void MoviesList::init()
 
 void MoviesList::fillFilteredMovies()
 {
+	/*
 	for (auto& gen: filters) { //for every filter in filters 
 		for (auto& mov : movies) { //for every movie in the "main" vector 
 			for (auto& movgen: mov.getGenre()) { //for every genre in each movie 
@@ -87,16 +88,38 @@ void MoviesList::fillFilteredMovies()
 				}
 			}
 		}
+	}*/
+	bool isOnFilteredMovies = false;
+	for (auto& gen :filters) {
+		for (int i = 0; i < movies.size(); i++) {
+			isOnFilteredMovies = false;
+			for (int j = 0; j < movies[i].genre.size(); j++) {
+				if (movies[i].genre[j]==gen) {
+					if (filteredMovies.size()==0) {
+						filteredMovies.push_back(movies[i]);
+					}
+					for (int h = 0; h < filteredMovies.size();h++) {
+						if (movies[i].getTitle()._Equal(filteredMovies[h].getTitle())) {
+							isOnFilteredMovies = true;
+						}
+					}
+					if (!isOnFilteredMovies) {
+						filteredMovies.push_back(movies[i]);
+					}
+				}
+			}
+		}
 	}
-	//tidyUpFilteredMovies();
+	tidyUpFilteredMovies();
 }
 
 void MoviesList::tidyUpFilteredMovies()
 {
+	/*
 	std::vector<Movie> toBeRemovedMovies;
-
+	bool isOn = false;
 	for (auto& mov : filteredMovies) {
-		bool isOn = false;
+		isOn = false;
 		for (auto& mgen : mov.getGenre()) {
 			if (std::find(filters.begin(), filters.end(), mgen) != filters.end()) {
 				isOn = true;
@@ -107,7 +130,37 @@ void MoviesList::tidyUpFilteredMovies()
 	for (auto& mov : toBeRemovedMovies) {
 		filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
 		//we must override operator == to do something (probably comare to Movies) - I did it ?
+	}*/
+
+	std::vector<Movie> toBeRemovedMovies;
+	bool staysOn = false;
+	if (filters.size() == 0) {
+		filteredMovies.clear();//filtersOn=false;
 	}
+	for (int i = 0; i < filters.size(); i++) {
+		for (int j = 0; j < filteredMovies.size(); j++) {
+			staysOn = false;
+			for (int h = 0; h < filteredMovies[j].genre.size(); h++) {
+				if (filteredMovies[j].genre[h]._Equal(filters[i])) {
+					staysOn = true;
+				}
+			}
+			if (!staysOn) {
+				toBeRemovedMovies.push_back(filteredMovies[j]);
+			}
+		}
+	}/*
+	if (toBeRemovedMovies.size()>0) {
+		filteredMovies.clear();
+		for (int i = 0; i < toBeRemovedMovies.size(); i++) {
+			filteredMovies.push_back(toBeRemovedMovies[i]);
+		}
+	}*/
+
+	for (auto& mov : toBeRemovedMovies) {
+		filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
+	}
+	
 }
 
 void MoviesList::setFilterAction()

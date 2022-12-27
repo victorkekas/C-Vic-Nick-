@@ -152,6 +152,7 @@
     <ClInclude Include="filmBrowser.h" />
     <ClInclude Include="movie.h" />
     <ClInclude Include="movies_list.h" />
+    <ClInclude Include="slider.h" />
     <ClInclude Include="text_container.h" />
     <ClInclude Include="widget.h" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="movie.cpp" />
     <ClCompile Include="movies_list.cpp" />
+    <ClCompile Include="slider.cpp" />
     <ClCompile Include="text_container.cpp" />
     <ClCompile Include="widget.cpp" />
   </ItemGroup>
