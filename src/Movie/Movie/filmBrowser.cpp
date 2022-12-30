@@ -26,6 +26,7 @@ void FilmBrowser::update()
 	for (auto button : buttons) {
 		button->update();
 	}
+	testslider->update();
 }
 
 void FilmBrowser::init()
@@ -119,6 +120,7 @@ void FilmBrowser::init()
 	br_button_type_1.outline_opacity = 1.0f;
 	br_button_type_1.outline_width = 1.0f;
 	testslider = new Slider(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, 3.0f * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, br_button_type_1);
+	testslider->init();
 }
 
 void FilmBrowser::draw()
@@ -173,10 +175,11 @@ void FilmBrowser::draw()
 	b_history->draw();
 	b_crime->draw();
 	b_scifi->draw();
+	testslider->draw();
+
 	br.fill_color[0] = 0.0f;
 	br.fill_color[1] = 0.0f;
 	br.fill_color[2] = 0.0f;
-	testslider->draw();
 	br.outline_opacity = 1.0f;
 	br.outline_width = 1.0f;
 	//graphics::drawLine(CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, 3.0f * CANVAS_WIDTH / 4.0f, CANVAS_HEIGTH / 2.0f, br);

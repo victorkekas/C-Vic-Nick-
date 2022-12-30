@@ -13,6 +13,7 @@ public:
 	void draw() /*override*/;
 	void update()/*override*/;
 	void init()/*override*/;
-
+	graphics::Brush brsaver;
 	Button* slidersButton;
+	Button* afterB;
 };
