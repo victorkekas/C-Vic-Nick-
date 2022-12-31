@@ -29,6 +29,7 @@ public:
 	void init();
 	void draw();
 	void draw(vector<Movie> Movies);
+	void fillFilteredMoviesYear();
 	void fillFilteredMovies();
 	void tidyUpFilteredMovies();
 	void setFilterAction();

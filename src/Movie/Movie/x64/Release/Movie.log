@@ -1,13 +1,10 @@
-﻿  filmBrowser.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(68,160): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(73,161): warning C4305: 'argument': truncation from 'double' to 'float'
-  movies_list.cpp
+﻿  movies_list.cpp
 C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(30,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(34,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(163,16): warning C4804: '<': unsafe use of type 'bool' in operation
   Generating code
-  3 of 616 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+  2 of 617 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    18 functions had inline decision re-evaluated but remain unchanged
+    10 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\bin\Movie.exe

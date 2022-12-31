@@ -153,6 +153,20 @@ void MoviesList::separator(float start, float end)
 	prev_loc_end = end;
 }
 
+void MoviesList::fillFilteredMoviesYear()
+{
+	int test;
+	filteredMovies.clear();
+	filtersOn = true;
+	for (int i = 0; i < movies.size(); i++) {
+		test = std::stoi(movies[i].getYear());
+		if (fromYear < test < toYear) {
+			filteredMovies.push_back(movies[i]);
+		}
+	}
+	fillFilteredMovies();
+}
+
 void MoviesList::init()
 {
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" }, { "Brad Pitt", "Edward Norton", "Helena Bonham Carter" }, "1999", { "shot-FightClubV1.png", "shot-FightClubV2.png" }, "FightClub.png", "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.");

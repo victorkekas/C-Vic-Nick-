@@ -33,6 +33,9 @@ void FilmBrowser::update()
 		fromYearSlider->addActionCallback(std::bind(&MoviesList::changeFromYear, &displayableMovies));
 		toYearSlider->addActionCallback(std::bind(&MoviesList::changeToYear, &displayableMovies));
 	}
+	if (fromYearSlider->s_button_state==0 || toYearSlider->s_button_state == 0) {
+		displayableMovies.fillFilteredMoviesYear();
+	}
 }
 
 void FilmBrowser::init()

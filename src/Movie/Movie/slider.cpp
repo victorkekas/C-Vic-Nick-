@@ -70,6 +70,7 @@ void Slider::update()
 		}
 		//if mouse_left_released->make sound and change button's color to the original one 
 		if (ms.button_left_released) {
+			s_button_state = SLIDER_ACTIVATED;
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		}
 	}
