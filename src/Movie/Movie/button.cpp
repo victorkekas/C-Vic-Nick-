@@ -96,10 +96,15 @@ void Button::update()
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
 	if (in_bounds) {
+		m_button_state = BUTTON_HIGHLIGHTED;
 		if (ms.button_left_pressed) {
+			m_button_state = BUTTON_PRESSED;
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 			action_callback();
-			return;
+		}
+		if (ms.button_left_released) {
+			m_button_state = BUTTON_IDLE;
+			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		}
 		return;
 	}

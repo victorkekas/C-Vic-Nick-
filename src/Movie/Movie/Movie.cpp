@@ -112,7 +112,7 @@ void Movie::draw()
 	str = "Title : " + getTitle();
 	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 22.0f, str, br);
 	str = "";
-	j += 1.2f;
+	j += 1.5f;
 	//print director 
 	str = "Director : " + getDirector();
 	graphics::drawText(CANVAS_WIDTH / 16, j * CANVAS_HEIGTH / 34, 16.0f, str, br);

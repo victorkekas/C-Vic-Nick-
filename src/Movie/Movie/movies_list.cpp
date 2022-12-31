@@ -38,6 +38,121 @@ void MoviesList::previousMovie()
 	return;
 }
 
+void MoviesList::changeFromYear()
+{
+	graphics::MouseState ms;
+	graphics::getMouseState(ms);
+	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
+	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
+	float pmx = graphics::windowToCanvasX((float)ms.prev_pos_x);
+	float pmy = graphics::windowToCanvasY((float)ms.prev_pos_y);
+	if (mx > pmx && mx > prev_loc_start) {
+		fromYear += 1;
+		prev_loc_start += spaces;
+		if (fromYear<getOldestYear()) {
+			fromYear = getOldestYear();
+		}
+		if (fromYear > getNewestYear()) {
+			fromYear = getNewestYear();
+		}
+	}
+	else if (mx < pmx && mx < prev_loc_start) {
+		fromYear-=1;
+		prev_loc_start -= spaces;
+		if (fromYear < getOldestYear()) {
+			fromYear = getOldestYear();
+		}
+		if (fromYear > getNewestYear()) {
+			fromYear = getNewestYear();
+		}
+	}
+}
+
+void MoviesList::changeToYear()
+{
+	graphics::MouseState ms;
+	graphics::getMouseState(ms);
+	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
+	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
+	float pmx = graphics::windowToCanvasX((float)ms.prev_pos_x);
+	float pmy = graphics::windowToCanvasY((float)ms.prev_pos_y);
+	if (mx > pmx && mx > prev_loc_end) {
+		toYear += 1;
+		prev_loc_end += spaces;
+		if (toYear < getOldestYear()) {
+			toYear = getOldestYear();
+		}
+		if (toYear > getNewestYear()) {
+			toYear = getNewestYear();
+		}
+	}
+	else if (mx < pmx && mx < prev_loc_end) {
+		toYear -= 1;
+		prev_loc_end -= spaces;
+		if (toYear < getOldestYear()) {
+			toYear = getOldestYear();
+		}
+		if (toYear > getNewestYear()) {
+			toYear = getNewestYear();
+		}
+	}
+}
+
+int MoviesList::getOldestYear()
+{
+	int year;
+	if (!filtersOn) {
+		year = std::stoi(movies[0].getYear());
+		for (int i = 0; i < movies.size(); i++) {
+			if (std::stoi(movies[i].getYear()) <  year) {
+				year = std::stoi(movies[i].getYear());
+			}
+		}
+	}
+	else {
+		year = std::stoi(filteredMovies[0].getYear());
+		for (int i = 0; i < filteredMovies.size(); i++) {
+			if (std::stoi(filteredMovies[i].getYear()) < year) {
+				year = std::stoi(filteredMovies[i].getYear());
+			}
+		}
+	}
+	
+	return year;
+}
+
+int MoviesList::getNewestYear()
+{
+	int year;
+	if (!filtersOn) {
+		year = std::stoi(movies[0].getYear());
+		for (int i = 0; i < movies.size(); i++) {
+			if (std::stoi(movies[i].getYear()) > year) {
+				year = std::stoi(movies[i].getYear());
+			}
+		}
+	}
+	else {
+		year = std::stoi(filteredMovies[0].getYear());
+		for (int i = 0; i < filteredMovies.size(); i++) {
+			if (std::stoi(filteredMovies[i].getYear()) > year) {
+				year = std::stoi(filteredMovies[i].getYear());
+			}
+		}
+	}
+
+	return year;
+}
+
+void MoviesList::separator(float start, float end)
+{
+	int difference = getNewestYear() - getOldestYear();
+	if (difference==0) { return; }
+	spaces = (end - start) / difference;
+	prev_loc_start = start;
+	prev_loc_end = end;
+}
+
 void MoviesList::init()
 {
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" }, { "Brad Pitt", "Edward Norton", "Helena Bonham Carter" }, "1999", { "shot-FightClubV1.png", "shot-FightClubV2.png" }, "FightClub.png", "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.");
@@ -49,7 +164,7 @@ void MoviesList::init()
 	Movie schindlerslist("Schindler's list", "Steven Spielberg", { "Drama" ,"History" }, { "Liam Neeson " ,"Ralph Fiennes", "Ben Kingsley" }, "1993", { "shot-SchindlerslistV1.png" ,"shot-SchindlerslistV2.png" ,"shot-SchindlerslistV3.png" }, "Schindlerslist.png", "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.");
 	Movie terminator("Terminator", "James Cameron", { "Action" ,"Sci-Fi" }, { "Arnold Schwarzenegger" ,"Linda Hamilton", "Michael Biehn" }, "1984", { "shot-Terminator.png" }, "Terminator.png", "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.");
 	Movie templeOfDoom("Temple Of Doom", "Steven Spielberg", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford","Ke Huy Quan" }, "1984", { "shot-TempleOfDoomV1.png" ,"shot-TempleOfDoomV2.png" ,"shot-TempleOfDoomV3.png" ,"shot-TempleOfDoomV4.png" ,"shot-TempleOfDoomV5.png" }, "TempleOfDoom.png", "A skirmish in Shanghai puts archaeologist Indiana Jones, his partner Short Round and singer Willie Scott crossing paths with an Indian village desperate to reclaim a rock stolen by a secret cult beneath the catacombs of an ancient palace.");
-	Movie emptyM("", "", {""},{""},"" , {""}, "","");
+	//Movie emptyM("", "", {""},{""},"" , {""}, "","");
 
 	movies.push_back(fightClub);
 	movies.push_back(aNewHope);
@@ -60,39 +175,17 @@ void MoviesList::init()
 	movies.push_back(schindlerslist);
 	movies.push_back(terminator);
 	movies.push_back(templeOfDoom);
-	movies.push_back(emptyM);
+	//movies.push_back(emptyM);
 	movieIndex = 0;
+
+	fromYear = getOldestYear();
+	toYear = getNewestYear();
 }
 
 void MoviesList::fillFilteredMovies()
 {
-	/*
-	for (auto& gen: filters) { //for every filter in filters 
-		for (auto& mov : movies) { //for every movie in the "main" vector 
-			for (auto& movgen: mov.getGenre()) { //for every genre in each movie 
-				if (movgen==gen) { // if one of the genre of the movie is the same as the one we are looking for 
-					if (filteredMovies.size()==0) {
-						filteredMovies.push_back(mov);
-					}
-					else {
-						for (auto& secm : filteredMovies) { //for every movie in "secondary" vector
-							if (secm==mov) { //if the movie is already in the "secondary" vector dont add it
-								std::cout << "if " << endl;
-								std::cout<< mov.getTitle() <<endl;
-							}
-							else { //otherwise add it to the "secondary" vector
-								std::cout << "else " << endl;
-								std::cout << mov.getTitle() << endl;
-								filteredMovies.push_back(mov);
-							}
-						}
-					}
-				}
-			}
-		}
-	}*/
 	bool isOnFilteredMovies = false;
-	for (auto& gen :filters) {
+	for (auto& gen : filters) {
 		for (int i = 0; i < movies.size(); i++) {
 			isOnFilteredMovies = false;
 			for (int j = 0; j < movies[i].genre.size(); j++) {
@@ -117,23 +210,6 @@ void MoviesList::fillFilteredMovies()
 
 void MoviesList::tidyUpFilteredMovies()
 {
-	/*
-	std::vector<Movie> toBeRemovedMovies;
-	bool isOn = false;
-	for (auto& mov : filteredMovies) {
-		isOn = false;
-		for (auto& mgen : mov.getGenre()) {
-			if (std::find(filters.begin(), filters.end(), mgen) != filters.end()) {
-				isOn = true;
-			}
-		}
-		if (!isOn) { toBeRemovedMovies.push_back(mov); }
-	}
-	for (auto& mov : toBeRemovedMovies) {
-		filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
-		//we must override operator == to do something (probably comare to Movies) - I did it ?
-	}*/
-
 	std::vector<Movie> toBeRemovedMovies;
 	bool staysOn = false;
 	if (filters.size() == 0) {
@@ -151,18 +227,10 @@ void MoviesList::tidyUpFilteredMovies()
 				toBeRemovedMovies.push_back(filteredMovies[j]);
 			}
 		}
-	}/*
-	if (toBeRemovedMovies.size()>0) {
-		filteredMovies.clear();
-		for (int i = 0; i < toBeRemovedMovies.size(); i++) {
-			filteredMovies.push_back(toBeRemovedMovies[i]);
-		}
-	}*/
-
+	}
 	for (auto& mov : toBeRemovedMovies) {
 		filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
 	}
-	
 }
 
 void MoviesList::setFilterAction()
@@ -304,6 +372,8 @@ void MoviesList::resetFilters()
 	filtersOn = false;
 	movieIndex = 0;
 	fillFilteredMovies();
+	fromYear = getOldestYear();
+	toYear = getNewestYear();
 }
 
 void MoviesList::draw(vector<Movie> Movies)

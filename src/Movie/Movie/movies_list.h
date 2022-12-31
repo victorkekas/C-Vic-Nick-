@@ -12,12 +12,20 @@ public:
 	std::vector <std::string> filters;
 	int movieIndex;
 	bool filtersOn = false;
+	int fromYear;
+	int toYear;
+	float spaces, prev_loc_start, prev_loc_end;
 
 	int getMovieIndex();
 	MoviesList();
 	~MoviesList();
 	void nextMovie();
 	void previousMovie();
+	void changeFromYear();
+	void changeToYear();
+	int getOldestYear();
+	int getNewestYear();
+	void separator(float start, float end);
 	void init();
 	void draw();
 	void draw(vector<Movie> Movies);
