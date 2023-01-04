@@ -29,13 +29,16 @@ void FilmBrowser::update()
 	if (b_reset->m_button_state==0) {
 		fromYearSlider->init();
 		toYearSlider->init();
-		displayableMovies.separator(2.88f * CANVAS_WIDTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f);
-		fromYearSlider->addActionCallback(std::bind(&MoviesList::changeFromYear, &displayableMovies));
-		toYearSlider->addActionCallback(std::bind(&MoviesList::changeToYear, &displayableMovies));
+		fromYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
+		toYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
 	}
 	if (fromYearSlider->s_button_state==0 || toYearSlider->s_button_state == 0) {
-		displayableMovies.fillFilteredMoviesYear();
+		displayableMovies.changeFromYear(fromYearSlider->displaybleValue);
+		displayableMovies.changeToYear(toYearSlider->displaybleValue);
+		fromYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
+		toYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
 	}
+	
 }
 
 void FilmBrowser::init()
@@ -139,14 +142,12 @@ void FilmBrowser::init()
 	br_button_type_1.gradient = true;
 	br_button_type_1.outline_opacity = 1.0f;
 	br_button_type_1.outline_width = 1.0f;
-	fromYearSlider = new Slider(2.88f * CANVAS_WIDTH / 4.0f,0.4f * CANVAS_HEIGTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f, 0.4f * CANVAS_HEIGTH / 4.0f, br_button_type_1, 's');
-	toYearSlider = new Slider(2.88f * CANVAS_WIDTH / 4.0f,0.75f * CANVAS_HEIGTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f, 0.75f * CANVAS_HEIGTH / 4.0f, br_button_type_1, 'f');
-	fromYearSlider->addActionCallback(std::bind(&MoviesList::changeFromYear, &displayableMovies));
-	toYearSlider->addActionCallback(std::bind(&MoviesList::changeToYear, &displayableMovies));
+	fromYearSlider = new Slider(2.88f * CANVAS_WIDTH / 4.0f,0.4f * CANVAS_HEIGTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f, 0.4f * CANVAS_HEIGTH / 4.0f, br_button_type_1, 's',displayableMovies.getOldestYear(), displayableMovies.getNewestYear());
+	toYearSlider = new Slider(2.88f * CANVAS_WIDTH / 4.0f,0.75f * CANVAS_HEIGTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f, 0.75f * CANVAS_HEIGTH / 4.0f, br_button_type_1, 'f', displayableMovies.getOldestYear(), displayableMovies.getNewestYear());
+	fromYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
+	toYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
 	fromYearSlider->init();
 	toYearSlider->init();
-	displayableMovies.separator(2.88f * CANVAS_WIDTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f);
-
 
 	widgets.push_back(fromYearSlider);
 	widgets.push_back(toYearSlider);
@@ -215,17 +216,15 @@ void FilmBrowser::draw()
 	br.fill_secondary_color[2] = 0.0f;
 	br.outline_opacity = 1.0f;
 	br.outline_width = 1.0f;
-	br.texture = "From: " + to_string(displayableMovies.fromYear);
+	br.texture = "From: " + to_string(fromYearSlider->displaybleValue);
 	graphics::drawText(2.67f * CANVAS_WIDTH / 4.0f, 0.25f * CANVAS_HEIGTH / 4.0f,13.0f,br.texture,br);
-	br.texture = "To: " + to_string(displayableMovies.toYear);
+	br.texture = "To: " + to_string(toYearSlider->displaybleValue);
 	graphics::drawText(2.75f * CANVAS_WIDTH / 4.0f, 0.6f * CANVAS_HEIGTH / 4.0f, 13.0f, br.texture, br);
 	br.texture = "Year";
 	graphics::drawText(3.3f * CANVAS_WIDTH / 4.0f, 0.15f * CANVAS_HEIGTH / 4.0f, 13.0f, br.texture, br);
 	br.texture = "Genre";
 	graphics::drawText(11.7f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, 13.0f, br.texture, br);
 }
-
-
 
 FilmBrowser::FilmBrowser()
 {

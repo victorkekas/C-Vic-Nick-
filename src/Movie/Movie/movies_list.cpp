@@ -1,5 +1,6 @@
 #include "movies_list.h"
 
+Movie emptyM("", "", { "" }, { "" }, "", { "" }, "", "");
 MoviesList::MoviesList()
 {
 }
@@ -38,8 +39,10 @@ void MoviesList::previousMovie()
 	return;
 }
 
-void MoviesList::changeFromYear()
+void MoviesList::changeFromYear(int fromYear)
 {
+	this->fromYear = fromYear;
+	/*
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
 	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
@@ -66,10 +69,13 @@ void MoviesList::changeFromYear()
 			fromYear = getNewestYear();
 		}
 	}
+	*/
 }
 
-void MoviesList::changeToYear()
+void MoviesList::changeToYear(int toYear)
 {
+	this->toYear = toYear;
+	/*
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
 	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
@@ -96,10 +102,20 @@ void MoviesList::changeToYear()
 			toYear = getNewestYear();
 		}
 	}
+	*/
 }
 
 int MoviesList::getOldestYear()
 {
+	int year;
+	year = std::stoi(movies[0].getYear());
+	for (int i = 0; i < movies.size(); i++) {
+		if (std::stoi(movies[i].getYear()) < year) {
+			year = std::stoi(movies[i].getYear());
+		}
+	}
+	return year;
+	/*
 	int year;
 	if (!filtersOn) {
 		year = std::stoi(movies[0].getYear());
@@ -119,10 +135,20 @@ int MoviesList::getOldestYear()
 	}
 	
 	return year;
+	*/
 }
 
 int MoviesList::getNewestYear()
 {
+	int year;
+	year = std::stoi(movies[0].getYear());
+	for (int i = 0; i < movies.size(); i++) {
+		if (std::stoi(movies[i].getYear()) > year) {
+			year = std::stoi(movies[i].getYear());
+		}
+	}
+	return year;
+	/*
 	int year;
 	if (!filtersOn) {
 		year = std::stoi(movies[0].getYear());
@@ -142,6 +168,7 @@ int MoviesList::getNewestYear()
 	}
 
 	return year;
+	*/
 }
 
 void MoviesList::separator(float start, float end)
@@ -153,6 +180,7 @@ void MoviesList::separator(float start, float end)
 	prev_loc_end = end;
 }
 
+// if fitersOn=true, "contain" those movie, else "contain" all the movies.
 void MoviesList::fillFilteredMoviesYear()
 {
 	int test;
@@ -178,7 +206,6 @@ void MoviesList::init()
 	Movie schindlerslist("Schindler's list", "Steven Spielberg", { "Drama" ,"History" }, { "Liam Neeson " ,"Ralph Fiennes", "Ben Kingsley" }, "1993", { "shot-SchindlerslistV1.png" ,"shot-SchindlerslistV2.png" ,"shot-SchindlerslistV3.png" }, "Schindlerslist.png", "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.");
 	Movie terminator("Terminator", "James Cameron", { "Action" ,"Sci-Fi" }, { "Arnold Schwarzenegger" ,"Linda Hamilton", "Michael Biehn" }, "1984", { "shot-Terminator.png" }, "Terminator.png", "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.");
 	Movie templeOfDoom("Temple Of Doom", "Steven Spielberg", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford","Ke Huy Quan" }, "1984", { "shot-TempleOfDoomV1.png" ,"shot-TempleOfDoomV2.png" ,"shot-TempleOfDoomV3.png" ,"shot-TempleOfDoomV4.png" ,"shot-TempleOfDoomV5.png" }, "TempleOfDoom.png", "A skirmish in Shanghai puts archaeologist Indiana Jones, his partner Short Round and singer Willie Scott crossing paths with an Indian village desperate to reclaim a rock stolen by a secret cult beneath the catacombs of an ancient palace.");
-	//Movie emptyM("", "", {""},{""},"" , {""}, "","");
 
 	movies.push_back(fightClub);
 	movies.push_back(aNewHope);
@@ -192,15 +219,18 @@ void MoviesList::init()
 	//movies.push_back(emptyM);
 	movieIndex = 0;
 
-	fromYear = getOldestYear();
-	toYear = getNewestYear();
+	fromYear = 0;
+	toYear = 100000;
 }
 
 void MoviesList::fillFilteredMovies()
 {
-	filteredMovies.clear();
+	if (filters.size() != 0) {
+		filteredMovies.clear();
+	}
 	bool isOnFilteredMovies = false;
 	for (auto& gen : filters) {
+		std::cout << "fuck" << endl;
 		for (int i = 0; i < movies.size(); i++) {
 			isOnFilteredMovies = false;
 			for (int j = 0; j < movies[i].genre.size(); j++) {
@@ -220,31 +250,45 @@ void MoviesList::fillFilteredMovies()
 			}
 		}
 	}
-	//tidyUpFilteredMovies();
 }
 
 void MoviesList::tidyUpFilteredMovies()
 {
+	this->fillFilteredMovies();
+	movieIndex = 0;
 	std::vector<Movie> toBeRemovedMovies;
-	bool staysOn = false;
-	if (filters.size() == 0) {
-		filteredMovies.clear();//filtersOn=false;
-	}
-	for (int i = 0; i < filters.size(); i++) {
-		for (int j = 0; j < filteredMovies.size(); j++) {
-			staysOn = false;
-			for (int h = 0; h < filteredMovies[j].genre.size(); h++) {
-				if (filteredMovies[j].genre[h]._Equal(filters[i])) {
-					staysOn = true;
-				}
-			}
-			if (!staysOn) {
-				toBeRemovedMovies.push_back(filteredMovies[j]);
+	if (!filtersOn) {
+		for (int i = 0; i < movies.size(); i++) {
+			if (std::stoi(movies[i].getYear()) <= toYear && std::stoi(movies[i].year) >= fromYear) {
+				filteredMovies.push_back(movies[i]);
+				filtersOn = true;
 			}
 		}
 	}
-	for (auto& mov : toBeRemovedMovies) {
-		filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
+	else {
+		if (filters.size() != 0) {
+			for (int i = 0; i < filteredMovies.size(); i++) {
+				if (std::stoi(filteredMovies[i].year) < fromYear || std::stoi(filteredMovies[i].year) > toYear) {
+					toBeRemovedMovies.push_back(filteredMovies[i]);
+				}
+			}
+			for (auto& mov : toBeRemovedMovies) {
+				filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
+			}
+		}else{
+			filteredMovies.clear();
+			for (int i = 0; i < movies.size(); i++) {
+				if (std::stoi(movies[i].getYear()) <= toYear && std::stoi(movies[i].year) >= fromYear) {
+					filteredMovies.push_back(movies[i]);
+					filtersOn = true;
+				}
+			}
+		}
+		
+	}
+	if (filteredMovies.size() == 0) {
+		std::cout << "else-" << endl;
+		filteredMovies.push_back(emptyM);
 	}
 }
 
@@ -384,14 +428,15 @@ void MoviesList::setFilterSciFi()
 	fillFilteredMovies();
 }
 
+//take a look 
 void MoviesList::resetFilters()
 {
 	filters.clear();
 	filtersOn = false;
 	movieIndex = 0;
 	fillFilteredMovies();
-	fromYear = getOldestYear();
-	toYear = getNewestYear();
+	//fromYear = getOldestYear();
+	//toYear = getNewestYear();
 }
 
 void MoviesList::draw(vector<Movie> Movies)

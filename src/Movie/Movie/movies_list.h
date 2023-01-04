@@ -21,8 +21,8 @@ public:
 	~MoviesList();
 	void nextMovie();
 	void previousMovie();
-	void changeFromYear();
-	void changeToYear();
+	void changeFromYear(int fromYear);
+	void changeToYear(int toYear);
 	int getOldestYear();
 	int getNewestYear();
 	void separator(float start, float end);

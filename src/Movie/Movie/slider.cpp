@@ -4,7 +4,7 @@ Slider::Slider()
 {
 }
 
-Slider::Slider(float central_x, float central_y, float width, float height, graphics::Brush br, char buttonPosition)
+Slider::Slider(float central_x, float central_y, float width, float height, graphics::Brush br, char buttonPosition, int lowestLimit, int highestLimit)
 {
 	this->central_x = central_x;
 	this->central_y = central_y;
@@ -12,15 +12,22 @@ Slider::Slider(float central_x, float central_y, float width, float height, grap
 	this->height = height;
 	this->br = br;
 	this->buttonPosition = buttonPosition;
+	this->lowestLimit = lowestLimit;
+	this->highestLimit = highestLimit;
 	switch (buttonPosition)
 	{
 	case 's':
 		slidersButton = new Button(this->central_x, this->central_y, CANVAS_WIDTH / 64.0f, 1.6f * CANVAS_HEIGTH / 32.0f, this->br);
+		this->displaybleValue = lowestLimit;
+		prev_loc = this->central_x;
 		break;
 	case 'f':
 		slidersButton = new Button(this->width, this->height, CANVAS_WIDTH / 64.0f, 1.6f * CANVAS_HEIGTH / 32.0f, this->br);
+		this->displaybleValue = highestLimit;
+		prev_loc = this->width;
 		break;
 	}
+	this->separator();
 	//here or in the init function,if the button's possition is changing,then a certain value is changing (namely increasing or decreasing)
 	//so we must create a function for that either in this class or the moviesList class 
 }
@@ -28,6 +35,17 @@ Slider::Slider(float central_x, float central_y, float width, float height, grap
 void Slider::addActionCallback(std::function<void()> cb)
 {
 	action_callback = cb;
+}
+
+void Slider::separator()
+{
+	std::cout<< "aaaaa" << endl;
+	//maybe declare them in init or the constructor (second option sounds better)
+	int difference = highestLimit - lowestLimit;
+	if (difference == 0) { return; }
+	spaces = (this->width - this->central_x) / difference;
+	//wacth out the following
+	std::cout << "spaces :" << spaces << endl;
 }
 
 Slider::~Slider()
@@ -54,6 +72,7 @@ void Slider::update()
 	if (in_bounds) {
 		//if mouse_left_pressed->make sound and change button's color
 		if (ms.button_left_pressed) {
+			//s_button_state = SLIDER_PRESSED;
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		}
 		//if mouse_left_down->
@@ -61,10 +80,26 @@ void Slider::update()
 		if (ms.button_left_down) {
 			if (mx > pmx && mx>this->central_x && mx<this->width) {
 				this->slidersButton->central_x = mx;
+				if (mx > prev_loc) {
+					this->displaybleValue += 1;
+					prev_loc += spaces;
+					if (this->displaybleValue > this->highestLimit) {
+						this->displaybleValue == this->highestLimit;
+					}
+					s_button_state = SLIDER_ACTIVATED;
+				}
 				action_callback();
 			}
 			if (mx < pmx && mx > this->central_x && mx < this->width) {
 				this->slidersButton->central_x = mx;
+				if (mx < prev_loc) {
+					this->displaybleValue -= 1;
+					prev_loc -= spaces;
+					if (this->displaybleValue < this->lowestLimit) {
+						this->displaybleValue == this->lowestLimit;
+					}
+					s_button_state = SLIDER_ACTIVATED;
+				}
 				action_callback();
 			}
 		}
@@ -84,10 +119,14 @@ void Slider::init()
 	case 's':
 		slidersButton->central_x = this->central_x;
 		slidersButton->central_y = this->central_y;
+		this->displaybleValue = lowestLimit;
+		prev_loc = this->central_x;
 		break;
 	case 'f':
 		slidersButton->central_x = this->width;
 		slidersButton->central_y = this->height;
+		this->displaybleValue = highestLimit;
+		prev_loc = this->width;
 		break;
 	}
 }
