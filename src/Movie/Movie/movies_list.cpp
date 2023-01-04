@@ -198,6 +198,7 @@ void MoviesList::init()
 
 void MoviesList::fillFilteredMovies()
 {
+	filteredMovies.clear();
 	bool isOnFilteredMovies = false;
 	for (auto& gen : filters) {
 		for (int i = 0; i < movies.size(); i++) {
@@ -219,7 +220,7 @@ void MoviesList::fillFilteredMovies()
 			}
 		}
 	}
-	tidyUpFilteredMovies();
+	//tidyUpFilteredMovies();
 }
 
 void MoviesList::tidyUpFilteredMovies()
@@ -249,15 +250,18 @@ void MoviesList::tidyUpFilteredMovies()
 
 void MoviesList::setFilterAction()
 {
+	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back("Action");
 		filtersOn = true;
-		movieIndex = 0;
 	}
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Action") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Action"), filters.end());
-			if (filters.size() == 0) { filtersOn = false; }
+			if (filters.size() == 0) 
+			{
+				filtersOn = false; 
+			}
 		}
 		else {
 			filters.push_back("Action");
@@ -268,10 +272,10 @@ void MoviesList::setFilterAction()
 
 void MoviesList::setFilterDrama()
 {
+	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back("Drama");
 		filtersOn = true;
-		movieIndex = 0;
 	}
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Drama") != filters.end()) {
@@ -287,15 +291,15 @@ void MoviesList::setFilterDrama()
 
 void MoviesList::setFilterAdventure()
 {
+	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back("Adventure");
 		filtersOn = true;
-		movieIndex = 0;
 	}
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Adventure") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Adventure"), filters.end());
-			if (filters.size() == 0) { filtersOn = false; }
+			if (filters.size() == 0) { filtersOn = false;	}
 		}
 		else {
 			filters.push_back("Adventure");
@@ -306,10 +310,10 @@ void MoviesList::setFilterAdventure()
 
 void MoviesList::setFilterFantasy()
 {
+	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back("Fantasy");
 		filtersOn = true;
-		movieIndex = 0;
 	}
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Fantasy") != filters.end()) {
@@ -325,10 +329,10 @@ void MoviesList::setFilterFantasy()
 
 void MoviesList::setFilterHistory()
 {
+	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back("History");
 		filtersOn = true;
-		movieIndex = 0;
 	}
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "History") != filters.end()) {
@@ -344,10 +348,10 @@ void MoviesList::setFilterHistory()
 
 void MoviesList::setFilterCrime()
 {
+	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back("Crime");
 		filtersOn = true;
-		movieIndex = 0;
 	}
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Crime") != filters.end()) {
@@ -363,10 +367,10 @@ void MoviesList::setFilterCrime()
 
 void MoviesList::setFilterSciFi()
 {
+	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back("Sci-Fi");
 		filtersOn = true;
-		movieIndex = 0;
 	}
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Sci-Fi") != filters.end()) {
