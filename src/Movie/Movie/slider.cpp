@@ -39,13 +39,12 @@ void Slider::addActionCallback(std::function<void()> cb)
 
 void Slider::separator()
 {
-	std::cout<< "aaaaa" << endl;
 	//maybe declare them in init or the constructor (second option sounds better)
 	int difference = highestLimit - lowestLimit;
 	if (difference == 0) { return; }
 	spaces = (this->width - this->central_x) / difference;
 	//wacth out the following
-	std::cout << "spaces :" << spaces << endl;
+
 }
 
 Slider::~Slider()

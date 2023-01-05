@@ -5,13 +5,13 @@
 #include "button.h"
 #include "slider.h"
 #include "movies_list.h"
-//#include "text_container.h"
+#include "text_container.h"
 
 MoviesList displayableMovies;
 Button* b1_left,* b1_right,* b2_left,* b2_right,* b_reset,* b_action,* b_drama, * b_adventure, * b_fantasy, * b_history, * b_crime, * b_scifi;
 std::vector<Widget*> widgets;
 Slider* fromYearSlider, * toYearSlider;
-
+textContainer* txtCont; 
 void FilmBrowser::update()
 {
 	if (!(displayableMovies.filtersOn)) {
@@ -31,6 +31,7 @@ void FilmBrowser::update()
 		toYearSlider->init();
 		fromYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
 		toYearSlider->addActionCallback(std::bind(&MoviesList::tidyUpFilteredMovies, &displayableMovies));
+		txtCont->init();
 	}
 	if (fromYearSlider->s_button_state==0 || toYearSlider->s_button_state == 0) {
 		displayableMovies.changeFromYear(fromYearSlider->displaybleValue);
@@ -91,7 +92,7 @@ void FilmBrowser::init()
 	br_button_type_1.fill_color[2] = 1.0f;
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "reset.png";
-	b_reset = new Button(15.0f * CANVAS_WIDTH / 16, 2.2f *CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_reset = new Button(15.0f * CANVAS_WIDTH / 16, 1.8f *CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_reset->addActionCallback(std::bind(&MoviesList::resetFilters, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "action.png";
@@ -103,7 +104,7 @@ void FilmBrowser::init()
 	b_drama->addActionCallback(std::bind(&MoviesList::setFilterDrama, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "adventure.png";
-	b_adventure = new Button(15.0f * CANVAS_WIDTH / 16, 1.8 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_adventure = new Button(15.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_adventure->addActionCallback(std::bind(&MoviesList::setFilterAdventure, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "fantasy.png";
@@ -115,7 +116,7 @@ void FilmBrowser::init()
 	b_history->addActionCallback(std::bind(&MoviesList::setFilterHistory, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "crime.png";
-	b_crime = new Button(15.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_crime = new Button(15.0f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_crime->addActionCallback(std::bind(&MoviesList::setFilterCrime, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "Sci-fi.png";
@@ -151,6 +152,16 @@ void FilmBrowser::init()
 
 	widgets.push_back(fromYearSlider);
 	widgets.push_back(toYearSlider);
+
+	br_button_type_1.texture = "";
+	br_button_type_1.fill_color[0] = 1.0f;
+	br_button_type_1.fill_color[1] = 1.0f;
+	br_button_type_1.fill_color[2] = 1.0f;
+	br_button_type_1.gradient = false;
+	br_button_type_1.outline_width=0.2;
+
+	txtCont= new textContainer(4.22*CANVAS_WIDTH/5, 2.2f * CANVAS_HEIGTH / 4.0f, 0.25 * CANVAS_WIDTH, 0.05 * CANVAS_HEIGTH, br_button_type_1);
+	widgets.push_back(txtCont);
 }
 
 void FilmBrowser::draw()
@@ -207,6 +218,7 @@ void FilmBrowser::draw()
 	b_scifi->draw();
 	fromYearSlider->draw();
 	toYearSlider->draw();
+	txtCont->draw();
 	
 	br.fill_color[0] = 0.0f;
 	br.fill_color[1] = 0.0f;

@@ -86,9 +86,7 @@ void Button::draw ()
 
 void Button::update()
 {
-	/*if (!m_visible)
-		return;
-	*/
+
 	ContainerBox boundries(this->central_x, this->central_y, this->width, this->height);
 	graphics::MouseState ms;
 	graphics::getMouseState(ms);
@@ -104,7 +102,6 @@ void Button::update()
 		}
 		if (ms.button_left_released) {
 			m_button_state = BUTTON_IDLE;
-			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		}
 		return;
 	}

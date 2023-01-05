@@ -28,7 +28,7 @@ int main()
     graphics::setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGTH);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
 
-    graphics::setFont("assets\orange juice 2.0.ttf");
+    graphics::setFont("assets\LiberationSans-Bold.ttf");
 
     myfilms.init();
     graphics::startMessageLoop();

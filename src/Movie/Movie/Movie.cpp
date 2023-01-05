@@ -103,7 +103,7 @@ void Movie::draw()
 	br.outline_color[1] = 0.0f;
 	br.outline_color[2] = 0.0f;
 
-	graphics::setFont(std::string(ASSET_PATH) + "OpenSans-ExtraBoldItalic.ttf");
+	graphics::setFont(std::string(ASSET_PATH) + "LiberationSans-Bold.ttf");
 
 	std::string str;
 	float j = 20;

@@ -1,6 +1,9 @@
 #include "movies_list.h"
 
-Movie emptyM("", "", { "" }, { "" }, "", { "" }, "", "");
+
+
+Movie emptyM("Unknown ", "Unknown ", { "Unknown " }, { "Unknown " }, "Unknown ", { "" }, "", "Unknown ");
+
 MoviesList::MoviesList()
 {
 }
@@ -200,7 +203,7 @@ void MoviesList::init()
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" }, { "Brad Pitt", "Edward Norton", "Helena Bonham Carter" }, "1999", { "shot-FightClubV1.png", "shot-FightClubV2.png" }, "FightClub.png", "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.");
 	Movie aNewHope("A New Hope", "George Lucas", { "Action" ,"Adventure","Fantasy" }, {"Mark Hamill" ,"Harrison Ford", "Carrie Fisher"}, "1977", {"shot-ANewHopeV1.png","shot-ANewHopeV2.png" ,"shot-ANewHopeV3.png"}, "ANewHope.png", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.");
 	Movie empireStrikesBack("Empire Strikes Back", "Irvin Kenshner", { "Action" ,"Adventure","Fantasy" }, { "Mark Hamill" ,"Harrison Ford", "Carrie Fisher " }, "1980", { "shot-StarWarsV1.png","shot-StarWarsV2.png" ,"shot-StarWarsV3.png" ,"shot-StarWarsV4.png" ,"shot-StarWarsV5.png" ,"shot-StarWarsV6.png" }, "EmpireStrikesBack.png", "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.");
-	Movie godFather("God Father", "Francis Ford Coppola ", { "History" ,"Drama" }, { "Marlon Brando" ,"Al Pacino", "James Caan" }, "1972", { "shot-GodfatherV1.png" }, "Godfather.png", "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.");
+	Movie godFather("God Father", "Francis Ford Coppola ", { "History" ,"Drama","Crime"}, {"Marlon Brando" ,"Al Pacino", "James Caan"}, "1972", {"shot-GodfatherV1.png"}, "Godfather.png", "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.");
 	Movie pulpFiction("Pulp Fiction", "Quentin Tarantino ", { "Drama" ,"Crime" }, { "John Travolta" ,"Uma Thurman", "Samuel L.Jackson" }, "1994", { "shot-PulpFictionV1.png" ,"shot-PulpFictionV2.png" ,"shot-PulpFictionV3.png" }, "PulpFiction.png", "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.");
 	Movie raidersOfTheLostArk("Raiders Of The Lost Ark", "Steven Spielberg", { "Action" ,"Adventure" }, { "Harrison Ford" ,"Karen Allen", "Paul Freeman" }, "1981", { "shot-RaidersOfTheLostArkV1.png" ,"shot-RaidersOfTheLostArkV2.png" ,"shot-RaidersOfTheLostArkV3.png" ,"shot-RaidersOfTheLostArkV4.png" }, "RaidersOfTheLostArk.png", "Archaeology professor Indiana Jones ventures to seize a biblical artefact known as the Ark of the Covenant. While doing so, he puts up a fight against Renee and a troop of Nazis.");
 	Movie schindlerslist("Schindler's list", "Steven Spielberg", { "Drama" ,"History" }, { "Liam Neeson " ,"Ralph Fiennes", "Ben Kingsley" }, "1993", { "shot-SchindlerslistV1.png" ,"shot-SchindlerslistV2.png" ,"shot-SchindlerslistV3.png" }, "Schindlerslist.png", "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.");
@@ -230,7 +233,7 @@ void MoviesList::fillFilteredMovies()
 	}
 	bool isOnFilteredMovies = false;
 	for (auto& gen : filters) {
-		std::cout << "fuck" << endl;
+		//std::cout << "fuck" << endl;
 		for (int i = 0; i < movies.size(); i++) {
 			isOnFilteredMovies = false;
 			for (int j = 0; j < movies[i].genre.size(); j++) {
@@ -287,7 +290,7 @@ void MoviesList::tidyUpFilteredMovies()
 		
 	}
 	if (filteredMovies.size() == 0) {
-		std::cout << "else-" << endl;
+		//std::cout << "else-" << endl;
 		filteredMovies.push_back(emptyM);
 	}
 }
@@ -437,6 +440,7 @@ void MoviesList::resetFilters()
 	fillFilteredMovies();
 	//fromYear = getOldestYear();
 	//toYear = getNewestYear();
+
 }
 
 void MoviesList::draw(vector<Movie> Movies)
