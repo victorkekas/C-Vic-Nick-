@@ -7,5 +7,7 @@ C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Mov
 C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(34,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(38,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(194,16): warning C4804: '<': unsafe use of type 'bool' in operation
+  text_container.cpp
   Generating Code...
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\text_container.cpp(87): warning C4715: 'textContainer::readChar': not all control paths return a value
   Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\bin\Movied.exe

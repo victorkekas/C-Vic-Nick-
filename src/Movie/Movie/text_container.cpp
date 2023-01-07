@@ -22,7 +22,10 @@ void textContainer::draw() {
 	br.fill_color[1] = 0;
 	br.fill_color[2] = 0;
 
-	graphics::drawText(	central_x-(width/2), this->central_y, 12,text,this->br);
+	//call function that makes tha displayable text (narrow down the ammount of characters of the text)
+	narrowText();
+
+	graphics::drawText(	central_x-(width/2)+ (central_x/256), this->central_y+ (this->central_y/128), 12,displayableText,this->br);
 	br.fill_color[0] = 1;
 	br.fill_color[1] = 1;
 	br.fill_color[2] = 1;
@@ -39,6 +42,16 @@ void textContainer::update() {
 		if (ms.button_left_pressed) {
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 			text += readChar();
+			if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE)) {
+				string tempstring;
+				std::cout << text << endl;
+				for (int i = 0; i < text.length() - 1; i++) {
+					//tempstring += text[i];
+					std::cout<< text[i] << endl;
+				}
+				//text = tempstring;
+				//text = "a";
+			}
 			//action_callback();
 		}
 		if (ms.button_left_released) {
@@ -49,7 +62,7 @@ void textContainer::update() {
 
 }
 void textContainer::init() {
-	text = " ";
+	text = "";
 }
 
 char textContainer::readChar() {
@@ -69,17 +82,29 @@ char textContainer::readChar() {
 				ascii = (char)(i + 93);
 			}
 			
-			if (graphics::getKeyState(graphics::SCANCODE_RSHIFT)|| graphics::getKeyState(graphics::SCANCODE_LSHIFT)) {
+			if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_RSHIFT)|| graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_LSHIFT)) {
 				ascii -= 32;
-			
 			}
 			return ascii;
 		}
 	}
-	if (graphics::getKeyState(graphics::SCANCODE_SPACE)) {
-		
+	if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_SPACE)) {
 		return 32;
 	}
 	
+}
+
+void textContainer::narrowText()
+{
+	//make displayableText a string of 31 character (the latest of the text)
+	if (text.length() <31) {
+		displayableText = text;
+	}
+	else{
+		displayableText = "";
+		for (int i = 30; i > 0; i--) {
+			displayableText += text[text.length()-i];
+		}
+	}
 }
 
