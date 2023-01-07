@@ -222,18 +222,21 @@ void MoviesList::init()
 	//movies.push_back(emptyM);
 	movieIndex = 0;
 
-	fromYear = 0;
-	toYear = 100000;
+	fromYear = getOldestYear();
+	toYear = getNewestYear();
 }
 
 void MoviesList::fillFilteredMovies()
 {
+	filteredMovies.clear();
 	if (filters.size() != 0) {
-		filteredMovies.clear();
+		//filteredMovies.clear();
+	}
+	else if(filters.size() == 0){
+
 	}
 	bool isOnFilteredMovies = false;
 	for (auto& gen : filters) {
-		//std::cout << "fuck" << endl;
 		for (int i = 0; i < movies.size(); i++) {
 			isOnFilteredMovies = false;
 			for (int j = 0; j < movies[i].genre.size(); j++) {
@@ -253,6 +256,42 @@ void MoviesList::fillFilteredMovies()
 			}
 		}
 	}
+	
+	std::vector<Movie> toBeRemovedMovies;
+	if (!filtersOn) {
+		for (int i = 0; i < movies.size(); i++) {
+			if (std::stoi(movies[i].getYear()) <= toYear && std::stoi(movies[i].getYear()) >= fromYear) {
+				filteredMovies.push_back(movies[i]);
+				filtersOn = true;
+			}
+		}
+	}
+	else {
+		if (filters.size() != 0) {
+			for (int i = 0; i < filteredMovies.size(); i++) {
+				if (std::stoi(filteredMovies[i].getYear()) < fromYear || std::stoi(filteredMovies[i].getYear()) > toYear) {
+					toBeRemovedMovies.push_back(filteredMovies[i]);
+				}
+			}
+			for (auto& mov : toBeRemovedMovies) {
+				filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
+			}
+		}
+		else {
+			filteredMovies.clear();
+			for (int i = 0; i < movies.size(); i++) {
+				if (std::stoi(movies[i].getYear()) <= toYear && std::stoi(movies[i].getYear()) >= fromYear) {
+					filteredMovies.push_back(movies[i]);
+					filtersOn = true;
+				}
+			}
+		}
+
+	}
+	if (filteredMovies.size() == 0) {
+		filteredMovies.push_back(emptyM);
+	}
+	movieIndex = 0;
 }
 
 void MoviesList::tidyUpFilteredMovies()
@@ -305,7 +344,7 @@ void MoviesList::setFilterAction()
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Action") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Action"), filters.end());
-			if (filters.size() == 0) 
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) 
 			{
 				filtersOn = false; 
 			}
@@ -327,7 +366,7 @@ void MoviesList::setFilterDrama()
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Drama") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Drama"), filters.end());
-			if (filters.size() == 0) { filtersOn = false; }
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
 		}
 		else {
 			filters.push_back("Drama");
@@ -346,7 +385,7 @@ void MoviesList::setFilterAdventure()
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Adventure") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Adventure"), filters.end());
-			if (filters.size() == 0) { filtersOn = false;	}
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false;	}
 		}
 		else {
 			filters.push_back("Adventure");
@@ -365,7 +404,7 @@ void MoviesList::setFilterFantasy()
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Fantasy") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Fantasy"), filters.end());
-			if (filters.size() == 0) { filtersOn = false; }
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
 		}
 		else {
 			filters.push_back("Fantasy");
@@ -384,7 +423,7 @@ void MoviesList::setFilterHistory()
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "History") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "History"), filters.end());
-			if (filters.size() == 0) { filtersOn = false; }
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
 		}
 		else {
 			filters.push_back("History");
@@ -403,7 +442,7 @@ void MoviesList::setFilterCrime()
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Crime") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Crime"), filters.end());
-			if (filters.size() == 0) { filtersOn = false; }
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
 		}
 		else {
 			filters.push_back("Crime");
@@ -422,7 +461,7 @@ void MoviesList::setFilterSciFi()
 	else if (filtersOn) {
 		if (std::find(filters.begin(), filters.end(), "Sci-Fi") != filters.end()) {
 			filters.erase(std::remove(filters.begin(), filters.end(), "Sci-Fi"), filters.end());
-			if (filters.size() == 0) { filtersOn = false; }
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
 		}
 		else {
 			filters.push_back("Sci-Fi");
@@ -435,12 +474,11 @@ void MoviesList::setFilterSciFi()
 void MoviesList::resetFilters()
 {
 	filters.clear();
+	fromYear = getOldestYear();
+	toYear = getNewestYear();
 	filtersOn = false;
 	movieIndex = 0;
 	fillFilteredMovies();
-	//fromYear = getOldestYear();
-	//toYear = getNewestYear();
-
 }
 
 void MoviesList::draw(vector<Movie> Movies)

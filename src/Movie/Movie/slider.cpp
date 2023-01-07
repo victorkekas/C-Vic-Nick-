@@ -113,6 +113,7 @@ void Slider::update()
 
 void Slider::init()
 {
+	s_button_state = SLIDER_IDLE;
 	switch (this->buttonPosition)
 	{
 	case 's':

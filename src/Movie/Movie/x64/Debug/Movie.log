@@ -1,5 +1,11 @@
-﻿  movies_list.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(31,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(35,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(191,16): warning C4804: '<': unsafe use of type 'bool' in operation
+﻿  filmBrowser.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(76,160): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(81,161): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(164,36): warning C4305: '=': truncation from 'double' to 'float'
+  movies_list.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(34,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(38,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(194,16): warning C4804: '<': unsafe use of type 'bool' in operation
+  Generating Code...
   Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\bin\Movied.exe
