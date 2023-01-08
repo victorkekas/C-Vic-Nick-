@@ -8,10 +8,12 @@ textContainer::textContainer(float central_x, float central_y, float width, floa
 	this->height = height;
 	this->br = br;
 }
+
 void textContainer::addActionCallback(std::function<void()> cb)
 {
 	action_callback = cb;
 }
+
 textContainer::~textContainer(){
 
 }
@@ -30,6 +32,7 @@ void textContainer::draw() {
 	br.fill_color[1] = 1;
 	br.fill_color[2] = 1;
 }
+
 void textContainer::update() {
 
 	ContainerBox boundries(this->central_x, this->central_y, this->width, this->height);
@@ -39,28 +42,31 @@ void textContainer::update() {
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
 	if (in_bounds) {
-		if (ms.button_left_pressed) {
-			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
-			text += readChar();
-			if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE)) {
-				string tempstring;
-				std::cout << text << endl;
-				for (int i = 0; i < text.length() - 1; i++) {
-					//tempstring += text[i];
-					std::cout<< text[i] << endl;
+		//graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
+		char c = readChar();
+		if (c != 0) {
+			text += c;
+			if (c == 8) {
+				if (text.size() - 1 > 0) {
+					text.resize(text.size() - 2);
 				}
-				//text = tempstring;
-				//text = "a";
+				else {
+					text.resize(0);
+				}
 			}
-			//action_callback();
-		}
-		if (ms.button_left_released) {
-			
-		}
-		return;
-	}
 
+			//action_callback();
+
+			if (ms.button_left_released) {
+
+			}
+			return;
+		}
+
+	}
 }
+
+
 void textContainer::init() {
 	text = "";
 }
@@ -91,6 +97,9 @@ char textContainer::readChar() {
 	if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_SPACE)) {
 		return 32;
 	}
+	if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_BACKSPACE)) {
+		return 8;
+	}
 	
 }
 
@@ -106,5 +115,9 @@ void textContainer::narrowText()
 			displayableText += text[text.length()-i];
 		}
 	}
+}
+
+void textContainer::setText(string text) {
+	this->displayableText = text;
 }
 

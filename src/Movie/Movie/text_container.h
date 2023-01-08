@@ -4,6 +4,7 @@
 
 class textContainer : public Widget {
 public:
+
 	string text="";
 	string displayableText = "";
 	textContainer(float central_x, float central_y, float width, float height, graphics::Brush br);
@@ -14,6 +15,6 @@ public:
 	void init();
 	char readChar();
 	void narrowText();
-
+	void setText(string text);
 };
 
