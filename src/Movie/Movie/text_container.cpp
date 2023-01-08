@@ -1,6 +1,5 @@
 #include "text_container.h"
 
-
 textContainer::textContainer(float central_x, float central_y, float width, float height, graphics::Brush br){
 	this->central_x = central_x;
 	this->central_y = central_y;
@@ -82,7 +81,7 @@ char textContainer::readChar() {
 			if (prev==i && delay <200) {
 				continue;
 			}
-			else {
+			else if(delay > 100){
 				prev = i;
 				delay = 0;
 				ascii = (char)(i + 93);
@@ -95,16 +94,25 @@ char textContainer::readChar() {
 		}
 	}
 	if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_SPACE)) {
-		return 32;
+		if (delay > 180) {
+			delay = 0;
+			return 32;
+		}
 	}
 	if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_BACKSPACE)) {
-		return 8;
+		if (delay>170) {
+			delay = 0;
+			return 8;
+		}
+		
 	}
 	
 }
 
 void textContainer::narrowText()
 {
+	static float delay = 0.0f;
+	delay += graphics::getDeltaTime();
 	//make displayableText a string of 31 character (the latest of the text)
 	if (text.length() <31) {
 		displayableText = text;
@@ -115,9 +123,20 @@ void textContainer::narrowText()
 			displayableText += text[text.length()-i];
 		}
 	}
+	if (delay > 700) {
+		delay = 0;
+	}
+	else if(delay>480){
+		displayableText += "|";
+	}
+	
 }
 
 void textContainer::setText(string text) {
 	this->displayableText = text;
 }
 
+string textContainer::getText()
+{
+	return this->text;
+}

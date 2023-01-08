@@ -16,5 +16,6 @@ public:
 	char readChar();
 	void narrowText();
 	void setText(string text);
+	string getText();
 };
 
