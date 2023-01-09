@@ -288,8 +288,41 @@ void MoviesList::fillFilteredMovies()
 		}
 
 	}
+	if (!textTitle._Equal("")) {
+		if (!filtersOn) {
+			for (int i = 0; i < movies.size(); i++) {
+				isOnFilteredMovies = false;
+				if ((movies[i].getTitle()).find(textTitle) != std::string::npos) {
+					if (filteredMovies.size() == 0) {
+						filteredMovies.push_back(movies[i]);
+						filtersOn = true;
+					}
+					for (int h = 0; h < filteredMovies.size(); h++) {
+						if (movies[i].getTitle()._Equal(filteredMovies[h].getTitle())) {
+							isOnFilteredMovies = true;
+						}
+					}
+					if (!isOnFilteredMovies) {
+						filteredMovies.push_back(movies[i]);
+					}
+				}
+			}
+		}
+		else if (filtersOn) {
+			for (int i = 0; i < filteredMovies.size(); i++) {
+				if (!((filteredMovies[i].getTitle()).find(textTitle) != std::string::npos)) {
+					toBeRemovedMovies.push_back(filteredMovies[i]);
+				}
+			}
+			for (auto& mov : toBeRemovedMovies) {
+				filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
+			}
+		}	
+	}
+	
+
 	if (filteredMovies.size() == 0) {
-		filteredMovies.push_back(emptyM);
+		//filteredMovies.push_back(emptyM);
 	}
 	movieIndex = 0;
 }
@@ -515,7 +548,14 @@ void MoviesList::draw()
 {
 
 	if (filtersOn) {
-		draw(filteredMovies);
+		if (filteredMovies.size()==0) {
+			graphics::Brush br;
+			graphics::drawText(1.5f*CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 4.0f,20,"No movie found...",br);
+		}
+		else {
+			draw(filteredMovies);
+		}
+		
 	}
 	else if (!filtersOn) {
 		draw(movies);

@@ -10,6 +10,7 @@ public:
 	std::vector<Movie> movies;
 	std::vector<Movie> filteredMovies;
 	std::vector <std::string> filters;
+	std::string textTitle;
 	int movieIndex;
 	bool filtersOn = false;
 	int fromYear;

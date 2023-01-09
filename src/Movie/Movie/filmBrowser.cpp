@@ -14,6 +14,7 @@ Slider* fromYearSlider, * toYearSlider;
 textContainer* txtCont; 
 void FilmBrowser::update()
 {
+	displayableMovies.textTitle = txtCont->getText();
 	if (!(displayableMovies.filtersOn)) {
 		b2_left->addActionCallback(std::bind(&Movie::previousShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
 		b2_right->addActionCallback(std::bind(&Movie::nextShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
@@ -40,7 +41,8 @@ void FilmBrowser::update()
 	for (auto widget : widgets) {
 		widget->update();
 	}
-	
+	displayableMovies.textTitle = txtCont->getText();
+	//std::cout << displayableMovies.textTitle << std::endl;
 }
 
 void FilmBrowser::init()
@@ -164,6 +166,9 @@ void FilmBrowser::init()
 	br_button_type_1.outline_width=0.2;
 
 	txtCont= new textContainer(4.22*CANVAS_WIDTH/5, 2.2f * CANVAS_HEIGTH / 4.0f, 0.25 * CANVAS_WIDTH, 0.05 * CANVAS_HEIGTH, br_button_type_1);
+	txtCont->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
+	
+
 	widgets.push_back(txtCont);
 }
 
@@ -239,6 +244,8 @@ void FilmBrowser::draw()
 	graphics::drawText(3.3f * CANVAS_WIDTH / 4.0f, 0.15f * CANVAS_HEIGTH / 4.0f, 13.0f, br.texture, br);
 	br.texture = "Genre";
 	graphics::drawText(11.7f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, 13.0f, br.texture, br);
+	br.texture = "Search by title:";
+	graphics::drawText(10.0f * CANVAS_WIDTH / 16, 2.23 * CANVAS_HEIGTH / 4.0f, 13.0f, br.texture, br);
 }
 
 FilmBrowser::FilmBrowser()

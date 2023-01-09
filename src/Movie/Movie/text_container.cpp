@@ -53,12 +53,7 @@ void textContainer::update() {
 					text.resize(0);
 				}
 			}
-
-			//action_callback();
-
-			if (ms.button_left_released) {
-
-			}
+			action_callback();
 			return;
 		}
 
@@ -70,43 +65,51 @@ void textContainer::init() {
 	text = "";
 }
 
-char textContainer::readChar() {
+char textContainer::readChar() {//change comments 
 	static float delay = 0.0f;
 	static int prev = 0;
 	char ascii = 0;
 	delay += graphics::getDeltaTime();
 
-	for (int i = graphics::SCANCODE_A; i <= graphics::SCANCODE_Z; i++) {
+	for (int i = graphics::SCANCODE_A; i <= graphics::SCANCODE_SPACE; i++) {
 		if (graphics::getKeyState((graphics::scancode_t)i)) {
-			if (prev==i && delay <200) {
+			if (prev == i && delay < 200) {
 				continue;
 			}
-			else if(delay > 100){
+			else {
 				prev = i;
 				delay = 0;
-				ascii = (char)(i + 93);
+
+				//if letters
+				if (i >= graphics::SCANCODE_A && i <= graphics::SCANCODE_Z) {
+					ascii = (char)(i + 93);
+					//if letters in caps
+					if (graphics::getKeyState(graphics::SCANCODE_RSHIFT) || graphics::getKeyState(graphics::SCANCODE_LSHIFT)) {
+						ascii -= 32;
+					}
+				}
+				//if numbers
+				if (i >= graphics::SCANCODE_1 && i <= graphics::SCANCODE_0) {
+					//zero is not in proper order, checking seperately
+					if (i == graphics::SCANCODE_0) {
+						ascii = (char)(48);
+					}
+					else {
+						ascii = (char)(i + 19);
+					}
+				}
+				//if special characters
+				if (i == graphics::SCANCODE_BACKSPACE) {
+					ascii = (char)(8); //delete char when using backspace
+
+				}
+				if (i == graphics::SCANCODE_SPACE) {
+					ascii = (char)(32);
+				}
 			}
-			
-			if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_RSHIFT)|| graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_LSHIFT)) {
-				ascii -= 32;
-			}
-			return ascii;
 		}
 	}
-	if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_SPACE)) {
-		if (delay > 180) {
-			delay = 0;
-			return 32;
-		}
-	}
-	if (graphics::getKeyState((graphics::scancode_t)graphics::SCANCODE_BACKSPACE)) {
-		if (delay>170) {
-			delay = 0;
-			return 8;
-		}
-		
-	}
-	
+	return ascii;
 }
 
 void textContainer::narrowText()
