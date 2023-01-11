@@ -16,7 +16,7 @@ textContainer* txtCont;
 
 void FilmBrowser::update()
 {
-	displayableMovies.textTitle = txtCont->getText();
+	displayableMovies.settextTitle(txtCont->getText());
 	if (!(displayableMovies.filtersOn)) {
 		b2_left->addActionCallback(std::bind(&Movie::previousShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
 		b2_right->addActionCallback(std::bind(&Movie::nextShot, &displayableMovies.movies[displayableMovies.getMovieIndex()]));
@@ -29,8 +29,8 @@ void FilmBrowser::update()
 	if (b_reset->m_button_state == 0) {
 		fromYearSlider->init();
 		toYearSlider->init();
-		fromYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
-		toYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
+		fromYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies, ""));
+		toYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies, ""));
 		txtCont->init();
 		for (auto widget : widgets) {
 			widget->init();
@@ -39,8 +39,8 @@ void FilmBrowser::update()
 	if (fromYearSlider->s_button_state == 0 || toYearSlider->s_button_state == 0) {
 		displayableMovies.changeFromYear(fromYearSlider->displaybleValue);
 		displayableMovies.changeToYear(toYearSlider->displaybleValue);
-		fromYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
-		toYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
+		fromYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies, ""));
+		toYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies, ""));
 	}
 
 	for (auto widget : widgets) {
@@ -96,25 +96,32 @@ void FilmBrowser::init()
 	br_button_type_1.texture = std::string(ASSET_PATH) + "square.png";
 
 	b_action = new GlowingButton(12.0f * CANVAS_WIDTH / 16, 1.8f * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
-	b_action->addActionCallback(std::bind(&MoviesList::setFilterAction, &displayableMovies));
+	//b_action->addActionCallback(std::bind(&MoviesList::setFilterAction, &displayableMovies));
+	b_action->addActionCallback(std::bind(&MoviesList::setFilter, &displayableMovies, "Action"));
 
 	b_drama = new GlowingButton(13.5f * CANVAS_WIDTH / 16, 1.8 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
-	b_drama->addActionCallback(std::bind(&MoviesList::setFilterDrama, &displayableMovies));
+	//b_drama->addActionCallback(std::bind(&MoviesList::setFilterDrama, &displayableMovies));
+	b_drama->addActionCallback(std::bind(&MoviesList::setFilter, &displayableMovies, "Drama"));
 
 	b_adventure = new GlowingButton(15.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
-	b_adventure->addActionCallback(std::bind(&MoviesList::setFilterAdventure, &displayableMovies));
+	//b_adventure->addActionCallback(std::bind(&MoviesList::setFilterAdventure, &displayableMovies));
+	b_adventure->addActionCallback(std::bind(&MoviesList::setFilter, &displayableMovies, "Adventure"));
 
 	b_fantasy = new GlowingButton(12.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
-	b_fantasy->addActionCallback(std::bind(&MoviesList::setFilterFantasy, &displayableMovies));
+	//b_fantasy->addActionCallback(std::bind(&MoviesList::setFilterFantasy, &displayableMovies));
+	b_fantasy->addActionCallback(std::bind(&MoviesList::setFilter, &displayableMovies, "Fantasy"));
 
 	b_history = new GlowingButton(13.5f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
-	b_history->addActionCallback(std::bind(&MoviesList::setFilterHistory, &displayableMovies));
+	//b_history->addActionCallback(std::bind(&MoviesList::setFilterHistory, &displayableMovies));
+	b_history->addActionCallback(std::bind(&MoviesList::setFilter, &displayableMovies, "History"));
 
 	b_crime = new GlowingButton(15.0f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
-	b_crime->addActionCallback(std::bind(&MoviesList::setFilterCrime, &displayableMovies));
+	//b_crime->addActionCallback(std::bind(&MoviesList::setFilterCrime, &displayableMovies));
+	b_crime->addActionCallback(std::bind(&MoviesList::setFilter, &displayableMovies, "Crime"));
 
 	b_scifi = new GlowingButton(13.5f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
-	b_scifi->addActionCallback(std::bind(&MoviesList::setFilterSciFi, &displayableMovies));
+	//b_scifi->addActionCallback(std::bind(&MoviesList::setFilterSciFi, &displayableMovies));
+	b_scifi->addActionCallback(std::bind(&MoviesList::setFilter, &displayableMovies, "Sci-Fi"));
 
 	b_reset = new Button(15.0f * CANVAS_WIDTH / 16, 1.8f * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_reset->addActionCallback(std::bind(&MoviesList::resetFilters, &displayableMovies));
@@ -141,8 +148,8 @@ void FilmBrowser::init()
 	br_button_type_1.outline_width = 1.0f;
 	fromYearSlider = new Slider(2.88f * CANVAS_WIDTH / 4.0f,0.4f * CANVAS_HEIGTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f, 0.4f * CANVAS_HEIGTH / 4.0f, br_button_type_1, 's',displayableMovies.getOldestYear(), displayableMovies.getNewestYear());
 	toYearSlider = new Slider(2.88f * CANVAS_WIDTH / 4.0f,0.75f * CANVAS_HEIGTH / 4.0f, 3.88f * CANVAS_WIDTH / 4.0f, 0.75f * CANVAS_HEIGTH / 4.0f, br_button_type_1, 'f', displayableMovies.getOldestYear(), displayableMovies.getNewestYear());
-	fromYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
-	toYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
+	fromYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies, ""));
+	toYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies, ""));
 	fromYearSlider->init();
 	toYearSlider->init();
 
@@ -157,7 +164,7 @@ void FilmBrowser::init()
 	br_button_type_1.outline_width=0.2;
 
 	txtCont= new textContainer(4.22*CANVAS_WIDTH/5, 2.2f * CANVAS_HEIGTH / 4.0f, 0.25 * CANVAS_WIDTH, 0.05 * CANVAS_HEIGTH, br_button_type_1);
-	txtCont->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
+	txtCont->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies,""));
 	
 
 	widgets.push_back(txtCont);
@@ -260,7 +267,6 @@ FilmBrowser::FilmBrowser()
 
 FilmBrowser::~FilmBrowser()
 {
-	std::cout << "FilmBrowser" << endl;
 	for (auto widget : widgets) {
 		delete widget;
 	}

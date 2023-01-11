@@ -11,7 +11,6 @@ int MoviesList::getMovieIndex()
 
 MoviesList::~MoviesList()
 {
-	std::cout << "MoviesList" << endl;
 }
 
 void MoviesList::nextMovie()
@@ -83,20 +82,6 @@ void MoviesList::separator(float start, float end)
 	prev_loc_end = end;
 }
 
-void MoviesList::fillFilteredMoviesYear()
-{
-	int test;
-	filteredMovies.clear();
-	filtersOn = true;
-	for (int i = 0; i < movies.size(); i++) {
-		test = std::stoi(movies[i].getYear());
-		if (fromYear < test < toYear) {
-			filteredMovies.push_back(movies[i]);
-		}
-	}
-	fillFilteredMovies();
-}
-
 void MoviesList::init()
 {
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" }, { "Brad Pitt", "Edward Norton", "Helena Bonham Carter" }, "1999", { "shot-FightClubV1.png", "shot-FightClubV2.png" }, "FightClub.png", "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.");
@@ -124,8 +109,9 @@ void MoviesList::init()
 	toYear = getNewestYear();
 }
 
-void MoviesList::fillFilteredMovies()
+void MoviesList::fillFilteredMovies(std::string title)
 {
+	//settextTitle(title);
 	filteredMovies.clear();
 	std::vector<Movie> toBeRemovedMovies;
 	bool isOnFilteredMovies = false;
@@ -205,6 +191,7 @@ void MoviesList::fillFilteredMovies()
 	}
 	
 	//filter based on the Title _ With a little bug _ Wokrs one letter prior 
+	toBeRemovedMovies.clear();
 	if (!textTitle._Equal("")) {
 		if (!filtersOn) {
 			for (int i = 0; i < movies.size(); i++) {
@@ -240,41 +227,26 @@ void MoviesList::fillFilteredMovies()
 	movieIndex = 0;
 }
 
-void MoviesList::tidyUpFilteredMovies()
+void MoviesList::setFilter(std::string filter)
 {
-	this->fillFilteredMovies();
 	movieIndex = 0;
-	std::vector<Movie> toBeRemovedMovies;
 	if (!filtersOn) {
-		for (int i = 0; i < movies.size(); i++) {
-			if (std::stoi(movies[i].getYear()) <= toYear && std::stoi(movies[i].year) >= fromYear) {
-				filteredMovies.push_back(movies[i]);
-				filtersOn = true;
+		filters.push_back(filter);
+		filtersOn = true;
+	}
+	else if (filtersOn) {
+		if (std::find(filters.begin(), filters.end(), filter) != filters.end()) {
+			filters.erase(std::remove(filters.begin(), filters.end(), filter), filters.end());
+			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear())
+			{
+				filtersOn = false;
 			}
 		}
-	}
-	else {
-		if (filters.size() != 0) {
-			for (int i = 0; i < filteredMovies.size(); i++) {
-				if (std::stoi(filteredMovies[i].year) < fromYear || std::stoi(filteredMovies[i].year) > toYear) {
-					toBeRemovedMovies.push_back(filteredMovies[i]);
-				}
-			}
-			for (auto& mov : toBeRemovedMovies) {
-				filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
-			}
-		}else{
-			filteredMovies.clear();
-			for (int i = 0; i < movies.size(); i++) {
-				if (std::stoi(movies[i].getYear()) <= toYear && std::stoi(movies[i].year) >= fromYear) {
-					filteredMovies.push_back(movies[i]);
-					filtersOn = true;
-				}
-			}
+		else {
+			filters.push_back(filter);
 		}
-		
 	}
-	
+	fillFilteredMovies("");
 }
 
 void MoviesList::setFilterAction()
@@ -296,7 +268,7 @@ void MoviesList::setFilterAction()
 			filters.push_back("Action");
 		}
 	}
-	fillFilteredMovies();
+	fillFilteredMovies("");
 }
 
 void MoviesList::setFilterDrama()
@@ -315,7 +287,7 @@ void MoviesList::setFilterDrama()
 			filters.push_back("Drama");
 		}
 	}
-	fillFilteredMovies();
+	fillFilteredMovies("");
 }
 
 void MoviesList::setFilterAdventure()
@@ -334,7 +306,7 @@ void MoviesList::setFilterAdventure()
 			filters.push_back("Adventure");
 		}
 	}
-	fillFilteredMovies();
+	fillFilteredMovies("");
 }
 
 void MoviesList::setFilterFantasy()
@@ -353,7 +325,7 @@ void MoviesList::setFilterFantasy()
 			filters.push_back("Fantasy");
 		}
 	}
-	fillFilteredMovies();
+	fillFilteredMovies("");
 }
 
 void MoviesList::setFilterHistory()
@@ -372,7 +344,7 @@ void MoviesList::setFilterHistory()
 			filters.push_back("History");
 		}
 	}
-	fillFilteredMovies();
+	fillFilteredMovies("");
 }
 
 void MoviesList::setFilterCrime()
@@ -391,7 +363,7 @@ void MoviesList::setFilterCrime()
 			filters.push_back("Crime");
 		}
 	}
-	fillFilteredMovies();
+	fillFilteredMovies("");
 }
 
 void MoviesList::setFilterSciFi()
@@ -410,7 +382,7 @@ void MoviesList::setFilterSciFi()
 			filters.push_back("Sci-Fi");
 		}
 	}
-	fillFilteredMovies();
+	fillFilteredMovies("");
 }
 
 void MoviesList::resetFilters()
@@ -420,7 +392,12 @@ void MoviesList::resetFilters()
 	toYear = getNewestYear();
 	filtersOn = false;
 	movieIndex = 0;
-	fillFilteredMovies();
+	fillFilteredMovies("");
+}
+
+void MoviesList::settextTitle(std::string title)
+{
+	this->textTitle = title;
 }
 
 void MoviesList::draw(vector<Movie> Movies)

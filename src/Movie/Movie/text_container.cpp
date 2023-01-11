@@ -53,7 +53,8 @@ void textContainer::update() {
 					text.resize(0);
 				}
 			}
-			action_callback(nullptr);
+			setText(text);
+			action_callback(&text);
 			return;
 		}
 

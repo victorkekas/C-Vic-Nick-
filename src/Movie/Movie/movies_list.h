@@ -29,9 +29,8 @@ public:
 	void init();
 	void draw();
 	void draw(vector<Movie> Movies);
-	void fillFilteredMoviesYear();
-	void fillFilteredMovies();
-	void tidyUpFilteredMovies();
+	void fillFilteredMovies(std::string title);
+	void setFilter(std::string filter);
 	void setFilterAction();
 	void setFilterDrama();
 	void setFilterAdventure();
@@ -40,4 +39,5 @@ public:
 	void setFilterCrime();
 	void setFilterSciFi();
 	void resetFilters();
+	void settextTitle(std::string title);
 };
