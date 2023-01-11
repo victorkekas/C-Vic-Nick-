@@ -2,8 +2,7 @@
 #include "graphics.h"
 #include "config.h"
 #include "movie.h"
-//#include "button.h"
-//#include "text_container.h"
+
 
 class MoviesList {
 public:

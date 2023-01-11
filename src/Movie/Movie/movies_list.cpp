@@ -1,9 +1,6 @@
 #include "movies_list.h"
 
 
-
-Movie emptyM("Unknown ", "Unknown ", { "Unknown " }, { "Unknown " }, "Unknown ", { "" }, "", "Unknown ");
-
 MoviesList::MoviesList()
 {
 }
@@ -45,67 +42,12 @@ void MoviesList::previousMovie()
 void MoviesList::changeFromYear(int fromYear)
 {
 	this->fromYear = fromYear;
-	/*
-	graphics::MouseState ms;
-	graphics::getMouseState(ms);
-	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
-	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
-	float pmx = graphics::windowToCanvasX((float)ms.prev_pos_x);
-	float pmy = graphics::windowToCanvasY((float)ms.prev_pos_y);
-	if (mx > pmx && mx > prev_loc_start) {
-		fromYear += 1;
-		prev_loc_start += spaces;
-		if (fromYear<getOldestYear()) {
-			fromYear = getOldestYear();
-		}
-		if (fromYear > getNewestYear()) {
-			fromYear = getNewestYear();
-		}
-	}
-	else if (mx < pmx && mx < prev_loc_start) {
-		fromYear-=1;
-		prev_loc_start -= spaces;
-		if (fromYear < getOldestYear()) {
-			fromYear = getOldestYear();
-		}
-		if (fromYear > getNewestYear()) {
-			fromYear = getNewestYear();
-		}
-	}
-	*/
 }
 
 void MoviesList::changeToYear(int toYear)
 {
 	this->toYear = toYear;
-	/*
-	graphics::MouseState ms;
-	graphics::getMouseState(ms);
-	float mx = graphics::windowToCanvasX((float)ms.cur_pos_x);
-	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
-	float pmx = graphics::windowToCanvasX((float)ms.prev_pos_x);
-	float pmy = graphics::windowToCanvasY((float)ms.prev_pos_y);
-	if (mx > pmx && mx > prev_loc_end) {
-		toYear += 1;
-		prev_loc_end += spaces;
-		if (toYear < getOldestYear()) {
-			toYear = getOldestYear();
-		}
-		if (toYear > getNewestYear()) {
-			toYear = getNewestYear();
-		}
-	}
-	else if (mx < pmx && mx < prev_loc_end) {
-		toYear -= 1;
-		prev_loc_end -= spaces;
-		if (toYear < getOldestYear()) {
-			toYear = getOldestYear();
-		}
-		if (toYear > getNewestYear()) {
-			toYear = getNewestYear();
-		}
-	}
-	*/
+	
 }
 
 int MoviesList::getOldestYear()
@@ -118,27 +60,7 @@ int MoviesList::getOldestYear()
 		}
 	}
 	return year;
-	/*
-	int year;
-	if (!filtersOn) {
-		year = std::stoi(movies[0].getYear());
-		for (int i = 0; i < movies.size(); i++) {
-			if (std::stoi(movies[i].getYear()) <  year) {
-				year = std::stoi(movies[i].getYear());
-			}
-		}
-	}
-	else {
-		year = std::stoi(filteredMovies[0].getYear());
-		for (int i = 0; i < filteredMovies.size(); i++) {
-			if (std::stoi(filteredMovies[i].getYear()) < year) {
-				year = std::stoi(filteredMovies[i].getYear());
-			}
-		}
-	}
-	
-	return year;
-	*/
+
 }
 
 int MoviesList::getNewestYear()
@@ -151,27 +73,6 @@ int MoviesList::getNewestYear()
 		}
 	}
 	return year;
-	/*
-	int year;
-	if (!filtersOn) {
-		year = std::stoi(movies[0].getYear());
-		for (int i = 0; i < movies.size(); i++) {
-			if (std::stoi(movies[i].getYear()) > year) {
-				year = std::stoi(movies[i].getYear());
-			}
-		}
-	}
-	else {
-		year = std::stoi(filteredMovies[0].getYear());
-		for (int i = 0; i < filteredMovies.size(); i++) {
-			if (std::stoi(filteredMovies[i].getYear()) > year) {
-				year = std::stoi(filteredMovies[i].getYear());
-			}
-		}
-	}
-
-	return year;
-	*/
 }
 
 void MoviesList::separator(float start, float end)
@@ -219,7 +120,6 @@ void MoviesList::init()
 	movies.push_back(schindlerslist);
 	movies.push_back(terminator);
 	movies.push_back(templeOfDoom);
-	//movies.push_back(emptyM);
 	movieIndex = 0;
 
 	fromYear = getOldestYear();
@@ -229,12 +129,6 @@ void MoviesList::init()
 void MoviesList::fillFilteredMovies()
 {
 	filteredMovies.clear();
-	if (filters.size() != 0) {
-		//filteredMovies.clear();
-	}
-	else if(filters.size() == 0){
-
-	}
 	bool isOnFilteredMovies = false;
 	for (auto& gen : filters) {
 		for (int i = 0; i < movies.size(); i++) {
@@ -320,10 +214,6 @@ void MoviesList::fillFilteredMovies()
 		}	
 	}
 	
-
-	if (filteredMovies.size() == 0) {
-		//filteredMovies.push_back(emptyM);
-	}
 	movieIndex = 0;
 }
 
@@ -361,10 +251,7 @@ void MoviesList::tidyUpFilteredMovies()
 		}
 		
 	}
-	if (filteredMovies.size() == 0) {
-		//std::cout << "else-" << endl;
-		filteredMovies.push_back(emptyM);
-	}
+	
 }
 
 void MoviesList::setFilterAction()

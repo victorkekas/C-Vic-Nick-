@@ -69,12 +69,11 @@ void Slider::update()
 	float pmy = graphics::windowToCanvasY((float)ms.prev_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
 	if (in_bounds) {
-		//if mouse_left_pressed->make sound and change button's color
+		//if mouse_left_pressed->make sound
 		if (ms.button_left_pressed) {
-			//s_button_state = SLIDER_PRESSED;
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		}
-		//if mouse_left_down->
+		
 		//if current mouse_pos is left or right, compare to the current pos of the button, draw button there
 		if (ms.button_left_down) {
 			if (mx > pmx && mx>this->central_x && mx<this->width) {

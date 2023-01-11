@@ -19,63 +19,9 @@ Button::Button(float central_x, float central_y, float width, float height, grap
 	this->br = br;
 }
 
-Button::Button(float central_x, float central_y, float width, float height, graphics::Brush br, int limit,/*std::vector<std::vector<std::string>>* vec_ptr_images, std::vector<Movie>* vec_ptr_movies,*/  int* index, char movement)
-{
-	this->central_x = central_x;
-	this->central_y = central_y;
-	this->width = width;
-	this->height = height;
-	this->br = br;
-	//this->vec_ptr_images = vec_ptr_images;
-	//this->vec_ptr_movies = vec_ptr_movies;
-	this->limit = limit;
-	this->index = index;
-	this->movement = movement;
-}
-
 void Button::addActionCallback(std::function<void()> cb)
 {
 	action_callback = cb;
-}
-
-void Button::ButtonAction_Index()
-{
-	switch (this->movement) {
-	case 'f':
-		if (*index == (limit - 1)) {
-			*index = 0;
-			break;
-		}
-		*index += 1;
-		break;
-	case 'b':
-		if (*index == 0) {
-			*index = (limit - 1);
-			break;
-		}
-		*index -= 1;
-		break;
-	}
-}
-
-void Button::ButtonAction_Index_except0()
-{
-	switch (this->movement) {
-	case 'f':
-		if (*index == (limit - 1)) {
-			*index = 1;
-			break;
-		}
-		*index += 1;
-		break;
-	case 'b':
-		if (*index == 1) {
-			*index = (limit - 1);
-			break;
-		}
-		*index -= 1;
-		break;
-	}
 }
 
 
@@ -129,9 +75,4 @@ void Button::update()
 
 void Button::init()
 {
-}
-
-char Button::getMovement()
-{
-	return this->movement;
 }

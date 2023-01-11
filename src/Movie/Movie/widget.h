@@ -5,14 +5,15 @@
 #include "container_box.h"
 
 class Widget {
-public:
+protected:
 	bool active;
-	float central_x, central_y, width, height;
+	float width, height;
 	graphics::Brush br;
 	bool requestFocus();
 	bool releasedFocus();
 	std::function<void()>action_callback;
-
+public:
+	float central_x, central_y;
 	Widget();
 	~Widget();
 	virtual void draw();
