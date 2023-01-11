@@ -11,7 +11,7 @@ protected:
 	graphics::Brush br;
 	bool requestFocus();
 	bool releasedFocus();
-	std::function<void()>action_callback;
+	std::function<void(void*)>action_callback;
 public:
 	float central_x, central_y;
 	Widget();

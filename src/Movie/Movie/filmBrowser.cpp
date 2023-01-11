@@ -46,7 +46,6 @@ void FilmBrowser::update()
 	for (auto widget : widgets) {
 		widget->update();
 	}
-	displayableMovies.textTitle = txtCont->getText();
 }
 
 void FilmBrowser::init()
@@ -214,21 +213,21 @@ void FilmBrowser::draw()
 	br.gradient = 0;
 
 	b_reset->draw();
-	graphics::drawText(14.6f * CANVAS_WIDTH / 16, 1.8f * CANVAS_HEIGTH / 4.0f,13,"Reset",br);
+	graphics::drawText(14.6f * CANVAS_WIDTH / 16, 1.83f * CANVAS_HEIGTH / 4.0f,13,"Reset",br);
 	b_action->draw();
-	graphics::drawText(11.6f * CANVAS_WIDTH / 16, 1.8f * CANVAS_HEIGTH / 4.0f, 13, "Action", br);
+	graphics::drawText(11.6f * CANVAS_WIDTH / 16, 1.83f * CANVAS_HEIGTH / 4.0f, 13, "Action", br);
 	b_drama->draw();	
-	graphics::drawText(13.1f * CANVAS_WIDTH / 16, 1.8 * CANVAS_HEIGTH / 4.0f, 13, "Drama", br);
+	graphics::drawText(13.1f * CANVAS_WIDTH / 16, 1.83 * CANVAS_HEIGTH / 4.0f, 13, "Drama", br);
 	b_adventure->draw();
-	graphics::drawText(14.6f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, 11, "Adventure", br);
+	graphics::drawText(14.6f * CANVAS_WIDTH / 16, 1.43 * CANVAS_HEIGTH / 4.0f, 11, "Adventure", br);
 	b_fantasy->draw();
-	graphics::drawText(11.6f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, 13, "Fantasy", br);
+	graphics::drawText(11.6f * CANVAS_WIDTH / 16, 1.43 * CANVAS_HEIGTH / 4.0f, 13, "Fantasy", br);
 	b_history->draw();
-	graphics::drawText(13.1f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, 13, "History", br);
+	graphics::drawText(13.1f * CANVAS_WIDTH / 16, 1.43 * CANVAS_HEIGTH / 4.0f, 13, "History", br);
 	b_crime->draw();
-	graphics::drawText(14.6f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, 13, "Crime", br);
+	graphics::drawText(14.6f * CANVAS_WIDTH / 16, 1.03 * CANVAS_HEIGTH / 4.0f, 13, "Crime", br);
 	b_scifi->draw();
-	graphics::drawText(13.1f * CANVAS_WIDTH / 16, 1.0f * CANVAS_HEIGTH / 4.0f, 13, "Sci-Fi", br);
+	graphics::drawText(13.1f * CANVAS_WIDTH / 16, 1.03f * CANVAS_HEIGTH / 4.0f, 13, "Sci-Fi", br);
 
 	fromYearSlider->draw();
 	toYearSlider->draw();

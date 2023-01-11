@@ -24,7 +24,7 @@ public:
 	void draw() override;
 	void update()override;
 	void init()override;
-	void addActionCallback(std::function<void()> cb);
+	void addActionCallback(std::function<void(void*)> cb);
 	void separator();
 
 

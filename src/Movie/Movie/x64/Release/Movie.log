@@ -1,15 +1,24 @@
-﻿  filmBrowser.cpp
-C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\filmBrowser.cpp(82,160): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\filmBrowser.cpp(86,161): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\filmBrowser.cpp(158,36): warning C4305: '=': truncation from 'double' to 'float'
+﻿  button.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  filmBrowser.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(81,160): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(85,161): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(157,36): warning C4305: '=': truncation from 'double' to 'float'
+  glowing_button.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  select_one_option.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\select_one_option.cpp(69,31): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   slider.cpp
-C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\slider.cpp(85,29): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\Movie\slider.cpp(97,29): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\slider.cpp(85,29): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\slider.cpp(97,29): warning C4553: '==': result of expression not used; did you intend '='?
+  text_container.cpp
+  widget.cpp
   Generating code
-  0 of 633 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  85 of 649 functions (13.1%) were compiled, the rest were copied from previous compilation.
+    59 functions were new in current compilation
+    23 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Movie.vcxproj -> C:\Users\30694\OneDrive\Desktop\Victor\OPA\3o examino\Cpp\Ergasia\src\Movie\bin\Movie.exe
+  Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\bin\Movie.exe

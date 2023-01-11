@@ -32,7 +32,7 @@ Slider::Slider(float central_x, float central_y, float width, float height, grap
 	//so we must create a function for that either in this class or the moviesList class 
 }
 
-void Slider::addActionCallback(std::function<void()> cb)
+void Slider::addActionCallback(std::function<void(void*)> cb)
 {
 	action_callback = cb;
 }
@@ -86,7 +86,7 @@ void Slider::update()
 					}
 					s_button_state = SLIDER_ACTIVATED;
 				}
-				action_callback();
+				action_callback(nullptr);
 			}
 			if (mx < pmx && mx > this->central_x && mx < this->width) {
 				this->slidersButton->central_x = mx;
@@ -98,7 +98,7 @@ void Slider::update()
 					}
 					s_button_state = SLIDER_ACTIVATED;
 				}
-				action_callback();
+				action_callback(nullptr);
 			}
 		}
 		//if mouse_left_released->make sound and change button's color to the original one 

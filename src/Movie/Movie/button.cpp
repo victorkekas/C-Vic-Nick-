@@ -19,7 +19,7 @@ Button::Button(float central_x, float central_y, float width, float height, grap
 	this->br = br;
 }
 
-void Button::addActionCallback(std::function<void()> cb)
+void Button::addActionCallback(std::function<void(void*)> cb)
 {
 	action_callback = cb;
 }
@@ -44,7 +44,7 @@ void Button::update()
 		if (ms.button_left_pressed) {
 			m_button_state = BUTTON_PRESSED;
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
-			action_callback();
+			action_callback(nullptr);
 		}
 		if (ms.button_left_released) {
 			m_button_state = BUTTON_IDLE;

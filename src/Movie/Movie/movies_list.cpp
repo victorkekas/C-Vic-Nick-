@@ -1,6 +1,5 @@
 #include "movies_list.h"
 
-
 MoviesList::MoviesList()
 {
 }
@@ -84,7 +83,6 @@ void MoviesList::separator(float start, float end)
 	prev_loc_end = end;
 }
 
-// if fitersOn=true, "contain" those movie, else "contain" all the movies.
 void MoviesList::fillFilteredMoviesYear()
 {
 	int test;
@@ -129,7 +127,10 @@ void MoviesList::init()
 void MoviesList::fillFilteredMovies()
 {
 	filteredMovies.clear();
+	std::vector<Movie> toBeRemovedMovies;
 	bool isOnFilteredMovies = false;
+
+	//push_back in the vector filteredMovies the movies which corespond to at least one filter 
 	for (auto& gen : filters) {
 		for (int i = 0; i < movies.size(); i++) {
 			isOnFilteredMovies = false;
@@ -150,8 +151,28 @@ void MoviesList::fillFilteredMovies()
 			}
 		}
 	}
+
+	//Remove from filteredMovies the movies that do not corespond to all the filters 
+	isOnFilteredMovies = false;
+	for (auto gen : filters) {
+		for (int i = 0; i < filteredMovies.size(); i++) {
+			isOnFilteredMovies = false;
+			for (int j = 0; j < filteredMovies[i].getGenre().size(); j++) {
+				if (filteredMovies[i].genre[j] == gen) {
+					isOnFilteredMovies = true;
+				}
+			}
+			if (!isOnFilteredMovies) {
+				toBeRemovedMovies.push_back(filteredMovies[i]);
+			}
+		}
+	}
+	for (auto& mov : toBeRemovedMovies) {
+		filteredMovies.erase(std::remove(filteredMovies.begin(), filteredMovies.end(), mov), filteredMovies.end());
+	}
 	
-	std::vector<Movie> toBeRemovedMovies;
+	//Remove from the vectro filteredMovies the movies that are not included within the approprate years 
+	toBeRemovedMovies.clear();
 	if (!filtersOn) {
 		for (int i = 0; i < movies.size(); i++) {
 			if (std::stoi(movies[i].getYear()) <= toYear && std::stoi(movies[i].getYear()) >= fromYear) {
@@ -182,6 +203,8 @@ void MoviesList::fillFilteredMovies()
 		}
 
 	}
+	
+	//filter based on the Title _ With a little bug _ Wokrs one letter prior 
 	if (!textTitle._Equal("")) {
 		if (!filtersOn) {
 			for (int i = 0; i < movies.size(); i++) {
@@ -390,7 +413,6 @@ void MoviesList::setFilterSciFi()
 	fillFilteredMovies();
 }
 
-//take a look 
 void MoviesList::resetFilters()
 {
 	filters.clear();

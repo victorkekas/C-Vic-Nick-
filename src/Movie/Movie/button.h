@@ -11,7 +11,7 @@ public:
 	Button();
 	Button(float central_x, float central_y, float width, float height, graphics::Brush br);
 	~Button();
-	void addActionCallback(std::function<void()> cb);
+	void addActionCallback(std::function<void(void*)> cb);
 	void draw() override;
 	void update()override;
 	void init()override;

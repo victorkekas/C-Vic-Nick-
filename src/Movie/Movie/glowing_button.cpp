@@ -60,7 +60,7 @@ void GlowingButton::update()
 				this->activated = true;
 			}
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
-			action_callback();
+			action_callback(nullptr);
 		}
 		if (ms.button_left_released) {
 			m_button_state = BUTTON_IDLE;

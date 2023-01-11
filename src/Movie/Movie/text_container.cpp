@@ -8,7 +8,7 @@ textContainer::textContainer(float central_x, float central_y, float width, floa
 	this->br = br;
 }
 
-void textContainer::addActionCallback(std::function<void()> cb)
+void textContainer::addActionCallback(std::function<void(void*)> cb)
 {
 	action_callback = cb;
 }
@@ -53,7 +53,7 @@ void textContainer::update() {
 					text.resize(0);
 				}
 			}
-			action_callback();
+			action_callback(nullptr);
 			return;
 		}
 
