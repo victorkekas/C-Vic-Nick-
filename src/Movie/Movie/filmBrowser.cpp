@@ -164,7 +164,7 @@ void FilmBrowser::init()
 	br_button_type_1.outline_width=0.2;
 
 	txtCont= new textContainer(4.22*CANVAS_WIDTH/5, 2.2f * CANVAS_HEIGTH / 4.0f, 0.25 * CANVAS_WIDTH, 0.05 * CANVAS_HEIGTH, br_button_type_1);
-	txtCont->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies,""));
+	txtCont->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies,txtCont->getText()));
 	
 
 	widgets.push_back(txtCont);

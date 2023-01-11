@@ -1,22 +1,9 @@
-﻿  filmBrowser.cpp
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(81,160): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(85,161): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(102,147): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(106,151): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(110,149): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(114,149): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(164,36): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(166,139): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(227,92): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(229,96): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(231,94): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(233,94): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(235,92): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(260,98): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  movies_list.cpp
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(29,35): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\movies_list.cpp(33,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  2 of 786 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  0 of 836 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    5 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Movie.vcxproj -> C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\bin\Movie.exe

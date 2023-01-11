@@ -136,8 +136,13 @@ void textContainer::narrowText()
 	
 }
 
-void textContainer::setText(string text) {
+void textContainer::setDisplayableText(std::string text) {
 	this->displayableText = text;
+}
+
+void textContainer::setText(std::string text)
+{
+	this->text = text;
 }
 
 string textContainer::getText()

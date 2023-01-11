@@ -5,8 +5,8 @@
 class textContainer : public Widget {
 public:
 
-	string text="";
-	string displayableText = "";
+	std::string text="";
+	std::string displayableText = "";
 	textContainer(float central_x, float central_y, float width, float height, graphics::Brush br);
 	void addActionCallback(std::function<void(void*)> cb);
 	~textContainer();
@@ -15,7 +15,8 @@ public:
 	void init();
 	char readChar();
 	void narrowText();
-	void setText(string text);
-	string getText();
+	void setDisplayableText(std::string text);
+	void setText(std::string text);
+	std::string getText();
 };
 
