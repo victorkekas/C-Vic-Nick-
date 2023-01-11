@@ -6,7 +6,7 @@
 class Button : public Widget {
 public:
 	
-	enum button_state_t {BUTTON_PRESSED, BUTTON_IDLE, BUTTON_HIGHLIGHTED};
+	enum button_state_t {BUTTON_PRESSED, BUTTON_IDLE, BUTTON_HIGHLIGHTED, BUTTON_ACTIVATED};
 	button_state_t m_button_state = BUTTON_IDLE;
 	std::string m_text;
 	int m_id;
@@ -27,8 +27,8 @@ public:
 	void addActionCallback(std::function<void()> cb);
 	void ButtonAction_Index();
 	void ButtonAction_Index_except0();
-	void draw() /*override*/;
-	void update()/*override*/;
-	void init()/*override*/;
+	void draw() override;
+	void update()override;
+	void init()override;
 	char getMovement();
 };

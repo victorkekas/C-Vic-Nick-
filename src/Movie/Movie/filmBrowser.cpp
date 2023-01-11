@@ -3,6 +3,7 @@
 #include "config.h"
 #include "movie.h"
 #include "button.h"
+#include "glowing_button.h"
 #include "slider.h"
 #include "movies_list.h"
 #include "text_container.h"
@@ -30,6 +31,9 @@ void FilmBrowser::update()
 		fromYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
 		toYearSlider->addActionCallback(std::bind(&MoviesList::fillFilteredMovies, &displayableMovies));
 		txtCont->init();
+		for (auto widget : widgets) {
+			widget->init();
+		}
 	}
 	if (fromYearSlider->s_button_state == 0 || toYearSlider->s_button_state == 0) {
 		displayableMovies.changeFromYear(fromYearSlider->displaybleValue);
@@ -89,39 +93,35 @@ void FilmBrowser::init()
 	widgets.push_back(b1_right);
 	widgets.push_back(b2_left);
 	widgets.push_back(b2_right);
-
-	br_button_type_1.fill_color[0] = 1.0f;
-	br_button_type_1.fill_color[1] = 1.0f;
-	br_button_type_1.fill_color[2] = 1.0f;
-
+	
 	
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "action.png";
-	b_action = new Button(12.0f * CANVAS_WIDTH / 16, 1.8f * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_action = new GlowingButton(12.0f * CANVAS_WIDTH / 16, 1.8f * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_action->addActionCallback(std::bind(&MoviesList::setFilterAction, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "drama.png";
-	b_drama = new Button(13.5f * CANVAS_WIDTH / 16, 1.8 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_drama = new GlowingButton(13.5f * CANVAS_WIDTH / 16, 1.8 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_drama->addActionCallback(std::bind(&MoviesList::setFilterDrama, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "adventure.png";
-	b_adventure = new Button(15.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_adventure = new GlowingButton(15.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_adventure->addActionCallback(std::bind(&MoviesList::setFilterAdventure, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "fantasy.png";
-	b_fantasy = new Button(12.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_fantasy = new GlowingButton(12.0f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_fantasy->addActionCallback(std::bind(&MoviesList::setFilterFantasy, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "history.png";
-	b_history = new Button(13.5f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_history = new GlowingButton(13.5f * CANVAS_WIDTH / 16, 1.4 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_history->addActionCallback(std::bind(&MoviesList::setFilterHistory, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "crime.png";
-	b_crime = new Button(15.0f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_crime = new GlowingButton(15.0f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_crime->addActionCallback(std::bind(&MoviesList::setFilterCrime, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "Sci-fi.png";
-	b_scifi = new Button(13.5f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
+	b_scifi = new GlowingButton(13.5f * CANVAS_WIDTH / 16, 1.0 * CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 16.6f, CANVAS_HEIGTH / 16.6f, br_button_type_1);
 	b_scifi->addActionCallback(std::bind(&MoviesList::setFilterSciFi, &displayableMovies));
 
 	br_button_type_1.texture = std::string(ASSET_PATH) + "reset.png";

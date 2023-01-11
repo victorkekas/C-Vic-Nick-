@@ -1,10 +1,7 @@
-﻿  filmBrowser.cpp
+﻿  glowing_button.cpp
 C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\button.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(78,160): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(83,161): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\NikolasVaitsis\Desktop\3ο Εξάνημο\C++\C-Vic-Nick-\src\Movie\Movie\filmBrowser.cpp(166,36): warning C4305: '=': truncation from 'double' to 'float'
   Generating code
-  2 of 634 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 642 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     11 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

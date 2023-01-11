@@ -12,9 +12,9 @@ public:
 	Slider();
 	Slider(float central_x, float central_y, float width, float height, graphics::Brush br, char buttonPosition, int lowestLimit, int highestLimit);
 	~Slider();
-	void draw() /*override*/;
-	void update()/*override*/;
-	void init()/*override*/;
+	void draw() override;
+	void update()override;
+	void init()override;
 	void addActionCallback(std::function<void()> cb);
 	void separator();
 	graphics::Brush brsaver;
