@@ -9,8 +9,8 @@ public:
 	void draw() override;
 	void update() override;
 	void init() override;
+private:
 	bool isactivated();
-
 	graphics::Brush tempbr;
 	bool activated = false;
 };

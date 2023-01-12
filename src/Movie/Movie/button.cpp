@@ -3,7 +3,6 @@
 
 Button::~Button()
 {
-	std::cout << "Button" << endl;
 }
 
 Button::Button()
@@ -23,7 +22,6 @@ void Button::addActionCallback(std::function<void(void*)> cb)
 {
 	action_callback = cb;
 }
-
 
 void Button::draw ()
 {
@@ -51,26 +49,6 @@ void Button::update()
 		}
 		return;
 	}
-
-	/*if (in_bounds) {
-		if (ms.button_left_pressed) {
-			if (!requestFocus()) {
-				return;
-			}
-			m_button_state = BUTTON_PRESSED;
-			graphics::playSound(m_asset_path + "button.aav", 0.7f);
-			if (m_callback_pressed)
-				m_callback_pressed(m_pressed_data, m_id);
-		}
-		if (ms.button_left_released) {
-			m_button_state = BUTTON_IDLE;
-			if (m_callback_released)
-				m_callback_released(m_released_data, m_id);
-			releasedFocus();
-			return;
-		}
-	}*/
-	
 }
 
 void Button::init()

@@ -14,6 +14,7 @@ Slider::Slider(float central_x, float central_y, float width, float height, grap
 	this->buttonPosition = buttonPosition;
 	this->lowestLimit = lowestLimit;
 	this->highestLimit = highestLimit;
+	//chose where to "start", from the beginning(s) or the end(f)
 	switch (buttonPosition)
 	{
 	case 's':
@@ -27,24 +28,15 @@ Slider::Slider(float central_x, float central_y, float width, float height, grap
 		prev_loc = this->width;
 		break;
 	}
-	this->separator();
-	//here or in the init function,if the button's possition is changing,then a certain value is changing (namely increasing or decreasing)
-	//so we must create a function for that either in this class or the moviesList class 
+	//separate evenly the slider
+	int difference = highestLimit - lowestLimit;
+	if (difference == 0) { return; }
+	spaces = (this->width - this->central_x) / difference;
 }
 
 void Slider::addActionCallback(std::function<void(void*)> cb)
 {
 	action_callback = cb;
-}
-
-void Slider::separator()
-{
-	//maybe declare them in init or the constructor (second option sounds better)
-	int difference = highestLimit - lowestLimit;
-	if (difference == 0) { return; }
-	spaces = (this->width - this->central_x) / difference;
-	//wacth out the following
-
 }
 
 Slider::~Slider()
@@ -69,12 +61,10 @@ void Slider::update()
 	float pmy = graphics::windowToCanvasY((float)ms.prev_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
 	if (in_bounds) {
-		//if mouse_left_pressed->make sound
 		if (ms.button_left_pressed) {
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		}
-		
-		//if current mouse_pos is left or right, compare to the current pos of the button, draw button there
+		//if current mouse_pos is left or right, compare to the current pos of the button, and make button follow (draw) mouse 
 		if (ms.button_left_down) {
 			if (mx > pmx && mx>this->central_x && mx<this->width) {
 				this->slidersButton->central_x = mx;
@@ -101,13 +91,11 @@ void Slider::update()
 				action_callback(nullptr);
 			}
 		}
-		//if mouse_left_released->make sound and change button's color to the original one 
 		if (ms.button_left_released) {
 			s_button_state = SLIDER_ACTIVATED;
 			graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		}
 	}
-	
 }
 
 void Slider::init()

@@ -21,6 +21,7 @@ Movie::Movie(string title, string director, vector <string> genre, vector <strin
 		this->shots.push_back(shots[i]);
 	}
 }
+
 Movie::Movie(const Movie& obj_Movie) {
 	this->images_index = obj_Movie.images_index;
 	this->title = obj_Movie.title;
@@ -38,41 +39,35 @@ Movie::Movie(const Movie& obj_Movie) {
 		this->shots.push_back(obj_Movie.shots[i]);
 	}
 }
+
 Movie::~Movie() {
 }
+
 string Movie::getYear() {
 	return year;
 }
 
+
 const string Movie::getTitle() {
 	return title;
 }
+
 string Movie::getDirector() {
 	return director;
 }
+
 vector <string> Movie::getProtagonists() {
 	return prot;
 }
+
 vector <string> Movie::getGenre() {
 	return this->genre;
 }
+
 string Movie::getSummary()
 {
 	return this->summary;
 }
-string Movie::toString() {
-	string str = "Title : " + this->getTitle() + " \n"
-		+ "Director : " + this->getDirector() + "\n"
-		+ "Year of publish : " + this->getYear() + "\n";
-	for (int i = 0; i < prot.size(); i++) {
-		str += "Actor  " + to_string(i + 1) + " : " + prot[i] + "\n";
-	}
-	for (int i = 0; i < genre.size(); i++) {
-		str += "Gerne  " + to_string(i + 1) + " : " + genre[i] + "\n";
-	}
-	return str;
-}
-
 
 void Movie::init()
 {
@@ -80,6 +75,7 @@ void Movie::init()
 
 void Movie::draw()
 {
+	//draw main image 
 	graphics::Brush br;
 	br.texture = std::string(ASSET_PATH) + poster;
 	br.outline_color[0] = 0.0f;
@@ -88,6 +84,7 @@ void Movie::draw()
 	br.outline_width = 2.0f;
 	graphics::drawRect(2.2f * CANVAS_WIDTH / 6.0f, CANVAS_HEIGTH / 4.0f, CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 2.3f, br); // main image
 
+	//draw shots 
 	graphics::Brush br2;
 	br2.texture = std::string(ASSET_PATH) + shots[images_index];
 	br2.outline_color[0] = 0.0f;
@@ -103,8 +100,10 @@ void Movie::draw()
 	br.outline_color[1] = 0.0f;
 	br.outline_color[2] = 0.0f;
 
+	//set font style 
 	graphics::setFont(std::string(ASSET_PATH) + "LiberationSans-Bold.ttf");
 
+	//draw movie iformation  
 	std::string str;
 	float j = 20;
 	int i = 0;
@@ -181,9 +180,9 @@ void Movie::draw()
 	}
 }
 
-
 void Movie::draw1(float cx)
 {
+	//draw poster only 
 	graphics::Brush br;
 	br.texture = std::string(ASSET_PATH) + poster;
 	br.outline_color[0] = 0.0f;
@@ -195,6 +194,7 @@ void Movie::draw1(float cx)
 
 void Movie::nextShot()
 {
+	//change shot
 	if (images_index == (shots.size() - 1)) {
 		images_index = 0;
 		return;
@@ -205,6 +205,7 @@ void Movie::nextShot()
 
 void Movie::previousShot()
 {
+	//change shot
 	if (images_index == 0) {
 		images_index = (shots.size() - 1);
 		return;

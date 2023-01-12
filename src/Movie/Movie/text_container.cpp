@@ -41,11 +41,10 @@ void textContainer::update() {
 	float my = graphics::windowToCanvasY((float)ms.cur_pos_y);
 	bool in_bounds = boundries.contained(mx, my);
 	if (in_bounds) {
-		//graphics::playSound(std::string(ASSET_PATH) + "button.wav", 1.0f);
 		char c = readChar();
-		if (c != 0) {
+		if (c != 0) {//prevent from inserting null input 
 			text += c;
-			if (c == 8) {
+			if (c == 8) {//if you press backspace, resize the text by 2 characters 
 				if (text.size() - 1 > 0) {
 					text.resize(text.size() - 2);
 				}
@@ -54,13 +53,13 @@ void textContainer::update() {
 				}
 			}
 			setText(text);
-			action_callback(&text);
+			std::string temp=getText();
+			action_callback(&temp);
 			return;
 		}
 
 	}
 }
-
 
 void textContainer::init() {
 	text = "";
@@ -73,35 +72,30 @@ char textContainer::readChar() {//change comments
 	delay += graphics::getDeltaTime();
 
 	for (int i = graphics::SCANCODE_A; i <= graphics::SCANCODE_SPACE; i++) {
-		if (graphics::getKeyState((graphics::scancode_t)i)) {
-			if (prev == i && delay < 200) {
+		if (graphics::getKeyState((graphics::scancode_t)i)) {//if you press any key 
+			if (prev == i && delay < 200) {//doesn't let user to spam letter or numbers 
 				continue;
 			}
 			else {
 				prev = i;
 				delay = 0;
 
-				//if letters
-				if (i >= graphics::SCANCODE_A && i <= graphics::SCANCODE_Z) {
+				if (i >= graphics::SCANCODE_A && i <= graphics::SCANCODE_Z) {//if letter convert to char 
 					ascii = (char)(i + 93);
-					//if letters in caps
-					if (graphics::getKeyState(graphics::SCANCODE_RSHIFT) || graphics::getKeyState(graphics::SCANCODE_LSHIFT)) {
+					if (graphics::getKeyState(graphics::SCANCODE_RSHIFT) || graphics::getKeyState(graphics::SCANCODE_LSHIFT)) {//if you want capital letter
 						ascii -= 32;
 					}
 				}
-				//if numbers
-				if (i >= graphics::SCANCODE_1 && i <= graphics::SCANCODE_0) {
-					//zero is not in proper order, checking seperately
-					if (i == graphics::SCANCODE_0) {
+				if (i >= graphics::SCANCODE_1 && i <= graphics::SCANCODE_0) {//if number covert to char 
+					if (i == graphics::SCANCODE_0) {//special treatment for 0 (ascii table)
 						ascii = (char)(48);
 					}
 					else {
 						ascii = (char)(i + 19);
 					}
 				}
-				//if special characters
 				if (i == graphics::SCANCODE_BACKSPACE) {
-					ascii = (char)(8); //delete char when using backspace
+					ascii = (char)(8); 
 
 				}
 				if (i == graphics::SCANCODE_SPACE) {

@@ -20,6 +20,7 @@ GlowingButton::~GlowingButton()
 
 void GlowingButton::draw()
 {
+	// if the button is activated, change its outline 
 	if (isactivated()) {
 		br.outline_color[0] = 1.0f;
 		br.outline_color[1] = 1.0f;
@@ -36,8 +37,7 @@ void GlowingButton::draw()
 		br.outline_opacity = tempbr.outline_opacity;
 		br.texture = tempbr.texture;
 	}
-	
-
+	//draw button
 	graphics::drawRect(this->central_x, this->central_y, this->width, this->height, this->br);
 }
 
@@ -53,7 +53,7 @@ void GlowingButton::update()
 		m_button_state = BUTTON_HIGHLIGHTED;
 		if (ms.button_left_pressed) {
 			m_button_state = BUTTON_PRESSED;
-			if (isactivated()) {
+			if (isactivated()) {	//if button is already active, de-activate it, else activate it
 				this->activated = false;
 			}
 			else {

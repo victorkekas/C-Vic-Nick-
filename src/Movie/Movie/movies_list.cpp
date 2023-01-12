@@ -15,6 +15,7 @@ MoviesList::~MoviesList()
 
 void MoviesList::nextMovie()
 {
+	//get the next movie and if on the last movie of the vector, "loop" to the first
 	if (movieIndex == (movies.size() - 1) || movieIndex == (filteredMovies.size() - 1)) {
 		movieIndex = 0;
 		return;
@@ -25,6 +26,7 @@ void MoviesList::nextMovie()
 
 void MoviesList::previousMovie()
 {
+	//get the previous movie and if on the first movie of the vector, "loop" to the last one 
 	if (movieIndex == 0 && !filtersOn) {
 		movieIndex = (movies.size() - 1);
 		return;
@@ -50,6 +52,7 @@ void MoviesList::changeToYear(int toYear)
 
 int MoviesList::getOldestYear()
 {
+	//return the year of the oldest movie 
 	int year;
 	year = std::stoi(movies[0].getYear());
 	for (int i = 0; i < movies.size(); i++) {
@@ -63,6 +66,7 @@ int MoviesList::getOldestYear()
 
 int MoviesList::getNewestYear()
 {
+	//return the year of the newest movie 
 	int year;
 	year = std::stoi(movies[0].getYear());
 	for (int i = 0; i < movies.size(); i++) {
@@ -73,17 +77,9 @@ int MoviesList::getNewestYear()
 	return year;
 }
 
-void MoviesList::separator(float start, float end)
-{
-	int difference = getNewestYear() - getOldestYear();
-	if (difference==0) { return; }
-	spaces = (end - start) / difference;
-	prev_loc_start = start;
-	prev_loc_end = end;
-}
-
 void MoviesList::init()
 {
+	//create wanted movies 
 	Movie fightClub("Fight Club", "David Fincher", { "Drama" }, { "Brad Pitt", "Edward Norton", "Helena Bonham Carter" }, "1999", { "shot-FightClubV1.png", "shot-FightClubV2.png" }, "FightClub.png", "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.");
 	Movie aNewHope("A New Hope", "George Lucas", { "Action" ,"Adventure","Fantasy" }, {"Mark Hamill" ,"Harrison Ford", "Carrie Fisher"}, "1977", {"shot-ANewHopeV1.png","shot-ANewHopeV2.png" ,"shot-ANewHopeV3.png"}, "ANewHope.png", "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.");
 	Movie empireStrikesBack("Empire Strikes Back", "Irvin Kenshner", { "Action" ,"Adventure","Fantasy" }, { "Mark Hamill" ,"Harrison Ford", "Carrie Fisher " }, "1980", { "shot-StarWarsV1.png","shot-StarWarsV2.png" ,"shot-StarWarsV3.png" ,"shot-StarWarsV4.png" ,"shot-StarWarsV5.png" ,"shot-StarWarsV6.png" }, "EmpireStrikesBack.png", "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.");
@@ -93,7 +89,7 @@ void MoviesList::init()
 	Movie schindlerslist("Schindler's list", "Steven Spielberg", { "Drama" ,"History" }, { "Liam Neeson " ,"Ralph Fiennes", "Ben Kingsley" }, "1993", { "shot-SchindlerslistV1.png" ,"shot-SchindlerslistV2.png" ,"shot-SchindlerslistV3.png" }, "Schindlerslist.png", "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.");
 	Movie terminator("Terminator", "James Cameron", { "Action" ,"Sci-Fi" }, { "Arnold Schwarzenegger" ,"Linda Hamilton", "Michael Biehn" }, "1984", { "shot-Terminator.png" }, "Terminator.png", "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.");
 	Movie templeOfDoom("Temple Of Doom", "Steven Spielberg", { "Action" ,"Adventure" }, { "Kate Capshaw" ,"Harrison Ford","Ke Huy Quan" }, "1984", { "shot-TempleOfDoomV1.png" ,"shot-TempleOfDoomV2.png" ,"shot-TempleOfDoomV3.png" ,"shot-TempleOfDoomV4.png" ,"shot-TempleOfDoomV5.png" }, "TempleOfDoom.png", "A skirmish in Shanghai puts archaeologist Indiana Jones, his partner Short Round and singer Willie Scott crossing paths with an Indian village desperate to reclaim a rock stolen by a secret cult beneath the catacombs of an ancient palace.");
-
+//push them in main vector 
 	movies.push_back(fightClub);
 	movies.push_back(aNewHope);
 	movies.push_back(empireStrikesBack);
@@ -111,12 +107,11 @@ void MoviesList::init()
 
 void MoviesList::fillFilteredMovies(std::string title)
 {
-	//settextTitle(title);
 	filteredMovies.clear();
 	std::vector<Movie> toBeRemovedMovies;
 	bool isOnFilteredMovies = false;
 
-	//push_back in the vector filteredMovies the movies which corespond to at least one filter 
+	//push_back in the vector filteredMovies, the movies which correspond to at least one filter 
 	for (auto& gen : filters) {
 		for (int i = 0; i < movies.size(); i++) {
 			isOnFilteredMovies = false;
@@ -138,7 +133,7 @@ void MoviesList::fillFilteredMovies(std::string title)
 		}
 	}
 
-	//Remove from filteredMovies the movies that do not corespond to all the filters 
+	//Remove from filteredMovies the movies that do not correspond to all the filters 
 	isOnFilteredMovies = false;
 	for (auto gen : filters) {
 		for (int i = 0; i < filteredMovies.size(); i++) {
@@ -229,6 +224,7 @@ void MoviesList::fillFilteredMovies(std::string title)
 
 void MoviesList::setFilter(std::string filter)
 {
+	//push_back filter in vector filters, and if aldready exists remove it
 	movieIndex = 0;
 	if (!filtersOn) {
 		filters.push_back(filter);
@@ -246,147 +242,13 @@ void MoviesList::setFilter(std::string filter)
 			filters.push_back(filter);
 		}
 	}
-	fillFilteredMovies("");
-}
-
-void MoviesList::setFilterAction()
-{
-	movieIndex = 0;
-	if (!filtersOn) {
-		filters.push_back("Action");
-		filtersOn = true;
-	}
-	else if (filtersOn) {
-		if (std::find(filters.begin(), filters.end(), "Action") != filters.end()) {
-			filters.erase(std::remove(filters.begin(), filters.end(), "Action"), filters.end());
-			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) 
-			{
-				filtersOn = false; 
-			}
-		}
-		else {
-			filters.push_back("Action");
-		}
-	}
-	fillFilteredMovies("");
-}
-
-void MoviesList::setFilterDrama()
-{
-	movieIndex = 0;
-	if (!filtersOn) {
-		filters.push_back("Drama");
-		filtersOn = true;
-	}
-	else if (filtersOn) {
-		if (std::find(filters.begin(), filters.end(), "Drama") != filters.end()) {
-			filters.erase(std::remove(filters.begin(), filters.end(), "Drama"), filters.end());
-			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
-		}
-		else {
-			filters.push_back("Drama");
-		}
-	}
-	fillFilteredMovies("");
-}
-
-void MoviesList::setFilterAdventure()
-{
-	movieIndex = 0;
-	if (!filtersOn) {
-		filters.push_back("Adventure");
-		filtersOn = true;
-	}
-	else if (filtersOn) {
-		if (std::find(filters.begin(), filters.end(), "Adventure") != filters.end()) {
-			filters.erase(std::remove(filters.begin(), filters.end(), "Adventure"), filters.end());
-			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false;	}
-		}
-		else {
-			filters.push_back("Adventure");
-		}
-	}
-	fillFilteredMovies("");
-}
-
-void MoviesList::setFilterFantasy()
-{
-	movieIndex = 0;
-	if (!filtersOn) {
-		filters.push_back("Fantasy");
-		filtersOn = true;
-	}
-	else if (filtersOn) {
-		if (std::find(filters.begin(), filters.end(), "Fantasy") != filters.end()) {
-			filters.erase(std::remove(filters.begin(), filters.end(), "Fantasy"), filters.end());
-			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
-		}
-		else {
-			filters.push_back("Fantasy");
-		}
-	}
-	fillFilteredMovies("");
-}
-
-void MoviesList::setFilterHistory()
-{
-	movieIndex = 0;
-	if (!filtersOn) {
-		filters.push_back("History");
-		filtersOn = true;
-	}
-	else if (filtersOn) {
-		if (std::find(filters.begin(), filters.end(), "History") != filters.end()) {
-			filters.erase(std::remove(filters.begin(), filters.end(), "History"), filters.end());
-			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
-		}
-		else {
-			filters.push_back("History");
-		}
-	}
-	fillFilteredMovies("");
-}
-
-void MoviesList::setFilterCrime()
-{
-	movieIndex = 0;
-	if (!filtersOn) {
-		filters.push_back("Crime");
-		filtersOn = true;
-	}
-	else if (filtersOn) {
-		if (std::find(filters.begin(), filters.end(), "Crime") != filters.end()) {
-			filters.erase(std::remove(filters.begin(), filters.end(), "Crime"), filters.end());
-			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
-		}
-		else {
-			filters.push_back("Crime");
-		}
-	}
-	fillFilteredMovies("");
-}
-
-void MoviesList::setFilterSciFi()
-{
-	movieIndex = 0;
-	if (!filtersOn) {
-		filters.push_back("Sci-Fi");
-		filtersOn = true;
-	}
-	else if (filtersOn) {
-		if (std::find(filters.begin(), filters.end(), "Sci-Fi") != filters.end()) {
-			filters.erase(std::remove(filters.begin(), filters.end(), "Sci-Fi"), filters.end());
-			if (filters.size() == 0 && fromYear == getOldestYear() && toYear == getNewestYear()) { filtersOn = false; }
-		}
-		else {
-			filters.push_back("Sci-Fi");
-		}
-	}
+	//tidy up the vector fillFilteredMovies
 	fillFilteredMovies("");
 }
 
 void MoviesList::resetFilters()
 {
+	//set appropiate values to their initial state 
 	filters.clear();
 	fromYear = getOldestYear();
 	toYear = getNewestYear();
@@ -402,6 +264,7 @@ void MoviesList::settextTitle(std::string title)
 
 void MoviesList::draw(vector<Movie> Movies)
 {
+	//draw at most three movies of a vector 
 	Movies[movieIndex].draw();
 	if ((Movies.size()) == 1) {
 		return;
@@ -432,8 +295,8 @@ void MoviesList::draw(vector<Movie> Movies)
 
 void MoviesList::draw()
 {
-
-	if (filtersOn) {
+	//draw vector movies or vector filteredMovies
+	if (filtersOn) {//if filters do not match any movie, draw proper message
 		if (filteredMovies.size()==0) {
 			graphics::Brush br;
 			graphics::drawText(1.5f*CANVAS_WIDTH / 5.0f, CANVAS_HEIGTH / 4.0f,20,"No movie found...",br);

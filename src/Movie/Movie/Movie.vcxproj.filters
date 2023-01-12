@@ -42,9 +42,6 @@
     <ClInclude Include="slider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="select_one_option.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="glowing_button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -75,9 +72,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="slider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="select_one_option.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="glowing_button.cpp">

@@ -25,7 +25,4 @@ public:
 	void update()override;
 	void init()override;
 	void addActionCallback(std::function<void(void*)> cb);
-	void separator();
-
-
 };
